@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Sky & Atmosphere Gradient -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="80%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="25%" stop-color="#38bdf8" />
+      <stop offset="60%" stop-color="#bae6fd" />
+      <stop offset="85%" stop-color="#fef08a" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#ffedd5" />
+    </linearGradient>
+
+    <!-- Golden Sun Flare -->
+    <radialGradient id="sunGlow" cx="88%" cy="58%" r="45%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="20%" stop-color="#fef9c3" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#fde047" stop-opacity="0.4" />
+      <stop offset="80%" stop-color="#f97316" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Left Building Facade Shade -->
+    <linearGradient id="leftFacade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e2e8f0" />
+      <stop offset="70%" stop-color="#f1f5f9" />
+      <stop offset="100%" stop-color="#ffffff" />
+    </linearGradient>
+
+    <!-- Right Building Facade (Sunlit) -->
+    <linearGradient id="rightFacade" x1="0%" y1="0%" x2="100%" y2="40%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#fefce8" />
+      <stop offset="80%" stop-color="#fef3c7" />
+      <stop offset="100%" stop-color="#fde68a" />
+    </linearGradient>
+
+    <!-- Window Tint Gradient -->
+    <linearGradient id="glassTint" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="30%" stop-color="#1e293b" />
+      <stop offset="70%" stop-color="#090d16" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <!-- Ground Glass Showroom Reflection -->
+    <linearGradient id="showroomGlass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#020617" />
+      <stop offset="30%" stop-color="#0f172a" />
+      <stop offset="70%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+
+    <!-- Neptune Logo Blue Gradient -->
+    <linearGradient id="logoBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+
+    <!-- Neptune Logo Red Gradient -->
+    <linearGradient id="logoRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#b91c1c" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky Canvas -->
+  <rect width="1200" height="800" fill="url(#skyGrad)" />
+
+  <!-- Sun Flare Halo -->
+  <circle cx="1020" cy="460" r="380" fill="url(#sunGlow)" />
+
+  <!-- MAIN CORPORATE BUILDING CORNER ARCHITECTURE -->
+  <g id="neptune-building-architecture">
+    
+    <!-- LEFT FACADE BODY -->
+    <!-- Polygon: Top left corner, apex corner, bottom corner, bottom left -->
+    <polygon points="0,670 660,70 660,795 0,765" fill="url(#leftFacade)" />
+    
+    <!-- Parapet top edge cap -->
+    <polygon points="0,670 660,70 660,78 0,677" fill="#cbd5e1" opacity="0.6" />
+
+    <!-- RIGHT FACADE BODY -->
+    <polygon points="660,70 1200,660 1200,800 660,795" fill="url(#rightFacade)" />
+    <!-- Parapet right edge cap -->
+    <polygon points="660,70 1200,660 1200,668 660,78" fill="#fef08a" opacity="0.8" />
+
+    <!-- Corner Highlight Ridge -->
+    <line x1="660" y1="70" x2="660" y2="795" stroke="#ffffff" stroke-width="4" opacity="0.9" />
+
+    <!-- LEFT FACADE ARCHITECTURAL ELEMENTS -->
+
+    <!-- Top Level NEPTUNE Corporate Signage -->
+    <g transform="translate(370, 180) rotate(-14) scale(0.95)" id="building-signage">
+      <!-- 3D Shadow Plate behind logo -->
+      <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.25" />
+      </filter>
+      
+      <g filter="url(#dropShadow)">
+        <!-- Stylized 3D Neptune Emblem Ribbon -->
+        <polygon points="0,32 28,0 48,0 20,32" fill="url(#logoBlue)" />
+        <polygon points="18,34 38,66 18,66 -2,34" fill="url(#logoRed)" />
+        <polygon points="22,33 42,1 36,1 16,33" fill="#38bdf8" />
+        
+        <!-- NEPTUNE Corporate Typographic Lettering -->
+        <text x="60" y="48" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="44" fill="#0369a1" letter-spacing="3">
+          NEPTUNE
+        </text>
+        <text x="310" y="24" font-family="system-ui, sans-serif" font-weight="bold" font-size="14" fill="#0369a1">
+          ®
+        </text>
+      </g>
+    </g>
+
+    <!-- Left Floor 3 Recessed Window Band -->
+    <polygon points="0,695 575,230 575,300 0,725" fill="#0f172a" />
+    <polygon points="0,695 575,230 575,236 0,700" fill="#020617" />
+    <!-- Window dividers / mullions Floor 3 -->
+    <line x1="120" y1="598" x2="120" y2="628" stroke="#334155" stroke-width="2" />
+    <line x1="240" y1="502" x2="240" y2="532" stroke="#334155" stroke-width="2" />
+    <line x1="360" y1="405" x2="360" y2="435" stroke="#334155" stroke-width="2" />
+    <line x1="480" y1="308" x2="480" y2="338" stroke="#334155" stroke-width="2" />
+
+    <!-- Left Floor 2 Recessed Window Band -->
+    <polygon points="0,740 575,395 575,470 0,770" fill="#0f172a" />
+    <polygon points="0,740 575,395 575,402 0,746" fill="#020617" />
+    <!-- Window dividers Floor 2 -->
+    <line x1="120" y1="644" x2="120" y2="674" stroke="#334155" stroke-width="2" />
+    <line x1="240" y1="548" x2="240" y2="578" stroke="#334155" stroke-width="2" />
+    <line x1="360" y1="452" x2="360" y2="482" stroke="#334155" stroke-width="2" />
+    <line x1="480" y1="356" x2="480" y2="386" stroke="#334155" stroke-width="2" />
+
+    <!-- Ground Floor Showroom Curtain Wall (Black Reflective Tinted Glass) -->
+    <polygon points="15,750 655,595 655,790 15,790" fill="url(#showroomGlass)" />
+    <!-- Mullions on ground floor showroom -->
+    <line x1="110" y1="730" x2="110" y2="790" stroke="#475569" stroke-width="2" />
+    <line x1="210" y1="706" x2="210" y2="790" stroke="#475569" stroke-width="2" />
+    <line x1="310" y1="681" x2="310" y2="790" stroke="#475569" stroke-width="2" />
+    <line x1="410" y1="656" x2="410" y2="790" stroke="#475569" stroke-width="2" />
+    <line x1="510" y1="632" x2="510" y2="790" stroke="#475569" stroke-width="2" />
+    <line x1="610" y1="607" x2="610" y2="790" stroke="#475569" stroke-width="2" />
+
+    <!-- Entrance Steps on Far Left -->
+    <polygon points="0,750 85,735 95,790 0,790" fill="#cbd5e1" opacity="0.8" />
+    <line x1="0" y1="760" x2="90" y2="745" stroke="#94a3b8" stroke-width="2" />
+    <line x1="0" y1="772" x2="92" y2="757" stroke="#94a3b8" stroke-width="2" />
+
+    <!-- RIGHT FACADE ARCHITECTURAL ELEMENTS -->
+
+    <!-- Right Floor 3 Window Slot -->
+    <polygon points="745,230 1120,530 1120,580 745,280" fill="#1e293b" opacity="0.85" />
+    
+    <!-- Right Floor 2 Window Slot -->
+    <polygon points="765,410 1140,710 1140,760 765,460" fill="#1e293b" opacity="0.85" />
+
+    <!-- Right Stepped Podium Wall & Ramp in Foreground -->
+    <polygon points="660,680 900,670 900,720 1020,720 1020,750 1200,750 1200,800 660,800" fill="#f8fafc" />
+    <polygon points="660,680 900,670 900,675 660,685" fill="#e2e8f0" />
+    <polygon points="900,720 1020,720 1020,725 900,725" fill="#e2e8f0" />
+
+    <!-- FORECOURT / GROUND PAVEMENT -->
+    <polygon points="0,765 1200,750 1200,800 0,800" fill="#94a3b8" opacity="0.4" />
+    <polygon points="0,780 1200,770 1200,800 0,800" fill="#64748b" opacity="0.5" />
+  </g>
+
+  <!-- Sun Flare Optical Streaks and Light Bloom -->
+  <circle cx="1060" cy="480" r="140" fill="#ffffff" opacity="0.75" filter="blur(20px)" />
+  <circle cx="980" cy="510" r="60" fill="#fef08a" opacity="0.5" filter="blur(10px)" />
+  <!-- Diagonal optical flare beam -->
+  <polygon points="800,200 1200,500 1200,600 600,100" fill="#ffffff" opacity="0.08" />
+  <polygon points="700,600 1200,300 1200,350 650,700" fill="#fef08a" opacity="0.07" />
+</svg>
