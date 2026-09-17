@@ -1,0 +1,6 @@
+{
+  "name": "Neptune Automatic | Security, Access & Parking Automation",
+  "description": "Neptune Automatic Pvt. Ltd. - Powering Innovation. Transforming Energies. India's premier manufacturer and engineering leader in automatic boom barriers, security bollards, smart parking management, and perimeter automation systems.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
