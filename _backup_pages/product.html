@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Neptune Automatic Product Specification &amp; Engineering Datasheet</title>
+  <meta name="description" content="Technical specifications, dimensional schematics, and engineering datasheets for Neptune Automatic access automation and barrier systems.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <!-- Google Fonts: Strictly Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css?v=lexend-theme">
+
+  <script>
+    // If URL contains id=..., route to appropriate dedicated product or redirect
+    const urlParams = new URLSearchParams(window.location.search);
+    const prodId = urlParams.get('id');
+    if (prodId === 'power-fusion-xd-automatic-boom-barrier' || !prodId) {
+      // Default to Power Fusion XD
+      if (window.location.pathname.endsWith('product.html') && !prodId) {
+        // keep on page
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ======================================================================
+       HEADER: Topbar + Main Glass Nav with Mega Menu
+       ====================================================================== -->
+  <header class="site-header">
+    <div class="header-topbar">
+      <div class="layout-container">
+        <div class="topbar-left">
+          <span class="topbar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <span>ISO 9001:2015 Certified Access Automation</span>
+          </span>
+          <span class="topbar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>Pan-India 24/7 Support Hotline</span>
+          </span>
+        </div>
+        <div class="topbar-right">
+          <a href="tel:+918010807000" class="topbar-link topbar-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <strong>+91 8010 807 000</strong>
+          </a>
+          <a href="index.html#faqs" class="topbar-link">FAQs &amp; Support</a>
+          <a href="https://www.neptuneindia.com" target="_blank" rel="noopener" class="topbar-link">Neptune Group</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-main">
+      <div class="layout-container">
+        <a href="index.html" class="brand-logo" aria-label="Neptune Automatic Home">
+          <img src="assets/images/neptune-logo.png" alt="Neptune Automatic Logo" width="220" height="55" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="brand-text-fallback">NEPTUNE<span>AUTOMATIC</span></div>
+        </a>
+
+        <nav class="nav-menu" aria-label="Main Navigation">
+          <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+          <div class="nav-item has-dropdown has-mega active">
+            <a href="access-automation.html" class="nav-link">
+              <span>Products</span>
+              <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </a>
+            <div class="mega-menu mega-menu-products">
+              <div class="mega-grid products-three-grid">
+                <div class="mega-col">
+                  <div class="mega-col-heading-group">
+                    <a href="access-automation.html" class="mega-col-heading">ACCESS AUTOMATION</a>
+                    <span class="cyan-accent-line"></span>
+                  </div>
+                  <ul class="mega-menu-list">
+                    <li><a href="automatic-boom-barrier.html" class="active"><span>Automatic Boom Barrier</span></a></li>
+                    <li><a href="high-security-automatic-bollards.html"><span>High Security Automatic Bollards</span></a></li>
+                    <li><a href="crash-rated-drop-arm-barrier.html"><span>Crash Rated Drop Arm Barrier</span></a></li>
+                    <li><a href="strong-arm-automatic-barrier.html"><span>Strong Arm Automatic Barrier</span></a></li>
+                    <li><a href="swing-gate-automation.html"><span>Swing Gate Automation</span></a></li>
+                    <li><a href="sliding-gate-automation.html"><span>Sliding Gate Automation</span></a></li>
+                    <li><a href="automatic-rolling-shutters.html"><span>Automatic Rolling Shutters</span></a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <div class="mega-col-heading-group">
+                    <a href="access-control.html" class="mega-col-heading">ACCESS CONTROL</a>
+                    <span class="cyan-accent-line"></span>
+                  </div>
+                  <ul class="mega-menu-list">
+                    <li><a href="uhf-reader-rfid-long-range.html"><span>UHF Reader - RFID Long Range</span></a></li>
+                    <li><a href="smart-card-readers.html"><span>Smart Card Readers</span></a></li>
+                    <li><a href="pedestrian-access-gates.html"><span>Pedestrian Access Gates</span></a></li>
+                    <li><a href="vehicular-access-control.html"><span>Vehicular Access Control</span></a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <div class="mega-col-heading-group">
+                    <a href="accessories.html" class="mega-col-heading">ACCESSORIES</a>
+                    <span class="cyan-accent-line"></span>
+                  </div>
+                  <ul class="mega-menu-list">
+                    <li><a href="safety-devices.html"><span>Safety Devices</span></a></li>
+                    <li><a href="simple-pulse-generator.html"><span>Simple Pulse Generator</span></a></li>
+                    <li><a href="electronic-pulse-generator.html"><span>Electronic Pulse Generator</span></a></li>
+                    <li><a href="gate-locks.html"><span>Gate Locks</span></a></li>
+                    <li><a href="traffic-lights.html"><span>Traffic Lights</span></a></li>
+                    <li><a href="miscellaneous.html"><span>Miscellaneous</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="nav-item"><a href="parking.html" class="nav-link">Solutions</a></div>
+          <div class="nav-item"><a href="index.html#faqs" class="nav-link">Resources</a></div>
+          <div class="nav-item"><a href="index.html#clients" class="nav-link">Clientele</a></div>
+          <div class="nav-item"><a href="index.html#why-us" class="nav-link">About US</a></div>
+          <div class="nav-item nav-item-call">
+            <a href="tel:+918010807000" class="nav-call-btn" title="Call Neptune: +91 8010 807 000">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="nav-call-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>Call Us</span>
+            </a>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <button type="button" class="btn btn-primary" data-open-quote data-product="Power Fusion XD">
+            <span>Get a Quote</span>
+          </button>
+          <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Redirect / Embed Container -->
+  <main style="padding-top: 100px; padding-bottom: 60px;">
+    <div class="layout-container">
+      <nav class="prod-breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="prod-breadcrumb-sep">/</span>
+        <a href="access-automation.html">Products</a>
+        <span class="prod-breadcrumb-sep">/</span>
+        <a href="automatic-boom-barrier.html">Automatic Boom Barrier</a>
+        <span class="prod-breadcrumb-sep">/</span>
+        <span class="prod-breadcrumb-current" id="crumbProdName">Neptune Power Fusion XD</span>
+      </nav>
+
+      <!-- Embedded Product Presentation -->
+      <div id="dynamicProductContainer">
+        <!-- Render flagship Power Fusion XD by default -->
+        <div class="prod-detail-hero-card">
+          <div class="prod-gallery-col">
+            <div class="prod-main-display">
+              <img id="prodMainImg" src="assets/images/slide2-boom-barrier-neptune.jpg" alt="Neptune Power Fusion XD" onerror="this.src='https://www.neptuneautomatic.com/wp-content/uploads/2-1.jpg';">
+              <span class="hardware-badge-code" id="dynModelCode">NP-BB-PFXD</span>
+              <span class="hardware-badge-flagship" id="dynFlagshipTag">Flagship Model</span>
+            </div>
+            <div class="prod-thumb-strip">
+              <button type="button" class="prod-thumb-btn active" data-img-src="assets/images/slide2-boom-barrier-neptune.jpg">
+                <img src="assets/images/slide2-boom-barrier-neptune.jpg" alt="View 1" onerror="this.src='https://www.neptuneautomatic.com/wp-content/uploads/2-1.jpg';">
+              </button>
+              <button type="button" class="prod-thumb-btn" data-img-src="assets/images/slide2-boom-barrier.jpg">
+                <img src="assets/images/slide2-boom-barrier.jpg" alt="View 2" onerror="this.src='https://www.neptuneautomatic.com/wp-content/uploads/Boom-barrier-1.jpg';">
+              </button>
+              <button type="button" class="prod-thumb-btn" data-img-src="assets/images/slide2-boom-barrier-faac.jpg">
+                <img src="assets/images/slide2-boom-barrier-faac.jpg" alt="View 3" onerror="this.src='https://www.neptuneautomatic.com/wp-content/uploads/Powerlite.png';">
+              </button>
+            </div>
+            <div class="prod-fast-facts-grid">
+              <div class="prod-fact-box"><div class="prod-fact-label">Span</div><div class="prod-fact-val" id="dynSpan">3.0m - 6.0m</div></div>
+              <div class="prod-fact-box"><div class="prod-fact-label">Speed</div><div class="prod-fact-val" id="dynSpeed">2.0s - 5.0s</div></div>
+              <div class="prod-fact-box"><div class="prod-fact-label">Duty</div><div class="prod-fact-val" id="dynDuty">100% Cont.</div></div>
+              <div class="prod-fact-box"><div class="prod-fact-label">Protection</div><div class="prod-fact-val" id="dynProtection">IP55 Rated</div></div>
+            </div>
+          </div>
+
+          <div class="prod-info-col">
+            <div>
+              <div class="prod-eyebrow">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect></svg>
+                <span id="dynCategory">Automatic Boom Barriers</span>
+              </div>
+              <h1 class="prod-title" id="dynTitle">Neptune Power Fusion XD Automatic Boom Barrier</h1>
+              <p class="prod-tagline" id="dynTagline">Heavy-duty sinusoidal industrial boom barrier engineered for continuous toll and freight operations.</p>
+              <p class="prod-desc-lead" id="dynDesc">
+                The Neptune Power Fusion XD represents our flagship heavy-duty automatic barrier for industrial applications. Engineered and manufactured at our modern facility, it features a heavy-duty sinusoidal crank-lever linkage that decelerates the boom arm smoothly as it approaches horizontal and vertical stops, virtually eliminating mechanical shock and prolonging gearbox lifespan.
+              </p>
+              <div style="margin-top: 1.25rem;">
+                <div class="prod-core-highlights-title">Core Engineering Highlights:</div>
+                <ul class="prod-core-highlights-list" id="dynFeatures">
+                  <li class="prod-highlight-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Sinusoidal lever crank linkage providing built-in mechanical soft-landing</span></li>
+                  <li class="prod-highlight-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Reinforced boom bracket accommodating round, octagonal, or fence booms up to 6m</span></li>
+                  <li class="prod-highlight-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Dual compression spring counter-balancing system for exact equilibrium</span></li>
+                  <li class="prod-highlight-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg><span>High-visibility reflective cabinet styling with anti-corrosion primer coating</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <div class="prod-actions-row">
+                <button type="button" class="btn btn-primary" data-open-quote data-product="Power Fusion XD" style="flex: 1; min-width: 220px;">
+                  <span>Request Technical Quote / Sizing</span>
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+                <a href="product-power-fusion-xd.html" class="btn btn-outline" style="min-width: 180px;">
+                  <span>Dedicated Model Page &rarr;</span>
+                </a>
+              </div>
+              <div class="prod-support-strip">
+                <span style="color: #10B981; font-weight: 600;">Direct Factory Engineering Support</span>
+                <a href="tel:+918010807000" style="color: var(--color-logo-blue); font-weight: 700; text-decoration: none;">+91 8010 807 000</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overview & Specs Section -->
+        <div class="prod-overview-card">
+          <div class="prod-section-header">
+            <span class="prod-eyebrow">Engineering Architecture</span>
+            <h2 class="prod-section-title">Hardware Specifications &amp; Parameters</h2>
+          </div>
+          <table class="specs-table">
+            <tbody>
+              <tr><td class="spec-name">Boom Length Span</td><td class="spec-val">3.0m to 6.0m</td></tr>
+              <tr><td class="spec-name">Opening Speed</td><td class="spec-val">2.0s &ndash; 5.0s (Field Adjustable)</td></tr>
+              <tr><td class="spec-name">Duty Cycle</td><td class="spec-val">100% Continuous Industrial Duty</td></tr>
+              <tr><td class="spec-name">Cabinet Gauge</td><td class="spec-val">2.5mm Heavy Cold-Rolled Steel</td></tr>
+              <tr><td class="spec-name">Power Voltage</td><td class="spec-val">230V AC / 24V DC Brushless</td></tr>
+              <tr><td class="spec-name">Ingress Protection</td><td class="spec-val">IP55 Weatherproof</td></tr>
+              <tr><td class="spec-name">Tested MCBF</td><td class="spec-val">3,000,000 Cycles</td></tr>
+              <tr><td class="spec-name">Certifications</td><td class="spec-val" style="color: var(--color-logo-blue); font-weight: 700;">CE Certified &bull; ISO 9001:2015 &bull; RoHS</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="automatic-boom-barrier.html" class="btn btn-outline">
+            <span>&larr; Return to Automatic Boom Barrier Subcategory</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="layout-container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Neptune Automatic Pvt. Ltd. All Rights Reserved. Single-theme Lexend architecture.</p>
+        <div class="footer-bottom-links">
+          <a href="access-automation.html">Access Automation</a>
+          <a href="automatic-boom-barrier.html">Boom Barriers</a>
+          <a href="product-power-fusion-xd.html">Power Fusion XD</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Quote Consultation Modal -->
+  <div class="modal-backdrop" id="quoteModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 style="color: var(--color-logo-blue); margin: 0;">Request Technical Proposal</h3>
+        <button type="button" class="modal-close-btn" id="modalCloseBtn">&times;</button>
+      </div>
+      <form class="modal-form" id="quoteForm" onsubmit="event.preventDefault(); alert('Proposal request received. Our engineer will reach out promptly.'); document.getElementById('quoteModal').classList.remove('open');">
+        <div class="form-group"><label class="form-label">Full Name *</label><input type="text" class="form-input" required></div>
+        <div class="form-group"><label class="form-label">Organization *</label><input type="text" class="form-input" required></div>
+        <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-input" required></div>
+        <div class="form-group"><label class="form-label">Phone *</label><input type="tel" class="form-input" required></div>
+        <div class="form-group-full"><button type="submit" class="btn btn-primary" style="width: 100%;">Submit Proposal Request</button></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js?v=lexend-theme"></script>
+</body>
+</html>
