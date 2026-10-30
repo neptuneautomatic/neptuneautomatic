@@ -32,8 +32,6 @@ jobs:
 
       - name: Build Next.js site
         run: npm run build
-        env:
-          NEXT_PUBLIC_BASE_PATH: /neptuneautomatic
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
