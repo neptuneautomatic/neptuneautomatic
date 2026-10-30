@@ -143,6 +143,8 @@ export default function HeroSlider() {
     };
   }, [isPlaying, nextSlide]);
 
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
   return (
     <section className="hero-slider-section" id="hero-slider" aria-label="Neptune Automatic Solutions Showcase">
       {/* Dynamic Ambient Video Background */}
@@ -155,9 +157,9 @@ export default function HeroSlider() {
           loop
           muted
           playsInline
-          poster="/assets/images/slide1-integrated.jpg"
+          poster={`${basePath}/assets/images/slide1-integrated.jpg`}
         >
-          <source src="/assets/videos/hero-automation.mp4" type="video/mp4" />
+          <source src={`${basePath}/assets/videos/hero-automation.mp4`} type="video/mp4" />
         </video>
         <div className="hero-video-tint-overlay" />
       </div>
