@@ -398,40 +398,6 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
                         ))}
                       </ul>
                     )}
-
-                    {/* Popular Models Chips */}
-                    {cat.products.length > 0 && (
-                      <div style={{ marginBottom: '1.5rem' }}>
-                        <span style={{ display: 'block', fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#94A3B8', fontWeight: 700, marginBottom: '0.4rem' }}>
-                          Key Models:
-                        </span>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
-                          {cat.products.slice(0, 4).map((p) => (
-                            <Link
-                              key={p.slug}
-                              href={`/products/${cat.categorySlug}/${p.slug}`}
-                              style={{
-                                fontSize: '0.75rem',
-                                color: '#1E3A8A',
-                                background: '#F1F5F9',
-                                border: '1px solid #E2E8F0',
-                                padding: '0.2rem 0.5rem',
-                                borderRadius: '4px',
-                                textDecoration: 'none',
-                                fontWeight: 600,
-                              }}
-                            >
-                              {p.modelCode || p.name}
-                            </Link>
-                          ))}
-                          {cat.products.length > 4 && (
-                            <span style={{ fontSize: '0.75rem', color: '#64748B', alignSelf: 'center', fontWeight: 600 }}>
-                              +{cat.products.length - 4} more
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    )}
                   </div>
 
                   {/* Card Action Link */}
