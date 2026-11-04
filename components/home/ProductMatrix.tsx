@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useModal } from '@/context/ModalContext';
 
-type TabKey = 'automation' | 'control' | 'accessories' | 'parking';
+type TabKey = 'automation' | 'control' | 'parking' | 'accessories';
 
 interface ProductItem {
   id: string;
@@ -129,6 +129,49 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
       },
     ],
   },
+  parking: {
+    label: 'Parking Management Systems',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="matrix-tab-icon">
+        <rect x="2" y="5" width="20" height="14" rx="2" />
+        <line x1="2" y1="10" x2="22" y2="10" />
+      </svg>
+    ),
+    items: [
+      {
+        id: 'pms-solutions',
+        title: 'Parking Management Solutions',
+        desc: 'End-to-end contactless parking automation with ticket dispensing, automated pay stations, FASTag processing, and real-time revenue cloud.',
+        imgSrc: '/assets/images/product-parking-management.png',
+        tabKey: 'parking',
+        categorySlug: 'parking-management-system',
+      },
+      {
+        id: 'pgs-solutions',
+        title: 'Parking Guidance Solutions',
+        desc: 'Real-time ultrasonic & camera-based spot detection with dynamic RGB bay indicators and floor-level digital wayfinding signs.',
+        imgSrc: '/assets/images/product-camera-parking-guidance.png',
+        tabKey: 'parking',
+        categorySlug: 'parking-guidance-solutions',
+      },
+      {
+        id: 'parking-counting',
+        title: 'Parking Counting Solutions',
+        desc: 'Lane-by-lane bidirectional vehicle counting systems using inductive loops and laser counting radar for multi-deck structures.',
+        imgSrc: '/assets/images/product-parking-counting-display.png',
+        tabKey: 'parking',
+        categorySlug: 'parking-counting-solutions',
+      },
+      {
+        id: 'fastag-anpr',
+        title: 'Vehicular Access Control Solutions',
+        desc: 'Cloud-managed vehicular access control tailored for residential gated communities and corporate tech parks with whitelist ANPR.',
+        imgSrc: '/assets/images/product-fastag-pms.png',
+        tabKey: 'parking',
+        categorySlug: 'vehicular-access-control-solution',
+      },
+    ],
+  },
   accessories: {
     label: 'Accessories',
     icon: (
@@ -187,49 +230,6 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
       },
     ],
   },
-  parking: {
-    label: 'Parking Solutions',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="matrix-tab-icon">
-        <rect x="2" y="5" width="20" height="14" rx="2" />
-        <line x1="2" y1="10" x2="22" y2="10" />
-      </svg>
-    ),
-    items: [
-      {
-        id: 'pms-solutions',
-        title: 'Parking Management Solutions',
-        desc: 'End-to-end contactless parking automation with ticket dispensing, automated pay stations, FASTag processing, and real-time revenue cloud.',
-        imgSrc: '/assets/images/product-parking-management.png',
-        tabKey: 'parking',
-        categorySlug: 'parking-management-system',
-      },
-      {
-        id: 'pgs-solutions',
-        title: 'Parking Guidance Solutions',
-        desc: 'Real-time ultrasonic & camera-based spot detection with dynamic RGB bay indicators and floor-level digital wayfinding signs.',
-        imgSrc: '/assets/images/product-camera-parking-guidance.png',
-        tabKey: 'parking',
-        categorySlug: 'parking-guidance-solutions',
-      },
-      {
-        id: 'parking-counting',
-        title: 'Parking Counting Solutions',
-        desc: 'Lane-by-lane bidirectional vehicle counting systems using inductive loops and laser counting radar for multi-deck structures.',
-        imgSrc: '/assets/images/product-parking-counting-display.png',
-        tabKey: 'parking',
-        categorySlug: 'parking-counting-solutions',
-      },
-      {
-        id: 'fastag-anpr',
-        title: 'Vehicular Access Control Solutions',
-        desc: 'Cloud-managed vehicular access control tailored for residential gated communities and corporate tech parks with whitelist ANPR.',
-        imgSrc: '/assets/images/product-fastag-pms.png',
-        tabKey: 'parking',
-        categorySlug: 'vehicular-access-control-solution',
-      },
-    ],
-  },
 };
 
 export default function ProductMatrix() {
@@ -238,11 +238,23 @@ export default function ProductMatrix() {
   const [slideOffsets, setSlideOffsets] = useState<Record<TabKey, number>>({
     automation: 0,
     control: 0,
-    accessories: 0,
     parking: 0,
+    accessories: 0,
   });
 
-  const tabKeys: TabKey[] = ['automation', 'control', 'accessories', 'parking'];
+  const tabKeys: TabKey[] = ['automation', 'control', 'parking', 'accessories'];
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const customEvent = e as CustomEvent<{ tab?: string }>;
+      const tab = customEvent.detail?.tab as TabKey | undefined;
+      if (tab && tabKeys.includes(tab)) {
+        setActiveTab(tab);
+      }
+    };
+    window.addEventListener('switch-product-tab', handler);
+    return () => window.removeEventListener('switch-product-tab', handler);
+  }, []);
   const currentItems = matrixData[activeTab].items;
   const currentOffset = slideOffsets[activeTab] || 0;
 
