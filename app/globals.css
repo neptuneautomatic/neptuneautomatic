@@ -808,9 +808,9 @@ body,
   transform: translateX(-50%) translateY(0);
 }
 
-/* Products Mega Menu (4 Columns: 3 Categories + Schneider Electric Style Spotlight Card) */
+/* Products Mega Menu (3 Columns: Access Automation, Access Control, Accessories) */
 .mega-menu-products {
-  width: min(1080px, calc(100vw - 2rem));
+  width: min(880px, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
   padding: 2rem 2.25rem;
   box-sizing: border-box;
@@ -818,14 +818,14 @@ body,
 
 .products-three-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) 270px;
-  gap: 1.75rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   align-items: start;
 }
 
-/* Solutions Mega Menu (Category + Spotlight Card) */
+/* Solutions Mega Menu (Category: Parking) */
 .mega-menu-solutions {
-  width: min(620px, calc(100vw - 2rem));
+  width: min(340px, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
   padding: 1.85rem 2rem;
   left: 50%;
@@ -838,7 +838,7 @@ body,
 
 .solutions-single-grid {
   display: grid;
-  grid-template-columns: 1fr 260px;
+  grid-template-columns: 1fr;
   gap: 1.85rem;
   align-items: start;
 }

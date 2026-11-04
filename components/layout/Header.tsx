@@ -208,25 +208,6 @@ export default function Header() {
                       </li>
                     </ul>
                   </div>
-
-                  {/* Col 4: FEATURED INNOVATION */}
-                  <div className="mega-col mega-col-featured">
-                    <div className="mega-featured-card">
-                      <span className="mega-featured-badge">FEATURED INNOVATION</span>
-                      <div className="mega-featured-media">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/assets/images/slide2-boom-barrier.webp" alt="FAAC Magnetic Barrier Technology" />
-                      </div>
-                      <div className="mega-featured-body">
-                        <h4 className="mega-featured-title">FAAC Magnetic Technology</h4>
-                        <p className="mega-featured-desc">10 Million MCBF continuous duty cycle engineered for heavy enterprise traffic &amp; commercial hubs.</p>
-                        <a href="#solutions" onClick={() => handleTabSwitch('automation')} className="mega-featured-cta">
-                          <span>Explore Technology</span>
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -273,24 +254,6 @@ export default function Header() {
                         </Link>
                       </li>
                     </ul>
-                  </div>
-
-                  <div className="mega-col mega-col-featured">
-                    <div className="mega-featured-card">
-                      <span className="mega-featured-badge">INTELLIGENT ECOSYSTEM</span>
-                      <div className="mega-featured-media">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/assets/images/slide4-parking-management.webp" alt="POWERnPARK Digital Parking Ecosystem" />
-                      </div>
-                      <div className="mega-featured-body">
-                        <h4 className="mega-featured-title">POWERnPARK Digital PMS</h4>
-                        <p className="mega-featured-desc">Frictionless cloud-connected parking with AI ANPR, automated FASTag payments &amp; 99.8% entry accuracy.</p>
-                        <a href="#powernpark-app" onClick={() => setMobileMenuOpen(false)} className="mega-featured-cta">
-                          <span>Discover POWERnPARK</span>
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
