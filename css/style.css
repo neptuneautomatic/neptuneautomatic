@@ -2076,11 +2076,17 @@ body,
   }
 }
 
+.reference-3d-section {
+  padding-top: clamp(3rem, 5vw, 4.75rem) !important;
+  padding-bottom: clamp(3rem, 5vw, 4.75rem) !important;
+}
+
 .reference-3d-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-  margin-top: 0.5rem;
+  gap: 1.5rem;
+  margin-top: clamp(2.5rem, 4.5vw, 3.75rem) !important;
+  margin-bottom: clamp(2.75rem, 5vw, 4.25rem) !important;
 }
 
 .reference-3d-card-wrap {
