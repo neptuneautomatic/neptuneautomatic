@@ -13,10 +13,11 @@ interface PillarCardProps {
   desc: string;
   btnText: string;
   productName: string;
+  linkHref?: string;
   icon: React.ReactNode;
 }
 
-function TiltCard({ bgClass, imgSrc, imgAlt, title, desc, btnText, productName, icon }: PillarCardProps) {
+function TiltCard({ bgClass, imgSrc, imgAlt, title, desc, btnText, productName, linkHref, icon }: PillarCardProps) {
   const { openQuote } = useModal();
   const cardRef = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
@@ -90,17 +91,30 @@ function TiltCard({ bgClass, imgSrc, imgAlt, title, desc, btnText, productName, 
             <p className="card-3d-desc">{desc}</p>
           </div>
           <div className="card-3d-footer">
-            <button
-              type="button"
-              className="card-3d-action"
-              onClick={() => openQuote(productName)}
-              style={{ background: 'none', border: 'none', font: 'inherit', cursor: 'pointer' }}
-            >
-              <span>{btnText}</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
+            {linkHref ? (
+              <Link
+                href={linkHref}
+                className="card-3d-action"
+                style={{ textDecoration: 'none' }}
+              >
+                <span>{btnText}</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </Link>
+            ) : (
+              <button
+                type="button"
+                className="card-3d-action"
+                onClick={() => openQuote(productName)}
+                style={{ background: 'none', border: 'none', font: 'inherit', cursor: 'pointer' }}
+              >
+                <span>{btnText}</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
         <div ref={glareRef} className="card-3d-glare" />
@@ -126,15 +140,16 @@ export default function ReferenceSolutions() {
         </div>
 
         <div className="reference-3d-grid reveal-stagger">
-          {/* Pillar 1: Automatic Boom Barriers */}
+          {/* Pillar 1: Access Automation */}
           <TiltCard
             bgClass="card-bg-barrier"
             imgSrc="/assets/images/slide2-boom-barrier.webp"
-            imgAlt="Automatic Boom Barrier"
-            title="AUTOMATIC BOOM BARRIERS"
-            desc="Sensor-controlled vehicular access systems for transit management."
-            btnText="Explore Barriers"
-            productName="Automatic Boom Barriers"
+            imgAlt="Access Automation Systems"
+            title="ACCESS AUTOMATION"
+            desc="High-speed boom barriers, crash-rated drop arms, bollards, and heavy industrial automation."
+            btnText="Explore Automation"
+            productName="Access Automation"
+            linkHref="/products/automatic-boom-barrier"
             icon={
               <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="10" y="24" width="14" height="32" rx="3" fill="currentColor" />
@@ -148,36 +163,23 @@ export default function ReferenceSolutions() {
             }
           />
 
-          {/* Pillar 2: High Security Bollards */}
+          {/* Pillar 2: Access Control */}
           <TiltCard
             bgClass="card-bg-bollards"
             imgSrc="/assets/images/slide3-bollards.webp"
-            imgAlt="High Security Automatic Bollards"
-            title="HIGH SECURITY BOLLARDS"
-            desc="Advanced movement control systems for perimeter security and access management."
-            btnText="Explore Bollards"
-            productName="High Security Automatic Bollards"
+            imgAlt="Access Control Systems"
+            title="ACCESS CONTROL"
+            desc="Long-range RFID UHF readers, smart card credentials, pedestrian speed gates, and turnstiles."
+            btnText="Explore Control"
+            productName="Access Control"
+            linkHref="/products/pedestrian-gates"
             icon={
               <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="8" y="16" width="12" height="40" rx="3" fill="currentColor" />
-                <rect x="10" y="23" width="8" height="3" rx="1" fill="#FFFFFF" />
-                <rect x="10" y="31" width="8" height="3" rx="1" fill="#FFFFFF" />
-                <rect x="10" y="39" width="8" height="3" rx="1" fill="#FFFFFF" />
-                <circle cx="14" cy="18.5" r="2" fill="#D32628" />
-
-                <rect x="26" y="10" width="12" height="46" rx="3" fill="currentColor" />
-                <rect x="28" y="17" width="8" height="3" rx="1" fill="#FFFFFF" />
-                <rect x="28" y="25" width="8" height="3" rx="1" fill="#FFFFFF" />
-                <rect x="28" y="33" width="8" height="3" rx="1" fill="#FFFFFF" />
-                <circle cx="32" cy="12.5" r="2" fill="#D32628" />
-
-                <rect x="44" y="16" width="12" height="40" rx="3" fill="currentColor" />
-                <rect x="46" y="23" width="8" height="3" rx="1" fill="#FFFFFF" />
-                <rect x="46" y="31" width="8" height="3" rx="1" fill="#FFFFFF" />
-                <rect x="46" y="39" width="8" height="3" rx="1" fill="#FFFFFF" />
-                <circle cx="50" cy="18.5" r="2" fill="#D32628" />
-
-                <rect x="4" y="54" width="56" height="4" rx="2" fill="currentColor" />
+                <rect x="14" y="10" width="36" height="44" rx="4" stroke="currentColor" strokeWidth="3" />
+                <rect x="24" y="6" width="16" height="6" rx="2" fill="currentColor" />
+                <circle cx="32" cy="24" r="6" stroke="currentColor" strokeWidth="2.5" />
+                <path d="M22 40 C22 34 26 33 32 33 C38 33 42 34 42 40" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                <line x1="22" y1="46" x2="42" y2="46" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
               </svg>
             }
           />
@@ -191,6 +193,7 @@ export default function ReferenceSolutions() {
             desc="Centralised and integrated parking solutions for home, factory and office."
             btnText="Explore Parking"
             productName="Intelligent Parking Management (PMS)"
+            linkHref="/products/parking-management-system"
             icon={
               <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="8" y="8" width="26" height="28" rx="4" fill="currentColor" />
@@ -205,28 +208,23 @@ export default function ReferenceSolutions() {
             }
           />
 
-          {/* Pillar 4: Door & Gate Automation */}
+          {/* Pillar 4: Accessories */}
           <TiltCard
             bgClass="card-bg-gates"
             imgSrc="/assets/images/slide7-gate-automation.jpg"
-            imgAlt="Door & Gate Automation"
-            title="DOOR & GATE AUTOMATION"
-            desc="Automated systems for swinging and sliding gates, doors and rolling shutters."
-            btnText="Explore Gates"
-            productName="Automatic Sliding & Swing Gates"
+            imgAlt="Accessories"
+            title="ACCESSORIES"
+            desc="Infrared safety photocells, inductive loop detectors, pulse transmitters, gate locks, and LED traffic lights."
+            btnText="Explore Accessories"
+            productName="Accessories"
+            linkHref="/products/safety-devices"
             icon={
               <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="6" y="14" width="52" height="38" rx="2" stroke="currentColor" strokeWidth="3" />
-                <rect x="3" y="10" width="4" height="46" rx="1" fill="currentColor" />
-                <rect x="57" y="10" width="4" height="46" rx="1" fill="currentColor" />
-                <line x1="16" y1="16" x2="16" y2="50" stroke="currentColor" strokeWidth="2.5" />
-                <line x1="24" y1="16" x2="24" y2="50" stroke="currentColor" strokeWidth="2.5" />
-                <line x1="32" y1="16" x2="32" y2="50" stroke="currentColor" strokeWidth="2.5" />
-                <line x1="40" y1="16" x2="40" y2="50" stroke="currentColor" strokeWidth="2.5" />
-                <line x1="48" y1="16" x2="48" y2="50" stroke="currentColor" strokeWidth="2.5" />
-                <line x1="6" y1="50" x2="32" y2="16" stroke="currentColor" strokeWidth="2" />
-                <line x1="32" y1="16" x2="58" y2="50" stroke="currentColor" strokeWidth="2" />
-                <rect x="2" y="54" width="60" height="4" rx="2" fill="currentColor" />
+                <rect x="12" y="16" width="22" height="32" rx="4" stroke="currentColor" strokeWidth="3" />
+                <circle cx="23" cy="27" r="4" fill="#D32628" />
+                <rect x="18" y="36" width="10" height="4" rx="1" fill="currentColor" />
+                <path d="M40 22 C44 26 44 34 40 38" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                <path d="M47 16 C53 22 53 40 47 46" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
               </svg>
             }
           />
