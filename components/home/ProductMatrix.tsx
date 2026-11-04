@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useModal } from '@/context/ModalContext';
 
 type TabKey = 'automation' | 'control' | 'accessories' | 'parking';
@@ -12,6 +13,7 @@ interface ProductItem {
   desc: string;
   imgSrc: string;
   tabKey: TabKey;
+  categorySlug: string;
 }
 
 const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: ProductItem[] }> = {
@@ -30,6 +32,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'High-speed, 100% continuous duty electromechanical barriers designed for toll plazas, tech parks, and commercial entrances.',
         imgSrc: '/assets/images/product-boom-barrier.png',
         tabKey: 'automation',
+        categorySlug: 'automatic-boom-barrier',
       },
       {
         id: 'automatic-bollards',
@@ -37,6 +40,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Retractable crash-resistant hydraulic bollards tested to halt hostile vehicle attacks for embassies and military zones.',
         imgSrc: '/assets/images/product-automatic-bollard.png',
         tabKey: 'automation',
+        categorySlug: 'automatic-bollards',
       },
       {
         id: 'crash-drop-arm',
@@ -44,6 +48,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Certified heavy impact drop arm barrier systems designed to neutralize hostile trucks at government checkpoints.',
         imgSrc: '/assets/images/product-crash-drop-arm-barrier.png',
         tabKey: 'automation',
+        categorySlug: 'crash-rated-barrier',
       },
       {
         id: 'strong-arm-barrier',
@@ -51,6 +56,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Rugged, reinforced arm barrier systems built for multi-lane industrial corridors and logistics freight gates.',
         imgSrc: '/assets/images/product-strong-arm-barrier.png',
         tabKey: 'automation',
+        categorySlug: 'strong-arm-barrier',
       },
       {
         id: 'swing-gate',
@@ -58,6 +64,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Whisper-quiet electro-mechanical operators designed for architectural, residential, and industrial swing gates.',
         imgSrc: '/assets/images/product-swing-gate-operator.jpg',
         tabKey: 'automation',
+        categorySlug: 'swing-gate-operators',
       },
       {
         id: 'sliding-gate',
@@ -65,6 +72,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'High-load motorized oil-bath gearboxes for industrial cantilever and tracked sliding gates with continuous 24/7 duty.',
         imgSrc: '/assets/images/product-sliding-gate-operator.jpg',
         tabKey: 'automation',
+        categorySlug: 'sliding-gate-operators',
       },
       {
         id: 'rolling-shutters',
@@ -72,6 +80,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Industrial motorized rolling shutters and insulated sectional overhead doors engineered for warehouses and hangars.',
         imgSrc: '/assets/images/product-rolling-shutter-motor.jpg',
         tabKey: 'automation',
+        categorySlug: 'automatic-rolling-shutters',
       },
     ],
   },
@@ -92,6 +101,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'High-frequency RFID vehicle detection antennas enabling non-stop barrier clearance for commercial parking and gated societies.',
         imgSrc: '/assets/images/product-uhf-reader.jpg',
         tabKey: 'control',
+        categorySlug: 'uhf-reader-rfid-long-range',
       },
       {
         id: 'smart-card-reader',
@@ -99,6 +109,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'High-security Mifare DesFire EV1/2/3, NFC, and Bluetooth contactless readers with encrypted OSDP v2 protocol support.',
         imgSrc: '/assets/images/product-smart-card-reader.jpg',
         tabKey: 'control',
+        categorySlug: 'proximity-readers',
       },
       {
         id: 'speed-gates',
@@ -106,6 +117,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Architectural optical speed gates, flap barriers, and full-height turnstiles with seamless biometric and credential integration.',
         imgSrc: '/assets/images/product-speed-gates.png',
         tabKey: 'control',
+        categorySlug: 'pedestrian-gates',
       },
       {
         id: 'vehicular-access',
@@ -113,6 +125,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'End-to-end vehicular access control combining AI number plate recognition, inductive loop logic, and master lane controllers.',
         imgSrc: '/assets/images/product-road-blocker.png',
         tabKey: 'control',
+        categorySlug: 'vehicular-access-control',
       },
     ],
   },
@@ -130,6 +143,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Synchronized infrared photocell beams, inductive ground loops, and pneumatic safety rubber edges.',
         imgSrc: '/assets/images/product-photocell-safety.jpg',
         tabKey: 'accessories',
+        categorySlug: 'safety-devices',
       },
       {
         id: 'simple-pulse-gen',
@@ -137,6 +151,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Industrial-grade momentary push switches and key-operated manual override selectors for gate and barrier control.',
         imgSrc: '/assets/images/product-simple-pulse-gen.png',
         tabKey: 'accessories',
+        categorySlug: 'simple-pulse-generators',
       },
       {
         id: 'electronic-pulse-gen',
@@ -144,6 +159,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Programmable electronic timer relays and synchronization logic units for automated gate sequence trigger.',
         imgSrc: '/assets/images/product-radio-transmitter.png',
         tabKey: 'accessories',
+        categorySlug: 'electronic-pulse-generators',
       },
       {
         id: 'gate-locks',
@@ -151,6 +167,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Weatherproof electromagnetic shear locks and fail-safe electric strikes engineered for exterior perimeter gates.',
         imgSrc: '/assets/images/product-electric-locks.png',
         tabKey: 'accessories',
+        categorySlug: 'electric-gate-locks',
       },
       {
         id: 'traffic-lights',
@@ -158,6 +175,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'High-visibility 100mm and 200mm dual red/green LED signaling lamps with solar sun hoods for lane flow control.',
         imgSrc: '/assets/images/product-traffic-signal.png',
         tabKey: 'accessories',
+        categorySlug: 'traffic-signal-lights-flashing-lights',
       },
       {
         id: 'misc-accessories',
@@ -165,6 +183,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'DIN-rail power supplies, anchor cage templates, 90° articulated basement joints, and flashing beacons.',
         imgSrc: '/assets/images/product-loop-detector.png',
         tabKey: 'accessories',
+        categorySlug: 'safety-devices',
       },
     ],
   },
@@ -183,6 +202,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'End-to-end contactless parking automation with ticket dispensing, automated pay stations, FASTag processing, and real-time revenue cloud.',
         imgSrc: '/assets/images/product-parking-management.png',
         tabKey: 'parking',
+        categorySlug: 'parking-management-system',
       },
       {
         id: 'pgs-solutions',
@@ -190,6 +210,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Real-time ultrasonic & camera-based spot detection with dynamic RGB bay indicators and floor-level digital wayfinding signs.',
         imgSrc: '/assets/images/product-camera-parking-guidance.png',
         tabKey: 'parking',
+        categorySlug: 'parking-guidance-solutions',
       },
       {
         id: 'parking-counting',
@@ -197,6 +218,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Lane-by-lane bidirectional vehicle counting systems using inductive loops and laser counting radar for multi-deck structures.',
         imgSrc: '/assets/images/product-parking-counting-display.png',
         tabKey: 'parking',
+        categorySlug: 'parking-counting-solutions',
       },
       {
         id: 'fastag-anpr',
@@ -204,6 +226,7 @@ const matrixData: Record<TabKey, { label: string; icon: React.ReactNode; items: 
         desc: 'Cloud-managed vehicular access control tailored for residential gated communities and corporate tech parks with whitelist ANPR.',
         imgSrc: '/assets/images/product-fastag-pms.png',
         tabKey: 'parking',
+        categorySlug: 'vehicular-access-control-solution',
       },
     ],
   },
@@ -350,19 +373,39 @@ export default function ProductMatrix() {
                           />
                         </div>
                         <div className="matrix-card-body">
-                          <h4 className="matrix-card-title">{item.title}</h4>
+                          <h4 className="matrix-card-title">
+                            <Link href={`/products/${item.categorySlug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                              {item.title}
+                            </Link>
+                          </h4>
                           <p className="matrix-card-desc">{item.desc}</p>
-                          <div className="matrix-card-footer">
-                            <button
-                              type="button"
+                          <div className="matrix-card-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <Link
+                              href={`/products/${item.categorySlug}`}
                               className="matrix-card-link"
-                              onClick={() => openQuote(item.title)}
-                              style={{ background: 'none', border: 'none', font: 'inherit', cursor: 'pointer', padding: 0 }}
+                              style={{ textDecoration: 'none' }}
                             >
-                              <span>Explore</span>
+                              <span>Explore Category</span>
                               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                                 <polyline points="9 18 15 12 9 6" />
                               </svg>
+                            </Link>
+
+                            <button
+                              type="button"
+                              onClick={() => openQuote(item.title)}
+                              style={{
+                                background: 'none',
+                                border: '1px solid var(--theme-border, #CBD5E1)',
+                                borderRadius: '4px',
+                                padding: '0.25rem 0.5rem',
+                                fontSize: '0.75rem',
+                                fontWeight: 600,
+                                color: 'var(--color-logo-blue)',
+                                cursor: 'pointer'
+                              }}
+                            >
+                              Quote
                             </button>
                           </div>
                         </div>

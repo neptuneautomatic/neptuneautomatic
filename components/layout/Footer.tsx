@@ -77,13 +77,13 @@ export default function Footer() {
           <div className="footer-col">
             <h5 className="footer-col-title">Solutions</h5>
             <ul className="footer-menu">
-              <li><Link href="#solutions">Boom Barriers</Link></li>
-              <li><Link href="#solutions">Automatic Bollards</Link></li>
-              <li><Link href="#solutions">Parking Management (PMS)</Link></li>
-              <li><Link href="#solutions">Parking Guidance (PGS)</Link></li>
-              <li><Link href="#solutions">Gate Automation</Link></li>
-              <li><Link href="#solutions">Road Blockers &amp; HVM</Link></li>
-              <li><Link href="#solutions">ANPR &amp; FASTag</Link></li>
+              <li><Link href="/products/automatic-boom-barrier">Boom Barriers</Link></li>
+              <li><Link href="/products/automatic-bollards">Automatic Bollards</Link></li>
+              <li><Link href="/products/parking-management-system">Parking Management (PMS)</Link></li>
+              <li><Link href="/products/parking-guidance-solutions">Parking Guidance (PGS)</Link></li>
+              <li><Link href="/products/swing-gate-operators">Gate Automation</Link></li>
+              <li><Link href="/products/vehicular-access-control">Road Blockers &amp; HVM</Link></li>
+              <li><Link href="/products/crash-rated-barrier">Crash Rated Defense</Link></li>
             </ul>
           </div>
 

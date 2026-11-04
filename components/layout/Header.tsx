@@ -86,51 +86,51 @@ export default function Header() {
                   {/* Col 1: ACCESS AUTOMATION */}
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <a href="#solutions" onClick={() => handleTabSwitch('automation')} className="mega-col-heading">ACCESS AUTOMATION</a>
+                      <Link href="/products" className="mega-col-heading">ACCESS AUTOMATION</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('automation')}>
+                        <Link href="/products/automatic-boom-barrier">
                           <span>Automatic Boom Barrier</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('automation')}>
+                        <Link href="/products/automatic-bollards">
                           <span>High Security Automatic Bollards</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('automation')}>
+                        <Link href="/products/crash-rated-barrier">
                           <span>Crash Rated Drop Arm Barrier</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('automation')}>
+                        <Link href="/products/strong-arm-barrier">
                           <span>Strong Arm Automatic Barrier</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('automation')}>
+                        <Link href="/products/swing-gate-operators">
                           <span>Swing Gate Automation</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('automation')}>
+                        <Link href="/products/sliding-gate-operators">
                           <span>Sliding Gate Automation</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('automation')}>
+                        <Link href="/products/automatic-rolling-shutters">
                           <span>Automatic Rolling Shutters</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -138,33 +138,33 @@ export default function Header() {
                   {/* Col 2: ACCESS CONTROL */}
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <a href="#solutions" onClick={() => handleTabSwitch('control')} className="mega-col-heading">ACCESS CONTROL</a>
+                      <Link href="/products" className="mega-col-heading">ACCESS CONTROL</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('control')}>
+                        <Link href="/products/uhf-reader-rfid-long-range">
                           <span>UHF Reader - RFID Long Range</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('control')}>
+                        <Link href="/products/proximity-readers">
                           <span>Smart Card Readers</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('control')}>
+                        <Link href="/products/pedestrian-gates">
                           <span>Pedestrian Access Gates</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('control')}>
+                        <Link href="/products/vehicular-access-control">
                           <span>Vehicular Access Control</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -172,45 +172,39 @@ export default function Header() {
                   {/* Col 3: ACCESSORIES */}
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <a href="#solutions" onClick={() => handleTabSwitch('accessories')} className="mega-col-heading">ACCESSORIES</a>
+                      <Link href="/products" className="mega-col-heading">ACCESSORIES</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('accessories')}>
+                        <Link href="/products/safety-devices">
                           <span>Safety Devices</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('accessories')}>
+                        <Link href="/products/simple-pulse-generators">
                           <span>Simple Pulse Generator</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('accessories')}>
+                        <Link href="/products/electronic-pulse-generators">
                           <span>Electronic Pulse Generator</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('accessories')}>
+                        <Link href="/products/electric-gate-locks">
                           <span>Gate Locks</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('accessories')}>
+                        <Link href="/products/traffic-signal-lights-flashing-lights">
                           <span>Traffic Lights</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('accessories')}>
-                          <span>Miscellaneous</span>
-                          <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -239,44 +233,44 @@ export default function Header() {
 
             {/* 3. Solutions Dropdown */}
             <div className="nav-item has-dropdown">
-              <a href="#solutions" onClick={() => handleTabSwitch('parking')} className="nav-link">
+              <Link href="/products" className="nav-link">
                 <span>Solutions</span>
                 <svg className="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
-              </a>
+              </Link>
 
               <div className="mega-menu mega-menu-solutions">
                 <div className="mega-grid solutions-single-grid">
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <a href="#solutions" onClick={() => handleTabSwitch('parking')} className="mega-col-heading">PARKING</a>
+                      <Link href="/products" className="mega-col-heading">PARKING</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('parking')}>
+                        <Link href="/products/parking-management-system">
                           <span>Parking Management Solutions</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('parking')}>
+                        <Link href="/products/parking-guidance-solutions">
                           <span>Parking Guidance Solutions</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('parking')}>
+                        <Link href="/products/parking-counting-solutions">
                           <span>Parking Counting Solutions</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#solutions" onClick={() => handleTabSwitch('parking')}>
+                        <Link href="/products/vehicular-access-control-solution">
                           <span>Vehicular Access Control Solutions</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>

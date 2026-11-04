@@ -12,7 +12,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Automatic Boom Barrier',
     category: 'Access Automation',
-    targetId: '#solutions',
+    targetId: '/products/automatic-boom-barrier',
     tabKey: 'automation',
     desc: 'High-speed electromechanical & hydraulic barrier gates with brushless DC motors, 100% duty cycle, and 0.9s opening.',
     keywords: 'boom barrier automatic barrier gate toll gate parking barrier faac bldc high speed'
@@ -20,7 +20,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'High Security Automatic Bollards',
     category: 'Access Automation',
-    targetId: '#solutions',
+    targetId: '/products/automatic-bollards',
     tabKey: 'automation',
     desc: 'Crash-rated retractable hydraulic bollards engineered for anti-ram defense and hostile vehicle mitigation.',
     keywords: 'bollard hydraulic bollard crash rated bollard security bollard astm m30 m50 pas68'
@@ -28,7 +28,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Crash Rated Drop Arm Barrier',
     category: 'Access Automation',
-    targetId: '#solutions',
+    targetId: '/products/crash-rated-barrier',
     tabKey: 'automation',
     desc: 'Heavy-duty crash beam engineered to halt heavy commercial trucks attempting unauthorized facility breach.',
     keywords: 'drop arm crash barrier crash beam anti ram barrier defense'
@@ -36,7 +36,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Strong Arm Automatic Barrier',
     category: 'Access Automation',
-    targetId: '#solutions',
+    targetId: '/products/strong-arm-barrier',
     tabKey: 'automation',
     desc: 'Vandal-resistant articulated and rigid arm barrier designed for high-wind exposed toll highways and industrial zones.',
     keywords: 'strong arm heavy barrier articulated barrier toll plaza wind resistant'
@@ -44,7 +44,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Swing Gate Automation',
     category: 'Access Automation',
-    targetId: '#solutions',
+    targetId: '/products/swing-gate-operators',
     tabKey: 'automation',
     desc: 'Electromechanical and underground hydraulic swing gate operators for architectural residential and industrial gates.',
     keywords: 'swing gate underground motor hydraulic swing linear actuator gate motor'
@@ -52,7 +52,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Sliding Gate Automation',
     category: 'Access Automation',
-    targetId: '#solutions',
+    targetId: '/products/sliding-gate-operators',
     tabKey: 'automation',
     desc: 'High-torque motorized gearboxes for cantilever and track sliding gates up to 4000kg with 24/7 continuous duty.',
     keywords: 'sliding gate cantilever rack pinion motor heavy industrial track gate'
@@ -60,7 +60,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Automatic Rolling Shutters',
     category: 'Access Automation',
-    targetId: '#solutions',
+    targetId: '/products/automatic-rolling-shutters',
     tabKey: 'automation',
     desc: 'Motorized industrial roll-up doors, high-speed shutters, and insulated sectional doors for warehouses and hangars.',
     keywords: 'rolling shutter motorized shutter industrial roll-up door sectional hangar warehouse'
@@ -70,7 +70,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'UHF Reader - RFID Long Range',
     category: 'Access Control',
-    targetId: '#solutions',
+    targetId: '/products/uhf-reader-rfid-long-range',
     tabKey: 'control',
     desc: 'Hands-free ultra-high frequency RFID vehicle identification reader with up to 12-meter detection distance.',
     keywords: 'uhf reader rfid long range handsfree windshield tag fastag electronic toll'
@@ -78,7 +78,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Smart Card Readers',
     category: 'Access Control',
-    targetId: '#solutions',
+    targetId: '/products/proximity-readers',
     tabKey: 'control',
     desc: 'Multi-technology contactless Mifare, DESFire, and HID card readers with Wiegand and OSDP protocols.',
     keywords: 'smart card reader mifare rfid credential wiegand osdp contactless'
@@ -86,7 +86,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Pedestrian Access Gates',
     category: 'Access Control',
-    targetId: '#solutions',
+    targetId: '/products/pedestrian-gates',
     tabKey: 'control',
     desc: 'Optical speed gates, motorized swing flap barriers, and tripod turnstiles designed for high-throughput architectural lobbies.',
     keywords: 'pedestrian turnstile speed gate flap barrier lobby optical turnstile transit'
@@ -94,7 +94,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Vehicular Access Control',
     category: 'Access Control',
-    targetId: '#solutions',
+    targetId: '/products/vehicular-access-control',
     tabKey: 'control',
     desc: 'Automated vehicle access systems integrating ANPR cameras, loop logic, and multi-channel access controller boards.',
     keywords: 'vehicular access control anpr license plate camera barrier controller logic'
@@ -104,7 +104,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Safety Devices',
     category: 'Accessories',
-    targetId: '#solutions',
+    targetId: '/products/safety-devices',
     tabKey: 'accessories',
     desc: 'Infrared anti-crush safety photocell beams, inductive ground vehicle loops, and responsive pneumatic rubber safety edges.',
     keywords: 'safety photocell infrared sensor loop detector anti crush edge safety beam'
@@ -112,7 +112,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Simple Pulse Generator',
     category: 'Accessories',
-    targetId: '#solutions',
+    targetId: '/products/simple-pulse-generators',
     tabKey: 'accessories',
     desc: 'Commercial momentary push buttons, stainless steel desk switches, and key-operated manual override selectors.',
     keywords: 'push button manual switch pulse generator key switch barrier button'
@@ -120,7 +120,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Electronic Pulse Generator',
     category: 'Accessories',
-    targetId: '#solutions',
+    targetId: '/products/electronic-pulse-generators',
     tabKey: 'accessories',
     desc: 'Programmable electronic timer relays, pulse sequencers, and synchronization logic units for gate operations.',
     keywords: 'electronic pulse generator timer relay sequencer gate synchronization logic'
@@ -128,7 +128,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Gate Locks',
     category: 'Accessories',
-    targetId: '#solutions',
+    targetId: '/products/electric-gate-locks',
     tabKey: 'accessories',
     desc: 'High-holding-force weatherproof electromagnetic sheer locks and fail-safe/fail-secure electric strikes for automatic gates.',
     keywords: 'gate lock electro magnetic lock maglock electric strike holding force'
@@ -136,7 +136,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Traffic Lights',
     category: 'Accessories',
-    targetId: '#solutions',
+    targetId: '/products/traffic-signal-lights-flashing-lights',
     tabKey: 'accessories',
     desc: '100mm and 200mm red/green dual LED directional signaling lamps with sun hoods and IP65 weatherproof housings.',
     keywords: 'traffic light red green led signal indicator barrier lamp lane control'
@@ -144,7 +144,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Miscellaneous Accessories',
     category: 'Accessories',
-    targetId: '#solutions',
+    targetId: '/products/safety-devices',
     tabKey: 'accessories',
     desc: 'Industrial DIN-rail power supplies, foundation anchors, articulated boom arm joints, and flashing LED beacons.',
     keywords: 'miscellaneous accessories beacon bracket power supply din rail boom joint'
@@ -154,7 +154,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Parking Management Solutions',
     category: 'Parking',
-    targetId: '#solutions',
+    targetId: '/products/parking-management-system',
     tabKey: 'parking',
     desc: 'Integrated parking hardware and software supporting automated barcode ticketing, FASTag RFID, and cashless payment kiosks.',
     keywords: 'parking management pms ticketing fastag automated revenue cashier kiosk'
@@ -162,7 +162,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Parking Guidance Solutions',
     category: 'Parking',
-    targetId: '#solutions',
+    targetId: '/products/parking-guidance-solutions',
     tabKey: 'parking',
     desc: 'Intelligent ultrasonic and camera-based space detection with LED slot vacancy lights and digital wayfinding signs.',
     keywords: 'parking guidance pgs ultrasonic sensor slot indicator wayfinding vms display'
@@ -170,7 +170,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Parking Counting Solutions',
     category: 'Parking',
-    targetId: '#solutions',
+    targetId: '/products/parking-counting-solutions',
     tabKey: 'parking',
     desc: 'Real-time multi-deck vehicle occupancy counting using bidirectional inductive loops and laser counting radar.',
     keywords: 'parking counting vehicle counter occupancy display deck capacity loop counter'
@@ -178,7 +178,7 @@ export const CATALOG_ITEMS: CatalogItem[] = [
   {
     title: 'Vehicular Access Control Solutions',
     category: 'Parking',
-    targetId: '#solutions',
+    targetId: '/products/vehicular-access-control-solution',
     tabKey: 'parking',
     desc: 'Smart community and corporate tech park vehicle access with automated whitelist ANPR and mobile visitor gate pass.',
     keywords: 'vehicular parking access corporate tech park visitor management anpr whitelist'

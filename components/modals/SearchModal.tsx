@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { useModal } from '@/context/ModalContext';
 import { CATALOG_ITEMS, CatalogItem } from '@/data/catalog';
 
 export default function SearchModal() {
+  const router = useRouter();
   const { isSearchOpen, closeSearch, openQuote } = useModal();
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('all');
@@ -49,12 +51,16 @@ export default function SearchModal() {
 
   const handleItemSelect = (item: CatalogItem) => {
     closeSearch();
-    const el = document.querySelector(item.targetId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (item.tabKey) {
-      window.dispatchEvent(new CustomEvent('switch-product-tab', { detail: { tab: item.tabKey } }));
+    if (item.targetId.startsWith('/')) {
+      router.push(item.targetId);
+    } else {
+      const el = document.querySelector(item.targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+      if (item.tabKey) {
+        window.dispatchEvent(new CustomEvent('switch-product-tab', { detail: { tab: item.tabKey } }));
+      }
     }
   };
 
