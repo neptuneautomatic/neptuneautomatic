@@ -86,7 +86,7 @@ export default function Header() {
                   {/* Col 1: ACCESS AUTOMATION */}
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <Link href="/products" className="mega-col-heading">ACCESS AUTOMATION</Link>
+                      <Link href="/products/access-automation" className="mega-col-heading">ACCESS AUTOMATION</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">
@@ -138,7 +138,7 @@ export default function Header() {
                   {/* Col 2: ACCESS CONTROL */}
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <Link href="/products" className="mega-col-heading">ACCESS CONTROL</Link>
+                      <Link href="/products/access-control" className="mega-col-heading">ACCESS CONTROL</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">
@@ -172,7 +172,7 @@ export default function Header() {
                   {/* Col 3: ACCESSORIES */}
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <Link href="/products" className="mega-col-heading">ACCESSORIES</Link>
+                      <Link href="/products/accessories" className="mega-col-heading">ACCESSORIES</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">
@@ -244,7 +244,7 @@ export default function Header() {
                 <div className="mega-grid solutions-single-grid">
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <Link href="/products" className="mega-col-heading">PARKING</Link>
+                      <Link href="/products/parking-management-systems" className="mega-col-heading">PARKING</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">

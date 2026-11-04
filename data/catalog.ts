@@ -8,6 +8,40 @@ export interface CatalogItem {
 }
 
 export const CATALOG_ITEMS: CatalogItem[] = [
+  // Parent Divisions
+  {
+    title: 'Access Automation Division',
+    category: 'Parent Division',
+    targetId: '/products/access-automation',
+    tabKey: 'automation',
+    desc: 'Complete portfolio of automatic boom barriers, security bollards, crash barriers, drop arms, gate operators, and shutters.',
+    keywords: 'access automation parent category division boom barrier bollards gate motors'
+  },
+  {
+    title: 'Access Control Division',
+    category: 'Parent Division',
+    targetId: '/products/access-control',
+    tabKey: 'control',
+    desc: 'Complete portfolio of long-range UHF readers, smart card RFID readers, pedestrian speed gates, and vehicle controllers.',
+    keywords: 'access control parent category division uhf rfid speed gate proximity readers'
+  },
+  {
+    title: 'Parking Management Systems Division',
+    category: 'Parent Division',
+    targetId: '/products/parking-management-systems',
+    tabKey: 'parking',
+    desc: 'Complete turnkey parking ecosystems: FASTag tolling, ticket dispensers, guidance sensors, and occupancy counting.',
+    keywords: 'parking management systems parent category division pms fastag parking guidance counting'
+  },
+  {
+    title: 'Accessories Division',
+    category: 'Parent Division',
+    targetId: '/products/accessories',
+    tabKey: 'accessories',
+    desc: 'Complete engineering accessories: safety photocells, loop detectors, pulse push-buttons, magnetic gate locks, and traffic lights.',
+    keywords: 'accessories parent category division safety photocell loop detector pulse button gate lock traffic light'
+  },
+
   // Access Automation
   {
     title: 'Automatic Boom Barrier',

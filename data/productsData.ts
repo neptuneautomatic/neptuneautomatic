@@ -10809,3 +10809,170 @@ export function getProductBySlugs(categorySlug: string, productSlug: string): { 
 export function getAllProducts(): ProductItem[] {
   return PRODUCT_CATEGORIES.flatMap(c => c.products);
 }
+
+export interface ParentCategory {
+  slug: string;
+  name: string;
+  title: string;
+  h1: string;
+  tagline: string;
+  description: string;
+  heroImage: string;
+  stats: { label: string; value: string }[];
+  highlights: string[];
+  applications: { title: string; desc: string }[];
+  categorySlugs: string[];
+  aliases?: string[];
+}
+
+export const PARENT_CATEGORIES: ParentCategory[] = [
+  {
+    slug: 'access-automation',
+    name: 'Access Automation',
+    title: 'Access Automation Systems — Boom Barriers, Bollards & Gate Operators | Neptune Automatic',
+    h1: 'Access Automation Systems',
+    tagline: 'Sensor-controlled vehicular access systems, high-speed boom barriers, crash-rated automatic bollards, drop-arm barriers, and heavy-duty gate automation engineered for 100% continuous duty.',
+    description: 'Neptune Automatic is India’s premier pioneer in access automation hardware. Combining FAAC European engineering excellence with heavy-duty indigenous durability, our automation division delivers high-reliability boom barriers, hostile vehicle mitigation bollards, and high-torque gate operators for critical infrastructure, toll highways, airports, corporate headquarters, and industrial facilities.',
+    heroImage: '/assets/images/slide2-boom-barrier.webp',
+    stats: [
+      { label: 'Product Categories', value: '7 Divisions' },
+      { label: 'Engineered Models', value: '25+ Systems' },
+      { label: 'Operational Duty', value: '100% Continuous' },
+      { label: 'Impact Security', value: 'ASTM / PAS Certified' },
+    ],
+    highlights: [
+      'High-speed brushless DC & electro-hydraulic drives with opening times down to 0.9 seconds',
+      'Crash-rated security bollards and drop-arm barriers certified to halt 7.5-ton trucks at 80 km/h',
+      'Heavy-duty commercial & industrial gate gearmotors capable of moving gates up to 4,000 kg',
+      'Seamless multi-protocol integration with FASTag, RFID UHF, ANPR cameras, and building management systems',
+      'Engineered with IP55 to IP67 weatherproof enclosures with thermal protection and manual key release overrides'
+    ],
+    applications: [
+      { title: 'Toll Plazas & Expressways', desc: 'Ultra-fast, million-cycle barriers synchronized with NHAI FASTag electronic toll collection.' },
+      { title: 'Defense & Government Facilities', desc: 'Hostile Vehicle Mitigation (HVM) crash-rated bollards and anti-ram barriers protecting critical perimeters.' },
+      { title: 'Logistics Parks & Seaports', desc: 'Industrial cantilever and track sliding gate operators built for continuous multi-shift freight operations.' },
+      { title: 'Commercial Campuses & IT Parks', desc: 'Aesthetic, quiet-operating barrier systems and swing gate actuators for architectural campuses.' }
+    ],
+    categorySlugs: [
+      'automatic-boom-barrier',
+      'automatic-bollards',
+      'crash-rated-barrier',
+      'strong-arm-barrier',
+      'swing-gate-operators',
+      'sliding-gate-operators',
+      'automatic-rolling-shutters'
+    ]
+  },
+  {
+    slug: 'access-control',
+    name: 'Access Control',
+    title: 'Access Control Systems — Long-Range UHF, Smart Card Readers & Speed Gates | Neptune Automatic',
+    h1: 'Access Control Solutions',
+    tagline: 'Comprehensive identity verification infrastructure: long-range UHF RFID readers, multi-credential contactless proximity readers, optical pedestrian speed gates, and automated vehicular gate controllers.',
+    description: 'Neptune Automatic’s Access Control division delivers seamless, frictionless credential verification for both pedestrians and vehicles. From high-throughput optical turnstiles in corporate lobbies to hands-free 12-meter UHF readers for executive fleets, our networked controllers guarantee impenetrable perimeter security with enterprise software integration.',
+    heroImage: '/assets/images/slide3-bollards.webp',
+    stats: [
+      { label: 'Product Categories', value: '4 Divisions' },
+      { label: 'Engineered Models', value: '14+ Systems' },
+      { label: 'UHF Read Range', value: 'Up to 12 Meters' },
+      { label: 'Card Protocols', value: 'Mifare, DESFire, OSDP' },
+    ],
+    highlights: [
+      'Hands-free Long-Range UHF vehicle identification readers with up to 12-meter detection distance and encrypted frequency hopping',
+      'Next-generation optical speed gates and tripod turnstiles offering 35+ persons/min throughput with anti-tailgating sensors',
+      'Universal contactless smart card and mobile NFC/BLE readers supporting Wiegand, RS-485, and OSDP v2 secure channel communication',
+      'Modular multi-lane vehicular access controllers supporting integrated loop logic, traffic light sequencing, and ANPR whitelisting',
+      'Fail-safe emergency breakaway releases and fire alarm system interconnectivity for life safety compliance'
+    ],
+    applications: [
+      { title: 'Corporate Headquarters & Tech Parks', desc: 'Architectural brushed stainless steel speed gates with frictionless touchless employee access.' },
+      { title: 'Gated Residential Communities', desc: 'Long-range RFID windshield tags for seamless, queue-free resident vehicle entry.' },
+      { title: 'Data Centers & Critical Infrastructure', desc: 'Multi-factor authentication turnstiles with anti-passback and biometric verification.' },
+      { title: 'Transit Terminals & Airports', desc: 'Heavy-throughput automated pedestrian gates handling continuous passenger volumes.' }
+    ],
+    categorySlugs: [
+      'uhf-reader-rfid-long-range',
+      'proximity-readers',
+      'pedestrian-gates',
+      'vehicular-access-control'
+    ]
+  },
+  {
+    slug: 'parking-management-systems',
+    name: 'Parking Management Systems',
+    title: 'Intelligent Parking Management & Guidance Solutions | Neptune Automatic',
+    h1: 'Parking Management Systems',
+    tagline: 'Turnkey smart parking ecosystems: FASTag RFID electronic tolling, automated ticket dispensing, cashless payment kiosks, ultrasonic slot guidance, and real-time occupancy counting.',
+    description: 'Neptune Automatic’s Intelligent Parking division transforms vehicle parking into a frictionless, automated, revenue-optimized operation. Powered by IoT hardware, AI-based ANPR recognition, ultrasonic vacancy sensors, and dynamic variable message signs, our systems eliminate congestion and provide operators with complete real-time financial auditing.',
+    heroImage: '/assets/images/product-parking.png',
+    aliases: ['parking'],
+    stats: [
+      { label: 'Product Categories', value: '4 Divisions' },
+      { label: 'Hardware/Software', value: '22+ Solutions' },
+      { label: 'ANPR Accuracy', value: '99.8% Recognition' },
+      { label: 'Payment Integration', value: 'FASTag, UPI, POS' },
+    ],
+    highlights: [
+      'End-to-end automated parking management with automated ticket dispensers, barcode/QR readers, and cashier management software',
+      'Integrated FASTag RFID electronic tolling for instantaneous cashless vehicle entry and exit without stopping',
+      'Intelligent ultrasonic and camera-based space guidance with green/red LED overhead vacancy indicators and dynamic wayfinding displays',
+      'Real-time multi-deck vehicle occupancy counting using bidirectional inductive loops, laser radar, and LED displays at parking entries',
+      'Centralized cloud management dashboard with automated billing, analytics, audit reporting, and tenant quota tracking'
+    ],
+    applications: [
+      { title: 'Shopping Malls & Retail Hubs', desc: 'Fast-moving ticketless FASTag and QR parking with dynamic multi-level bay guidance.' },
+      { title: 'Airports & Railway Stations', desc: 'High-capacity 24/7 parking automation with unattended automatic pay stations (APS).' },
+      { title: 'Multi-Level Car Parks (MLCP)', desc: 'Floor-by-floor occupancy monitoring and space-specific RGB LED guidance lights.' },
+      { title: 'Hospital & Healthcare Campuses', desc: 'Priority ambulance lane automation and visitor parking validation systems.' }
+    ],
+    categorySlugs: [
+      'parking-management-system',
+      'parking-guidance-solutions',
+      'parking-counting-solutions',
+      'vehicular-access-control-solution'
+    ]
+  },
+  {
+    slug: 'accessories',
+    name: 'Accessories',
+    title: 'Automation & Perimeter Accessories — Safety Photocells, Loops & Signals | Neptune Automatic',
+    h1: 'Automation Accessories',
+    tagline: 'Engineered safety devices, inductive ground loop detectors, pulse generators, high-holding-force gate locks, and weatherproof LED directional traffic lights.',
+    description: 'Neptune Automatic supplies genuine engineering accessories and auxiliary peripherals designed to ensure peak safety, reliability, and precision control for all automated gates, boom barriers, and access systems. Every accessory is certified for heavy-duty industrial exposure and universal FAAC system compatibility.',
+    heroImage: '/assets/images/slide7-gate-automation.jpg',
+    stats: [
+      { label: 'Product Categories', value: '5 Divisions' },
+      { label: 'Engineered Devices', value: '32+ Devices' },
+      { label: 'Protection Rating', value: 'IP65 Weatherproof' },
+      { label: 'System Interop', value: 'Universal & FAAC' },
+    ],
+    highlights: [
+      'Infrared anti-crush safety photocells with modulated beam technology immune to ambient sunlight and adverse weather',
+      'Dual-channel micro-controller inductive loop detectors with automatic frequency tuning for reliable ground vehicle detection',
+      'Commercial stainless steel push-button stations, key switches, and remote radio pulse transmitters with rolling code security',
+      'Electromagnetic and electromechanical gate locks engineered with up to 600 kg holding force for high-wind stability',
+      'High-visibility 100mm/200mm red/green LED lane traffic lights with IP65 polycarbonate housings and integrated sun hoods'
+    ],
+    applications: [
+      { title: 'Vehicular Safety Interlocks', desc: 'Dual photocell beams and inductive safety loops preventing barriers from closing on vehicles.' },
+      { title: 'Gate Wind Lock Protection', desc: 'Heavy electromagnetic sheer locks securing large automated gates against high wind loads.' },
+      { title: 'Traffic Flow Regulation', desc: 'Dual-color LED signal lamps coordinating single-lane bi-directional ramp traffic.' },
+      { title: 'Manual Security Override', desc: 'Vandal-resistant push buttons and key switches for guard booth manual override.' }
+    ],
+    categorySlugs: [
+      'safety-devices',
+      'simple-pulse-generators',
+      'electronic-pulse-generators',
+      'electric-gate-locks',
+      'traffic-signal-lights-flashing-lights'
+    ]
+  }
+];
+
+export function getParentCategoryBySlug(slug: string): ParentCategory | undefined {
+  return PARENT_CATEGORIES.find(p => p.slug === slug || p.aliases?.includes(slug));
+}
+
+export function getAllParentCategories(): ParentCategory[] {
+  return PARENT_CATEGORIES;
+}

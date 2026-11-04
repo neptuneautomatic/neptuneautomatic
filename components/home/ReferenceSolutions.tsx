@@ -149,7 +149,7 @@ export default function ReferenceSolutions() {
             desc="High-speed boom barriers, crash-rated drop arms, bollards, and heavy industrial automation."
             btnText="Explore Automation"
             productName="Access Automation"
-            linkHref="/products/automatic-boom-barrier"
+            linkHref="/products/access-automation"
             icon={
               <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="10" y="24" width="14" height="32" rx="3" fill="currentColor" />
@@ -172,7 +172,7 @@ export default function ReferenceSolutions() {
             desc="Long-range RFID UHF readers, smart card credentials, pedestrian speed gates, and turnstiles."
             btnText="Explore Control"
             productName="Access Control"
-            linkHref="/products/pedestrian-gates"
+            linkHref="/products/access-control"
             icon={
               <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="14" y="10" width="36" height="44" rx="4" stroke="currentColor" strokeWidth="3" />
@@ -193,7 +193,7 @@ export default function ReferenceSolutions() {
             desc="Centralised and integrated parking solutions for home, factory and office."
             btnText="Explore Parking"
             productName="Intelligent Parking Management (PMS)"
-            linkHref="/products/parking-management-system"
+            linkHref="/products/parking-management-systems"
             icon={
               <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="8" y="8" width="26" height="28" rx="4" fill="currentColor" />
@@ -217,7 +217,7 @@ export default function ReferenceSolutions() {
             desc="Infrared safety photocells, inductive loop detectors, pulse transmitters, gate locks, and LED traffic lights."
             btnText="Explore Accessories"
             productName="Accessories"
-            linkHref="/products/safety-devices"
+            linkHref="/products/accessories"
             icon={
               <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="12" y="16" width="22" height="32" rx="4" stroke="currentColor" strokeWidth="3" />

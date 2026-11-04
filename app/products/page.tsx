@@ -14,7 +14,7 @@ export default function ProductsIndexPage() {
   const divisions = [
     { name: 'Access Automation', slug: 'access-automation' },
     { name: 'Access Control', slug: 'access-control' },
-    { name: 'Parking', slug: 'parking' },
+    { name: 'Parking Management Systems', slug: 'parking-management-systems' },
     { name: 'Accessories', slug: 'accessories' },
   ];
 
@@ -73,36 +73,64 @@ export default function ProductsIndexPage() {
 
         {/* 4 Divisions Sections */}
         {divisions.map((div) => {
-          const categoriesInDiv = PRODUCT_CATEGORIES.filter((c) => c.divisionSlug === div.slug || c.division.toLowerCase() === div.name.toLowerCase());
+          const categoriesInDiv = PRODUCT_CATEGORIES.filter(
+            (c) =>
+              c.divisionSlug === div.slug ||
+              c.division.toLowerCase() === div.name.toLowerCase() ||
+              (div.slug === 'parking-management-systems' && c.divisionSlug === 'parking')
+          );
           return (
             <section key={div.slug} style={{ marginBottom: '3.5rem' }}>
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
                 gap: '1rem',
                 marginBottom: '1.5rem',
                 borderBottom: '2px solid var(--theme-border-subtle, #E2E8F0)',
                 paddingBottom: '0.75rem'
               }}>
-                <h2 style={{
-                  fontFamily: "'Lexend', sans-serif",
-                  fontSize: '1.5rem',
-                  fontWeight: 800,
-                  color: 'var(--color-logo-blue)',
-                  margin: 0
-                }}>
-                  {div.name}
-                </h2>
-                <span style={{
-                  background: 'var(--color-logo-blue-light, #EFF6FF)',
-                  color: 'var(--color-logo-blue)',
-                  fontSize: '0.75rem',
-                  fontWeight: 700,
-                  padding: '0.2rem 0.6rem',
-                  borderRadius: '9999px'
-                }}>
-                  {categoriesInDiv.length} Subcategories
-                </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <h2 style={{
+                    fontFamily: "'Lexend', sans-serif",
+                    fontSize: '1.5rem',
+                    fontWeight: 800,
+                    color: 'var(--color-logo-blue)',
+                    margin: 0
+                  }}>
+                    <Link href={`/products/${div.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                      {div.name}
+                    </Link>
+                  </h2>
+                  <span style={{
+                    background: 'var(--color-logo-blue-light, #EFF6FF)',
+                    color: 'var(--color-logo-blue)',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    padding: '0.2rem 0.6rem',
+                    borderRadius: '9999px'
+                  }}>
+                    {categoriesInDiv.length} Categories
+                  </span>
+                </div>
+                <Link
+                  href={`/products/${div.slug}`}
+                  style={{
+                    fontSize: '0.8125rem',
+                    fontWeight: 700,
+                    color: 'var(--color-logo-blue)',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem'
+                  }}
+                >
+                  <span>Explore Division Page</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </Link>
               </div>
 
               <div style={{
