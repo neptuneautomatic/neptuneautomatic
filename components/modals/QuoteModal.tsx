@@ -53,7 +53,7 @@ export default function QuoteModal() {
           type="button"
           onClick={closeQuote}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
@@ -145,7 +145,7 @@ export default function QuoteModal() {
             <div className="form-group-full" style={{ marginTop: '0.5rem' }}>
               <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
                 <span>Submit Proposal Request</span>
-                <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>

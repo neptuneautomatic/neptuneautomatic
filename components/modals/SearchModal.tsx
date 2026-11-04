@@ -81,7 +81,7 @@ export default function SearchModal() {
       <div className="search-modal-dialog">
         <div className="search-modal-header">
           <div className="search-input-box">
-            <svg className="search-modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <svg className="search-modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
@@ -105,7 +105,7 @@ export default function SearchModal() {
                   inputRef.current?.focus();
                 }}
               >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -135,7 +135,7 @@ export default function SearchModal() {
         <div className="search-modal-body">
           {filteredItems.length === 0 ? (
             <div className="search-empty-state" id="searchEmptyState">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
@@ -156,7 +156,7 @@ export default function SearchModal() {
                     <p className="search-result-desc">{item.desc}</p>
                   </div>
                   <div className="search-result-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
                   </div>
