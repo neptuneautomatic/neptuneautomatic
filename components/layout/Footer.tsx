@@ -109,7 +109,7 @@ export default function Footer() {
               <li><Link href="/#why-us">About Neptune</Link></li>
               <li><Link href="/#testimonials">Google Reviews &amp; Ratings</Link></li>
               <li><Link href="/#videos">Video Showcase</Link></li>
-              <li><Link href="/#clients">Client References</Link></li>
+              <li><Link href="/clientele">Client References &amp; Logos</Link></li>
               <li><a href="https://www.neptuneautomatic.com/careers/" target="_blank" rel="noopener noreferrer">Careers</a></li>
               <li>
                 <button

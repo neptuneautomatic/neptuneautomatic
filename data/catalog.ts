@@ -8,6 +8,15 @@ export interface CatalogItem {
 }
 
 export const CATALOG_ITEMS: CatalogItem[] = [
+  // Company & References
+  {
+    title: 'Clientele & Landmark Deployments',
+    category: 'Company Portfolio',
+    targetId: '/clientele',
+    desc: 'Trusted by 100+ premier institutions including AAI, DRDO, RBI, DLF CyberCity, Reliance, TCS, and luxury hotels.',
+    keywords: 'clientele clients logos customers references aai rbi drdo dlf reliance tcs g20 bharat mandapam'
+  },
+
   // Parent Divisions
   {
     title: 'Access Automation Division',

@@ -317,7 +317,7 @@ export default function Header() {
 
             {/* 5. Clientele */}
             <div className="nav-item">
-              <Link href="/#clients" className="nav-link" onClick={closeMenu}>Clientele</Link>
+              <Link href="/clientele" className="nav-link" onClick={closeMenu}>Clientele</Link>
             </div>
 
             {/* 6. About Us */}
