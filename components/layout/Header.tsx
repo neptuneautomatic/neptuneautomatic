@@ -7,6 +7,7 @@ import { useModal } from '@/context/ModalContext';
 export default function Header() {
   const { openQuote, openSearch } = useModal();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -17,9 +18,22 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleTabSwitch = (tabName: string) => {
+  const closeMenu = () => {
     setMobileMenuOpen(false);
-    window.dispatchEvent(new CustomEvent('switch-product-tab', { detail: { tab: tabName } }));
+    setActiveSubmenu(null);
+  };
+
+  const toggleSubmenu = (menuKey: string, e: React.MouseEvent) => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 1024) {
+      if (activeSubmenu !== menuKey) {
+        e.preventDefault();
+        setActiveSubmenu(menuKey);
+      } else {
+        closeMenu();
+      }
+    } else {
+      closeMenu();
+    }
   };
 
   return (
@@ -49,7 +63,7 @@ export default function Header() {
               </svg>
               <strong>+91 8010 807 000</strong>
             </a>
-            <a href="#faqs" className="topbar-link">FAQs &amp; Support</a>
+            <Link href="/#faqs" className="topbar-link">FAQs &amp; Support</Link>
             <a href="https://www.neptuneindia.com" target="_blank" rel="noopener noreferrer" className="topbar-link">Neptune Group</a>
           </div>
         </div>
@@ -59,75 +73,79 @@ export default function Header() {
       <div className="header-main">
         <div className="layout-container">
           {/* Brand Logo */}
-          <Link href="#hero-slider" className="brand-logo" aria-label="Neptune Automatic Home">
+          <Link href="/" className="brand-logo" aria-label="Neptune Automatic Home" onClick={closeMenu}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/assets/images/neptune-logo.png" alt="Neptune Automatic Logo" width="220" height="55" />
             <div className="brand-text-fallback">NEPTUNE<span>AUTOMATIC</span></div>
           </Link>
 
           {/* Navigation Menu */}
-          <nav className={`nav-menu ${mobileMenuOpen ? 'is-active' : ''}`} aria-label="Main Navigation">
+          <nav className={`nav-menu ${mobileMenuOpen ? 'mobile-open is-active' : ''}`} aria-label="Main Navigation">
             {/* 1. Home */}
             <div className="nav-item">
-              <Link href="#hero-slider" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+              <Link href="/" className="nav-link" onClick={closeMenu}>Home</Link>
             </div>
 
             {/* 2. Products Mega Menu */}
-            <div className="nav-item has-dropdown has-mega">
-              <a href="#solutions" className="nav-link" onClick={() => handleTabSwitch('automation')}>
+            <div className={`nav-item has-dropdown has-mega ${activeSubmenu === 'products' ? 'open-mobile-sub' : ''}`}>
+              <Link
+                href="/products"
+                className="nav-link"
+                onClick={(e) => toggleSubmenu('products', e)}
+              >
                 <span>Products</span>
                 <svg className="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
-              </a>
+              </Link>
 
               <div className="mega-menu mega-menu-products">
                 <div className="mega-grid products-three-grid">
                   {/* Col 1: ACCESS AUTOMATION */}
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <Link href="/products/access-automation" className="mega-col-heading">ACCESS AUTOMATION</Link>
+                      <Link href="/products/access-automation" className="mega-col-heading" onClick={closeMenu}>ACCESS AUTOMATION</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">
                       <li>
-                        <Link href="/products/automatic-boom-barrier">
+                        <Link href="/products/automatic-boom-barrier" onClick={closeMenu}>
                           <span>Automatic Boom Barrier</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/automatic-bollards">
+                        <Link href="/products/automatic-bollards" onClick={closeMenu}>
                           <span>High Security Automatic Bollards</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/crash-rated-barrier">
+                        <Link href="/products/crash-rated-barrier" onClick={closeMenu}>
                           <span>Crash Rated Drop Arm Barrier</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/strong-arm-barrier">
+                        <Link href="/products/strong-arm-barrier" onClick={closeMenu}>
                           <span>Strong Arm Automatic Barrier</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/swing-gate-operators">
+                        <Link href="/products/swing-gate-operators" onClick={closeMenu}>
                           <span>Swing Gate Automation</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/sliding-gate-operators">
+                        <Link href="/products/sliding-gate-operators" onClick={closeMenu}>
                           <span>Sliding Gate Automation</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/automatic-rolling-shutters">
+                        <Link href="/products/automatic-rolling-shutters" onClick={closeMenu}>
                           <span>Automatic Rolling Shutters</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
@@ -138,30 +156,30 @@ export default function Header() {
                   {/* Col 2: ACCESS CONTROL */}
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <Link href="/products/access-control" className="mega-col-heading">ACCESS CONTROL</Link>
+                      <Link href="/products/access-control" className="mega-col-heading" onClick={closeMenu}>ACCESS CONTROL</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">
                       <li>
-                        <Link href="/products/uhf-reader-rfid-long-range">
+                        <Link href="/products/uhf-reader-rfid-long-range" onClick={closeMenu}>
                           <span>UHF Reader - RFID Long Range</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/proximity-readers">
+                        <Link href="/products/proximity-readers" onClick={closeMenu}>
                           <span>Smart Card Readers</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/pedestrian-gates">
+                        <Link href="/products/pedestrian-gates" onClick={closeMenu}>
                           <span>Pedestrian Access Gates</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/vehicular-access-control">
+                        <Link href="/products/vehicular-access-control" onClick={closeMenu}>
                           <span>Vehicular Access Control</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
@@ -172,36 +190,36 @@ export default function Header() {
                   {/* Col 3: ACCESSORIES */}
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <Link href="/products/accessories" className="mega-col-heading">ACCESSORIES</Link>
+                      <Link href="/products/accessories" className="mega-col-heading" onClick={closeMenu}>ACCESSORIES</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">
                       <li>
-                        <Link href="/products/safety-devices">
+                        <Link href="/products/safety-devices" onClick={closeMenu}>
                           <span>Safety Devices</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/simple-pulse-generators">
+                        <Link href="/products/simple-pulse-generators" onClick={closeMenu}>
                           <span>Simple Pulse Generator</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/electronic-pulse-generators">
+                        <Link href="/products/electronic-pulse-generators" onClick={closeMenu}>
                           <span>Electronic Pulse Generator</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/electric-gate-locks">
+                        <Link href="/products/electric-gate-locks" onClick={closeMenu}>
                           <span>Gate Locks</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/traffic-signal-lights-flashing-lights">
+                        <Link href="/products/traffic-signal-lights-flashing-lights" onClick={closeMenu}>
                           <span>Traffic Lights</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
@@ -213,8 +231,12 @@ export default function Header() {
             </div>
 
             {/* 3. Solutions Dropdown */}
-            <div className="nav-item has-dropdown">
-              <Link href="/products" className="nav-link">
+            <div className={`nav-item has-dropdown ${activeSubmenu === 'solutions' ? 'open-mobile-sub' : ''}`}>
+              <Link
+                href="/products/parking-management-systems"
+                className="nav-link"
+                onClick={(e) => toggleSubmenu('solutions', e)}
+              >
                 <span>Solutions</span>
                 <svg className="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -225,30 +247,30 @@ export default function Header() {
                 <div className="mega-grid solutions-single-grid">
                   <div className="mega-col">
                     <div className="mega-col-heading-group">
-                      <Link href="/products/parking-management-systems" className="mega-col-heading">PARKING</Link>
+                      <Link href="/products/parking-management-systems" className="mega-col-heading" onClick={closeMenu}>PARKING MANAGEMENT SYSTEMS</Link>
                       <span className="cyan-accent-line"></span>
                     </div>
                     <ul className="mega-menu-list">
                       <li>
-                        <Link href="/products/parking-management-system">
+                        <Link href="/products/parking-management-system" onClick={closeMenu}>
                           <span>Parking Management Solutions</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/parking-guidance-solutions">
+                        <Link href="/products/parking-guidance-solutions" onClick={closeMenu}>
                           <span>Parking Guidance Solutions</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/parking-counting-solutions">
+                        <Link href="/products/parking-counting-solutions" onClick={closeMenu}>
                           <span>Parking Counting Solutions</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
                       </li>
                       <li>
-                        <Link href="/products/vehicular-access-control-solution">
+                        <Link href="/products/vehicular-access-control-solution" onClick={closeMenu}>
                           <span>Vehicular Access Control Solutions</span>
                           <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </Link>
@@ -260,30 +282,34 @@ export default function Header() {
             </div>
 
             {/* 4. Resources */}
-            <div className="nav-item has-dropdown">
-              <a href="#faqs" className="nav-link">
+            <div className={`nav-item has-dropdown ${activeSubmenu === 'resources' ? 'open-mobile-sub' : ''}`}>
+              <Link
+                href="/#faqs"
+                className="nav-link"
+                onClick={(e) => toggleSubmenu('resources', e)}
+              >
                 <span>Resources</span>
                 <svg className="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-              </a>
+              </Link>
               <div className="simple-dropdown-menu">
                 <ul className="simple-dropdown-list">
                   <li>
-                    <a href="#testimonials" className="simple-dropdown-link" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="/#testimonials" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Google Reviews</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#videos" className="simple-dropdown-link" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="/#videos" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Video Showcase</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#why-us" className="simple-dropdown-link" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="/#why-us" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Why Neptune</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -291,34 +317,38 @@ export default function Header() {
 
             {/* 5. Clientele */}
             <div className="nav-item">
-              <a href="#clients" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Clientele</a>
+              <Link href="/#clients" className="nav-link" onClick={closeMenu}>Clientele</Link>
             </div>
 
             {/* 6. About Us */}
-            <div className="nav-item has-dropdown">
-              <a href="#why-us" className="nav-link">
+            <div className={`nav-item has-dropdown ${activeSubmenu === 'about' ? 'open-mobile-sub' : ''}`}>
+              <Link
+                href="/#why-us"
+                className="nav-link"
+                onClick={(e) => toggleSubmenu('about', e)}
+              >
                 <span>About US</span>
                 <svg className="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-              </a>
+              </Link>
               <div className="simple-dropdown-menu">
                 <ul className="simple-dropdown-list">
                   <li>
-                    <a href="https://www.neptuneautomatic.com/careers/" target="_blank" rel="noopener noreferrer" className="simple-dropdown-link">
+                    <a href="https://www.neptuneautomatic.com/careers/" target="_blank" rel="noopener noreferrer" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Careers</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </a>
                   </li>
                   <li>
-                    <a href="#contact" className="simple-dropdown-link" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="/#contact" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Contact Us</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#why-us" className="simple-dropdown-link" onClick={() => setMobileMenuOpen(false)}>
+                    <Link href="/#why-us" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Leadership</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -326,7 +356,7 @@ export default function Header() {
 
             {/* 7. Call Button */}
             <div className="nav-item nav-item-call">
-              <a href="tel:+918010807000" className="nav-call-btn" title="Call Neptune Support: +91 8010 807 000" aria-label="Call +91 8010 807 000">
+              <a href="tel:+918010807000" className="nav-call-btn" title="Call Neptune Support: +91 8010 807 000" aria-label="Call +91 8010 807 000" onClick={closeMenu}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="nav-call-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                 <span>Call Us</span>
               </a>

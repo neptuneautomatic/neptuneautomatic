@@ -26,13 +26,15 @@ export default function Footer() {
         <div className="footer-top-grid">
           {/* Col 1: About */}
           <div className="footer-col-about">
-            <Image
-              src="/assets/images/neptune-logo.png"
-              alt="Neptune Automatic"
-              width={200}
-              height={50}
-              style={{ height: 'auto', width: '200px' }}
-            />
+            <Link href="/" aria-label="Neptune Automatic Home" style={{ display: 'inline-block', marginBottom: '0.5rem' }}>
+              <Image
+                src="/assets/images/neptune-logo.png"
+                alt="Neptune Automatic"
+                width={200}
+                height={50}
+                style={{ height: 'auto', width: '200px' }}
+              />
+            </Link>
             <p>
               Neptune Automatic Pvt. Ltd. is India&apos;s premier manufacturer and turnkey integrator of high-performance access automation, parking management systems, and high-security hostile vehicle mitigation solutions since 2005.
             </p>
@@ -73,17 +75,17 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Solutions */}
+          {/* Col 2: Divisions & Products */}
           <div className="footer-col">
-            <h5 className="footer-col-title">Solutions</h5>
+            <h5 className="footer-col-title">Divisions &amp; Products</h5>
             <ul className="footer-menu">
+              <li><Link href="/products/access-automation">Access Automation</Link></li>
+              <li><Link href="/products/access-control">Access Control</Link></li>
+              <li><Link href="/products/parking-management-systems">Parking Management</Link></li>
+              <li><Link href="/products/accessories">System Accessories</Link></li>
               <li><Link href="/products/automatic-boom-barrier">Boom Barriers</Link></li>
-              <li><Link href="/products/automatic-bollards">Automatic Bollards</Link></li>
-              <li><Link href="/products/parking-management-system">Parking Management (PMS)</Link></li>
-              <li><Link href="/products/parking-guidance-solutions">Parking Guidance (PGS)</Link></li>
-              <li><Link href="/products/swing-gate-operators">Gate Automation</Link></li>
-              <li><Link href="/products/vehicular-access-control">Road Blockers &amp; HVM</Link></li>
-              <li><Link href="/products/crash-rated-barrier">Crash Rated Defense</Link></li>
+              <li><Link href="/products/automatic-bollards">Security Bollards</Link></li>
+              <li><Link href="/products">All Products Catalog &rarr;</Link></li>
             </ul>
           </div>
 
@@ -91,12 +93,12 @@ export default function Footer() {
           <div className="footer-col">
             <h5 className="footer-col-title">Sectors</h5>
             <ul className="footer-menu">
-              <li><Link href="#sectors">Corporate Tech Parks</Link></li>
-              <li><Link href="#sectors">Airports &amp; Transit</Link></li>
-              <li><Link href="#sectors">Manufacturing &amp; Logistics</Link></li>
-              <li><Link href="#sectors">Government &amp; Defense</Link></li>
-              <li><Link href="#sectors">Gated Communities</Link></li>
-              <li><Link href="#sectors">Shopping Malls &amp; Retail</Link></li>
+              <li><Link href="/#sectors">Corporate Tech Parks</Link></li>
+              <li><Link href="/#sectors">Airports &amp; Transit</Link></li>
+              <li><Link href="/#sectors">Manufacturing &amp; Logistics</Link></li>
+              <li><Link href="/#sectors">Government &amp; Defense</Link></li>
+              <li><Link href="/#sectors">Gated Communities</Link></li>
+              <li><Link href="/#sectors">Shopping Malls &amp; Retail</Link></li>
             </ul>
           </div>
 
@@ -104,13 +106,21 @@ export default function Footer() {
           <div className="footer-col">
             <h5 className="footer-col-title">Company</h5>
             <ul className="footer-menu">
-              <li><Link href="#why-us">About Neptune</Link></li>
-              <li><Link href="#testimonials">Google Reviews &amp; Ratings</Link></li>
-              <li><Link href="#videos">Video Showcase</Link></li>
-              <li><Link href="#clients">Client References</Link></li>
+              <li><Link href="/#why-us">About Neptune</Link></li>
+              <li><Link href="/#testimonials">Google Reviews &amp; Ratings</Link></li>
+              <li><Link href="/#videos">Video Showcase</Link></li>
+              <li><Link href="/#clients">Client References</Link></li>
               <li><a href="https://www.neptuneautomatic.com/careers/" target="_blank" rel="noopener noreferrer">Careers</a></li>
-              <li><button type="button" onClick={() => openQuote('Support Request')} style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer', textAlign: 'left' }}>Customer Portal</button></li>
-              <li><Link href="#contact">Contact Support</Link></li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => openQuote('Customer Portal Access')}
+                  style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer', textAlign: 'left' }}
+                >
+                  Customer Portal
+                </button>
+              </li>
+              <li><Link href="/#contact">Contact Support</Link></li>
             </ul>
           </div>
 
@@ -129,7 +139,7 @@ export default function Footer() {
               />
               <button type="submit" className="btn btn-primary btn-sm">Join</button>
             </form>
-            <div style={{ fontSize: '0.85rem', color: '#94a3b8', marginTop: '1rem' }}>
+            <div style={{ fontSize: '0.85rem', color: '#94a3b8', marginTop: '1rem', lineHeight: '1.5' }}>
               <strong>Headquarters:</strong><br />
               Neptune House, Plot No. 8, Okhla Industrial Area, Phase-III, New Delhi - 110020, India
             </div>
@@ -144,10 +154,28 @@ export default function Footer() {
             &copy; 2026 Neptune Automatic Pvt. Ltd. All rights reserved. ISO 9001:2015 Certified.
           </div>
           <div className="footer-legal-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Engineering Service</a>
-            <a href="#">Security Statement</a>
-            <a href="#">Sitemap</a>
+            <button
+              type="button"
+              onClick={() => openQuote('Privacy Policy Enquiry')}
+              style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer' }}
+            >
+              Privacy Policy
+            </button>
+            <button
+              type="button"
+              onClick={() => openQuote('Terms of Engineering Service Enquiry')}
+              style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer' }}
+            >
+              Terms of Engineering Service
+            </button>
+            <button
+              type="button"
+              onClick={() => openQuote('Security Architecture Statement')}
+              style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer' }}
+            >
+              Security Statement
+            </button>
+            <Link href="/products">Sitemap &amp; Directory</Link>
           </div>
         </div>
       </div>
