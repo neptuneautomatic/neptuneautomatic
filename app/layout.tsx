@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import { Lexend } from 'next/font/google';
 import './globals.css';
 import { ModalProvider } from '@/context/ModalContext';
+import { CartProvider } from '@/context/CartContext';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import CartDrawer from '@/components/cart/CartDrawer';
 import QuoteModal from '@/components/modals/QuoteModal';
 import SearchModal from '@/components/modals/SearchModal';
 import VideoModal from '@/components/modals/VideoModal';
@@ -52,12 +54,15 @@ export default function RootLayout({
       </head>
       <body>
         <ModalProvider>
-          <Header />
-          <main id="main-content">{children}</main>
-          <Footer />
-          <QuoteModal />
-          <SearchModal />
-          <VideoModal />
+          <CartProvider>
+            <Header />
+            <main id="main-content">{children}</main>
+            <Footer />
+            <CartDrawer />
+            <QuoteModal />
+            <SearchModal />
+            <VideoModal />
+          </CartProvider>
         </ModalProvider>
       </body>
     </html>

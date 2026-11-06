@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ProductCategory, PRODUCT_CATEGORIES } from '@/data/productsData';
 import { useModal } from '@/context/ModalContext';
+import { useCart } from '@/context/CartContext';
 
 interface Props {
   category: ProductCategory;
@@ -12,6 +13,7 @@ interface Props {
 
 export default function CategoryDetailView({ category }: Props) {
   const { openQuote } = useModal();
+  const { addToCart, isInWishlist, toggleWishlist, openCart } = useCart();
 
   // Sibling categories in the same division
   const siblingCategories = PRODUCT_CATEGORIES.filter(
@@ -250,8 +252,8 @@ export default function CategoryDetailView({ category }: Props) {
               return (
                 <div key={prod.slug} className="hardware-model-card">
                   <div className="hardware-card-content">
-                    {/* Image wrap with code badge */}
-                    <div className="hardware-card-img-wrap">
+                    {/* Image wrap with code badge & Wishlist Heart */}
+                    <div className="hardware-card-img-wrap" style={{ position: 'relative' }}>
                       <Image
                         src={displayImg}
                         alt={prod.name}
@@ -261,6 +263,31 @@ export default function CategoryDetailView({ category }: Props) {
                         loading="lazy"
                       />
                       <span className="hardware-badge-code">{prod.modelCode}</span>
+
+                      {/* Quick Wishlist Toggle */}
+                      <button
+                        type="button"
+                        className={`card-wishlist-quick-btn ${isInWishlist(prod.slug) ? 'active' : ''}`}
+                        title={isInWishlist(prod.slug) ? 'Remove from Wishlist' : 'Add to Wishlist'}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleWishlist({
+                            slug: prod.slug,
+                            categorySlug: category.categorySlug,
+                            name: prod.name,
+                            modelCode: prod.modelCode,
+                            categoryName: category.categoryName,
+                            division: category.division,
+                            image: displayImg,
+                            tagline: prod.tagline,
+                          });
+                        }}
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill={isInWishlist(prod.slug) ? '#D32628' : 'none'} stroke={isInWishlist(prod.slug) ? '#D32628' : '#64748B'} strokeWidth="2">
+                          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                      </button>
                     </div>
 
                     {/* Title & Description */}
@@ -291,31 +318,45 @@ export default function CategoryDetailView({ category }: Props) {
 
                   {/* Card Action Buttons */}
                   <div className="hardware-card-actions" style={{
-                    padding: '1rem 1.5rem',
+                    padding: '0.85rem 1.25rem',
                     background: '#F8FAFC',
                     borderTop: '1px solid var(--theme-border-subtle)',
                     display: 'flex',
-                    gap: '0.75rem'
+                    gap: '0.5rem'
                   }}>
                     <Link
                       href={`/products/${category.categorySlug}/${prod.slug}`}
-                      className="btn btn-primary"
-                      style={{ flex: 1, justifyContent: 'center', fontSize: '0.8125rem', padding: '0.6rem 1rem' }}
+                      className="btn btn-outline"
+                      style={{ flex: 1, justifyContent: 'center', fontSize: '0.8125rem', padding: '0.55rem 0.75rem' }}
                     >
-                      <span>Full Specifications</span>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <polyline points="9 18 15 12 9 6" />
-                      </svg>
+                      <span>Specs</span>
                     </Link>
 
                     <button
                       type="button"
-                      className="btn btn-outline"
-                      onClick={() => openQuote(prod.name)}
-                      title="Request Quote"
-                      style={{ fontSize: '0.8125rem', padding: '0.6rem 0.85rem' }}
+                      className="btn btn-primary"
+                      onClick={() => {
+                        addToCart({
+                          slug: prod.slug,
+                          categorySlug: category.categorySlug,
+                          name: prod.name,
+                          modelCode: prod.modelCode,
+                          categoryName: category.categoryName,
+                          division: category.division,
+                          image: displayImg,
+                          tagline: prod.tagline,
+                        }, 1);
+                        openCart();
+                      }}
+                      title="Add to Quotation Cart"
+                      style={{ flex: 1.2, justifyContent: 'center', fontSize: '0.8125rem', padding: '0.55rem 0.75rem', gap: '5px' }}
                     >
-                      <span>Quote</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                      </svg>
+                      <span>+ Quote Cart</span>
                     </button>
                   </div>
                 </div>

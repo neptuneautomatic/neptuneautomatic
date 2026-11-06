@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ProductCategory, ProductItem } from '@/data/productsData';
 import { useModal } from '@/context/ModalContext';
+import { useCart } from '@/context/CartContext';
 
 interface Props {
   category: ProductCategory;
@@ -13,7 +14,9 @@ interface Props {
 
 export default function ProductDetailView({ category, product }: Props) {
   const { openQuote } = useModal();
+  const { addToCart, isInWishlist, toggleWishlist, openCart } = useCart();
   const [selectedImg, setSelectedImg] = useState<string>(product.images[0] || category.heroImage);
+  const [quantity, setQuantity] = useState<number>(1);
 
   // Other products in the same category
   const relatedProducts = category.products.filter((p) => p.slug !== product.slug);
@@ -118,43 +121,123 @@ export default function ProductDetailView({ category, product }: Props) {
               )}
             </div>
 
-            {/* Action Buttons */}
-            <div>
-              <div className="prod-actions-row">
+            {/* E-Commerce Action & Procurement Section */}
+            <div className="prod-procurement-section">
+              {/* Stock Status & Assurances */}
+              <div className="prod-stock-badge-row">
+                <span className="stock-status-pill in-stock">
+                  <span className="stock-status-dot"></span>
+                  In Stock &bull; Direct Factory Dispatch Across India
+                </span>
+                <span className="stock-warranty-pill">
+                  2-Year OEM Warranty
+                </span>
+              </div>
+
+              {/* Quantity & Add to Cart Controls */}
+              <div className="prod-ecommerce-action-bar">
+                <div className="prod-qty-selector">
+                  <label htmlFor="prodQtyInput" className="prod-qty-label">Quantity</label>
+                  <div className="qty-stepper">
+                    <button
+                      type="button"
+                      onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                      aria-label="Decrease quantity"
+                    >
+                      &minus;
+                    </button>
+                    <span id="prodQtyInput">{quantity}</span>
+                    <button
+                      type="button"
+                      onClick={() => setQuantity((q) => q + 1)}
+                      aria-label="Increase quantity"
+                    >
+                      &#43;
+                    </button>
+                  </div>
+                </div>
+
                 <button
                   type="button"
-                  className="btn btn-primary"
-                  onClick={() => openQuote(`${product.name} (${product.modelCode})`)}
+                  className="btn btn-primary btn-add-cart"
+                  onClick={() => {
+                    addToCart({
+                      slug: product.slug,
+                      categorySlug: category.categorySlug,
+                      name: product.name,
+                      modelCode: product.modelCode,
+                      categoryName: category.categoryName,
+                      division: category.division,
+                      image: selectedImg || product.images[0] || category.heroImage,
+                      tagline: product.tagline,
+                    }, quantity);
+                    openCart();
+                  }}
                   style={{ flex: 1, minWidth: '220px' }}
                 >
-                  <span>Request Technical Quote / Sizing</span>
-                  <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <circle cx="9" cy="21" r="1" />
+                    <circle cx="20" cy="21" r="1" />
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                   </svg>
+                  <span>Add to Quotation Cart</span>
                 </button>
 
                 <button
                   type="button"
-                  className="btn btn-accent"
-                  onClick={() => openQuote(`Datasheet Download: ${product.name}`)}
-                  style={{ minWidth: '190px' }}
+                  className={`btn btn-outline btn-wishlist-action ${isInWishlist(product.slug) ? 'active' : ''}`}
+                  onClick={() => {
+                    toggleWishlist({
+                      slug: product.slug,
+                      categorySlug: category.categorySlug,
+                      name: product.name,
+                      modelCode: product.modelCode,
+                      categoryName: category.categoryName,
+                      division: category.division,
+                      image: selectedImg || product.images[0] || category.heroImage,
+                      tagline: product.tagline,
+                    });
+                  }}
+                  title={isInWishlist(product.slug) ? 'Remove from Wishlist' : 'Save to Wishlist'}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill={isInWishlist(product.slug) ? '#D32628' : 'none'} stroke={isInWishlist(product.slug) ? '#D32628' : 'currentColor'} strokeWidth="2.2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                  </svg>
+                  <span>{isInWishlist(product.slug) ? 'Saved' : 'Wishlist'}</span>
+                </button>
+              </div>
+
+              {/* Secondary Instant Sizing & Technical Datasheet */}
+              <div className="prod-secondary-actions-row">
+                <button
+                  type="button"
+                  className="btn btn-secondary-quote"
+                  onClick={() => openQuote(`${product.name} (${product.modelCode})`)}
+                >
+                  <span>Instant Technical Proposal</span>
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-datasheet-download"
+                  onClick={() => openQuote(`Datasheet Download: ${product.name}`)}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                     <polyline points="7 10 12 15 17 10" />
                     <line x1="12" y1="15" x2="12" y2="3" />
                   </svg>
-                  <span>Download Datasheet (PDF)</span>
+                  <span>Datasheet (PDF)</span>
                 </button>
               </div>
 
+              {/* Hotline strip */}
               <div className="prod-support-strip">
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#10B981', fontWeight: 600 }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                   </svg>
-                  Direct Factory Engineering Consultation
+                  Factory Sizing &amp; Feasibility Support
                 </span>
                 <a
                   href="tel:+918010807000"
@@ -442,7 +525,7 @@ export default function ProductDetailView({ category, product }: Props) {
               {relatedProducts.slice(0, 3).map((rel) => (
                 <div key={rel.slug} className="hardware-model-card">
                   <div className="hardware-card-content">
-                    <div className="hardware-card-img-wrap" style={{ aspectRatio: '16/10' }}>
+                    <div className="hardware-card-img-wrap" style={{ aspectRatio: '16/10', position: 'relative' }}>
                       <Image
                         src={rel.images[0] || category.heroImage}
                         alt={rel.name}
@@ -452,6 +535,31 @@ export default function ProductDetailView({ category, product }: Props) {
                         loading="lazy"
                       />
                       <span className="hardware-badge-code">{rel.modelCode}</span>
+
+                      {/* Wishlist Heart Icon */}
+                      <button
+                        type="button"
+                        className={`card-wishlist-quick-btn ${isInWishlist(rel.slug) ? 'active' : ''}`}
+                        title={isInWishlist(rel.slug) ? 'Remove from Wishlist' : 'Add to Wishlist'}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleWishlist({
+                            slug: rel.slug,
+                            categorySlug: category.categorySlug,
+                            name: rel.name,
+                            modelCode: rel.modelCode,
+                            categoryName: category.categoryName,
+                            division: category.division,
+                            image: rel.images[0] || category.heroImage,
+                            tagline: rel.tagline,
+                          });
+                        }}
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill={isInWishlist(rel.slug) ? '#D32628' : 'none'} stroke={isInWishlist(rel.slug) ? '#D32628' : '#64748B'} strokeWidth="2">
+                          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                      </button>
                     </div>
                     <h4 className="hardware-card-title" style={{ fontSize: '0.9375rem' }}>
                       <Link href={`/products/${category.categorySlug}/${rel.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
@@ -462,14 +570,39 @@ export default function ProductDetailView({ category, product }: Props) {
                       {rel.shortDesc}
                     </p>
                   </div>
-                  <div className="hardware-card-actions" style={{ padding: '0.75rem 1.25rem', background: '#F8FAFC', borderTop: '1px solid var(--theme-border-subtle)' }}>
+                  <div className="hardware-card-actions" style={{ padding: '0.75rem 1rem', background: '#F8FAFC', borderTop: '1px solid var(--theme-border-subtle)', display: 'flex', gap: '8px' }}>
                     <Link
                       href={`/products/${category.categorySlug}/${rel.slug}`}
-                      className="btn btn-primary"
-                      style={{ width: '100%', justifyContent: 'center', fontSize: '0.75rem', padding: '0.5rem' }}
+                      className="btn btn-outline"
+                      style={{ flex: 1, justifyContent: 'center', fontSize: '0.75rem', padding: '0.45rem' }}
                     >
-                      <span>View Specifications</span>
+                      <span>Specs</span>
                     </Link>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      style={{ flex: 1.2, justifyContent: 'center', fontSize: '0.75rem', padding: '0.45rem', gap: '4px' }}
+                      onClick={() => {
+                        addToCart({
+                          slug: rel.slug,
+                          categorySlug: category.categorySlug,
+                          name: rel.name,
+                          modelCode: rel.modelCode,
+                          categoryName: category.categoryName,
+                          division: category.division,
+                          image: rel.images[0] || category.heroImage,
+                          tagline: rel.tagline,
+                        }, 1);
+                        openCart();
+                      }}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                      </svg>
+                      <span>+ Quote</span>
+                    </button>
                   </div>
                 </div>
               ))}

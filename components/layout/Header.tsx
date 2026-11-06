@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useModal } from '@/context/ModalContext';
+import { useCart } from '@/context/CartContext';
 
 export default function Header() {
   const { openQuote, openSearch } = useModal();
+  const { totalCartCount, totalWishlistCount, setIsCartOpen, setActiveDrawerTab } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -284,7 +286,7 @@ export default function Header() {
             {/* 4. Resources */}
             <div className={`nav-item has-dropdown ${activeSubmenu === 'resources' ? 'open-mobile-sub' : ''}`}>
               <Link
-                href="/#faqs"
+                href="/blogs"
                 className="nav-link"
                 onClick={(e) => toggleSubmenu('resources', e)}
               >
@@ -294,8 +296,8 @@ export default function Header() {
               <div className="simple-dropdown-menu">
                 <ul className="simple-dropdown-list">
                   <li>
-                    <Link href="/#testimonials" className="simple-dropdown-link" onClick={closeMenu}>
-                      <span>Google Reviews</span>
+                    <Link href="/blogs" className="simple-dropdown-link" onClick={closeMenu}>
+                      <span>Blogs</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </Link>
                   </li>
@@ -306,8 +308,8 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/#why-us" className="simple-dropdown-link" onClick={closeMenu}>
-                      <span>Why Neptune</span>
+                    <Link href="/events" className="simple-dropdown-link" onClick={closeMenu}>
+                      <span>Events</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </Link>
                   </li>
@@ -333,20 +335,26 @@ export default function Header() {
               <div className="simple-dropdown-menu">
                 <ul className="simple-dropdown-list">
                   <li>
+                    <Link href="/#why-us" className="simple-dropdown-link" onClick={closeMenu}>
+                      <span>Why Neptune</span>
+                      <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </Link>
+                  </li>
+                  <li>
                     <a href="https://www.neptuneautomatic.com/careers/" target="_blank" rel="noopener noreferrer" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Careers</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </a>
                   </li>
                   <li>
-                    <Link href="/#contact" className="simple-dropdown-link" onClick={closeMenu}>
-                      <span>Contact Us</span>
+                    <Link href="/#why-us" className="simple-dropdown-link" onClick={closeMenu}>
+                      <span>Leadership</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/#why-us" className="simple-dropdown-link" onClick={closeMenu}>
-                      <span>Leadership</span>
+                    <Link href="/#contact" className="simple-dropdown-link" onClick={closeMenu}>
+                      <span>Contact Us</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </Link>
                   </li>
@@ -380,6 +388,48 @@ export default function Header() {
               </svg>
               <span className="search-btn-label">Search</span>
               <kbd className="search-btn-kbd">⌘K</kbd>
+            </button>
+
+            {/* Wishlist Button */}
+            <button
+              type="button"
+              className="header-action-icon-btn header-wishlist-btn"
+              id="headerWishlistBtn"
+              aria-label={`View Wishlist (${totalWishlistCount} items)`}
+              title="Saved Products Wishlist"
+              onClick={() => {
+                setActiveDrawerTab('wishlist');
+                setIsCartOpen(true);
+              }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill={totalWishlistCount > 0 ? '#D32628' : 'none'} stroke={totalWishlistCount > 0 ? '#D32628' : 'currentColor'} strokeWidth="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+              {totalWishlistCount > 0 && (
+                <span className="header-action-badge wishlist-badge">{totalWishlistCount}</span>
+              )}
+            </button>
+
+            {/* Quotation Cart Button */}
+            <button
+              type="button"
+              className="header-action-icon-btn header-cart-btn"
+              id="headerCartBtn"
+              aria-label={`View Quotation Cart (${totalCartCount} items)`}
+              title="Quotation Basket &amp; RFQ Builder"
+              onClick={() => {
+                setActiveDrawerTab('cart');
+                setIsCartOpen(true);
+              }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="9" cy="21" r="1" />
+                <circle cx="20" cy="21" r="1" />
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+              </svg>
+              {totalCartCount > 0 && (
+                <span className="header-action-badge cart-badge">{totalCartCount}</span>
+              )}
             </button>
 
             <button type="button" className="btn btn-primary" onClick={() => openQuote('General Enquiry')}>
