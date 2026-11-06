@@ -215,15 +215,6 @@ export default function HeroSlider() {
                               </svg>
                             </Link>
                           )}
-                          {s.quoteProduct && (
-                            <button
-                              type="button"
-                              className="btn btn-secondary"
-                              onClick={() => openQuote(s.quoteProduct)}
-                            >
-                              <span>{s.id === 4 ? 'Talk to an Expert' : 'Get a Quote'}</span>
-                            </button>
-                          )}
                         </div>
                       )}
 

@@ -78,7 +78,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'High Security & Defense',
     date: 'September 10, 2026',
     readTime: '6 min read',
-    image: '/assets/images/slide6-turnstiles.webp',
+    image: '/assets/images/slide3-bollards.webp',
     excerpt:
       'Case study on implementing silent hydraulic power units and 316-grade mirror stainless steel retractable bollards that seamlessly blend with luxury palace architecture while guaranteeing robust physical defense.',
     author: 'Neha Kapoor, Principal Project Consultant',
