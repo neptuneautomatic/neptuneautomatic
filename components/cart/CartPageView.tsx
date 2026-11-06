@@ -693,7 +693,7 @@ export default function CartPageView() {
                           setActiveTab('cart');
                         }}
                       >
-                        Move to Quote Cart
+                        Add to Cart
                       </button>
                       <button
                         type="button"

@@ -279,7 +279,7 @@ export default function CategoryDetailView({ category }: Props) {
                         }, 1);
                         openCart();
                       }}
-                      title="Add to Quotation Cart"
+                      title="Add to Cart"
                       style={{ flex: 1.2, justifyContent: 'center', fontSize: '0.8125rem', padding: '0.55rem 0.75rem', gap: '5px' }}
                     >
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -287,7 +287,7 @@ export default function CategoryDetailView({ category }: Props) {
                         <circle cx="20" cy="21" r="1" />
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                       </svg>
-                      <span>+ Quote Cart</span>
+                      <span>Add to Cart</span>
                     </button>
                   </div>
                 </div>

@@ -605,7 +605,7 @@ export default function CartDrawer() {
                                   style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem' }}
                                   onClick={() => moveToCart(item.slug)}
                                 >
-                                  Move to Quote Cart
+                                  Add to Cart
                                 </button>
                                 <button
                                   type="button"
