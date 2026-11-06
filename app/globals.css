@@ -8947,7 +8947,8 @@ img[src*="assets/images/"],
 /* Sticky Sidebar Widget Area */
 .blog-sticky-sidebar {
   position: sticky;
-  top: 96px;
+  top: 100px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -8958,10 +8959,18 @@ img[src*="assets/images/"],
   .blog-sticky-sidebar {
     position: static;
     top: auto;
+    padding-top: 0;
   }
 }
 
 /* 1. Sticky Table of Contents Card (Logo Colors Theme) */
+.blog-toc-sticky {
+  position: sticky;
+  top: 100px;
+  padding-top: 20px;
+  z-index: 10;
+}
+
 .blog-toc-card {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
@@ -8972,7 +8981,7 @@ img[src*="assets/images/"],
 }
 
 .blog-toc-header {
-  padding: 1.1rem 1.25rem 0.85rem 1.25rem;
+  padding: 20px 1.25rem 0.85rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

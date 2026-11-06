@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BlogPost, getRelatedBlogPosts } from '@/data/blogsData';
@@ -19,6 +19,7 @@ export default function BlogDetailView({ post }: Props) {
   const [activeHeadingId, setActiveHeadingId] = useState<string>('');
   const [readProgress, setReadProgress] = useState(0);
 
+  const blogContentRef = useRef<HTMLDivElement>(null);
   const relatedPosts = getRelatedBlogPosts(post.slug, 3);
 
   // Copy URL to clipboard
@@ -30,14 +31,31 @@ export default function BlogDetailView({ post }: Props) {
     }
   };
 
-  // Scroll Spy & Reading Progress
+  // Scroll Spy & Reading Progress (Capped at end of blog content)
   useEffect(() => {
     const handleScroll = () => {
-      // 1. Reading progress calculation
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        const progress = Math.min(100, Math.max(0, Math.round((window.scrollY / totalHeight) * 100)));
-        setReadProgress(progress);
+      // 1. Reading progress calculation (limited to the end of the blog article, not end of page)
+      if (blogContentRef.current) {
+        const el = blogContentRef.current;
+        const rect = el.getBoundingClientRect();
+        const contentTop = window.scrollY + rect.top;
+        const contentHeight = el.offsetHeight;
+
+        // Reading begins when top of blog content reaches reading zone below header (~130px)
+        const startScroll = contentTop - 130;
+        // Reading reaches 100% when the reader reaches the bottom of the blog article
+        const endScroll = contentTop + contentHeight - (window.innerHeight * 0.75);
+
+        const currentScroll = window.scrollY;
+
+        if (currentScroll <= startScroll) {
+          setReadProgress(0);
+        } else if (currentScroll >= endScroll) {
+          setReadProgress(100);
+        } else if (endScroll > startScroll) {
+          const progress = Math.round(((currentScroll - startScroll) / (endScroll - startScroll)) * 100);
+          setReadProgress(Math.min(100, Math.max(0, progress)));
+        }
       }
 
       // 2. Active TOC Heading Calculation
@@ -60,6 +78,17 @@ export default function BlogDetailView({ post }: Props) {
           break;
         }
       }
+
+      // If finished reading through to the end of the blog, keep last section highlighted
+      if (blogContentRef.current) {
+        const rect = blogContentRef.current.getBoundingClientRect();
+        const contentTop = window.scrollY + rect.top;
+        const endScroll = contentTop + blogContentRef.current.offsetHeight - (window.innerHeight * 0.75);
+        if (window.scrollY >= endScroll && headingElements.length > 0) {
+          currentId = headingElements[headingElements.length - 1].id;
+        }
+      }
+
       setActiveHeadingId(currentId);
     };
 
@@ -100,7 +129,8 @@ export default function BlogDetailView({ post }: Props) {
               LEFT COLUMN: MAIN ARTICLE CONTENT (LEFT ALIGNED)
              ===================================================================== */}
           <main className="blog-main-content-col">
-            {/* Category, Date & Read Time */}
+            <div ref={blogContentRef} className="blog-article-content-wrapper">
+              {/* Category, Date & Read Time */}
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
               <span
                 style={{
@@ -355,6 +385,7 @@ export default function BlogDetailView({ post }: Props) {
                 </p>
               </div>
             </div>
+          </div>
 
             {/* Related Articles Section */}
             {relatedPosts.length > 0 && (
@@ -457,11 +488,11 @@ export default function BlogDetailView({ post }: Props) {
               - Core Hardware Quick Directory Widget
               - Corporate Contact & Engineering Hotline Widget
              ===================================================================== */}
-          <aside className="blog-sticky-sidebar" aria-label="Article Sidebar & Table of Contents">
+          <aside className="blog-sticky-sidebar blog-toc-sticky" aria-label="Article Sidebar & Table of Contents" style={{ paddingTop: '20px' }}>
             {/* WIDGET 1: STICKY TABLE OF CONTENTS (BRAND LOGO THEME) */}
             {post.tableOfContents && post.tableOfContents.length > 0 && (
-              <div className="blog-toc-card">
-                <div className="blog-toc-header">
+              <div className="blog-toc-card blog-toc-sticky" style={{ paddingTop: '20px' }}>
+                <div className="blog-toc-header" style={{ paddingTop: '20px' }}>
                   <h3 className="blog-toc-title">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="8" y1="6" x2="21" y2="6" />
