@@ -9,6 +9,7 @@ import CartDrawer from '@/components/cart/CartDrawer';
 import QuoteModal from '@/components/modals/QuoteModal';
 import SearchModal from '@/components/modals/SearchModal';
 import VideoModal from '@/components/modals/VideoModal';
+import FloatingActions from '@/components/layout/FloatingActions';
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -62,6 +63,7 @@ export default function RootLayout({
             <QuoteModal />
             <SearchModal />
             <VideoModal />
+            <FloatingActions />
           </CartProvider>
         </ModalProvider>
       </body>
