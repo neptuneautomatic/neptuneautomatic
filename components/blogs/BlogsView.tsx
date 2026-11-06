@@ -377,15 +377,17 @@ export default function BlogsView({ initialPosts = ALL_BLOG_POSTS }: Props) {
                 }}
               >
                 {/* Thumbnail Image */}
-                <div style={{ position: 'relative', width: '100%', height: '220px', background: '#0A1128' }}>
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    style={{ objectFit: 'cover' }}
-                    loading="lazy"
-                  />
+                <div style={{ position: 'relative', width: '100%', height: '220px', background: '#0A1128', overflow: 'hidden' }}>
+                  <Link href={`/blogs/${post.slug}`} style={{ display: 'block', width: '100%', height: '100%', position: 'relative' }}>
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      style={{ objectFit: 'cover' }}
+                      loading="lazy"
+                    />
+                  </Link>
                   {/* Category Pill on Image */}
                   <button
                     type="button"
@@ -405,6 +407,7 @@ export default function BlogsView({ initialPosts = ALL_BLOG_POSTS }: Props) {
                       letterSpacing: '0.04em',
                       border: '1px solid rgba(255, 255, 255, 0.2)',
                       cursor: 'pointer',
+                      zIndex: 2,
                     }}
                     title={`Filter by ${post.category}`}
                   >
@@ -445,12 +448,19 @@ export default function BlogsView({ initialPosts = ALL_BLOG_POSTS }: Props) {
                         fontFamily: "'Lexend', sans-serif",
                         fontSize: '1.18rem',
                         fontWeight: 800,
-                        color: 'var(--color-logo-blue, #01358b)',
                         lineHeight: 1.35,
                         marginBottom: '0.75rem',
                       }}
                     >
-                      {post.title}
+                      <Link
+                        href={`/blogs/${post.slug}`}
+                        style={{
+                          color: 'var(--color-logo-blue, #01358b)',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        {post.title}
+                      </Link>
                     </h2>
 
                     {/* Excerpt */}
@@ -485,20 +495,22 @@ export default function BlogsView({ initialPosts = ALL_BLOG_POSTS }: Props) {
                       {post.author}
                     </span>
 
-                    <span
+                    <Link
+                      href={`/blogs/${post.slug}`}
                       style={{
                         color: 'var(--color-logo-blue, #01358b)',
                         fontWeight: 700,
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '4px',
+                        textDecoration: 'none',
                       }}
                     >
                       <span>Read More</span>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <polyline points="9 18 15 12 9 6" />
                       </svg>
-                    </span>
+                    </Link>
                   </div>
                 </div>
               </article>
