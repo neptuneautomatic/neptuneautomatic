@@ -108,32 +108,39 @@ export default function BlogsView({ initialPosts = ALL_BLOG_POSTS }: Props) {
         </section>
 
         {/* =========================================================================
-            SEARCH FILTER BAR (Search within Blogs Only)
+            SEARCH & CATEGORY DROPDOWN FILTER ONLY (Center Aligned)
            ========================================================================= */}
         <div
           style={{
-            maxWidth: '680px',
-            margin: '0 auto 2rem auto',
-            position: 'relative',
+            maxWidth: '920px',
+            margin: '0 auto 2.5rem auto',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '1rem',
           }}
         >
+          {/* 1. Real-time In-Blog Search */}
           <div
             style={{
+              flex: '1 1 360px',
+              maxWidth: '520px',
               position: 'relative',
               display: 'flex',
               alignItems: 'center',
               background: '#FFFFFF',
               borderRadius: '9999px',
               border: '2px solid #E2E8F0',
-              boxShadow: '0 4px 16px rgba(1, 53, 139, 0.08)',
+              boxShadow: '0 4px 14px rgba(1, 53, 139, 0.06)',
               padding: '0.35rem 0.6rem 0.35rem 1.25rem',
               transition: 'border-color 0.2s, box-shadow 0.2s',
             }}
           >
             {/* Search Icon */}
             <svg
-              width="20"
-              height="20"
+              width="18"
+              height="18"
               viewBox="0 0 24 24"
               fill="none"
               stroke="var(--color-logo-blue, #01358b)"
@@ -152,7 +159,7 @@ export default function BlogsView({ initialPosts = ALL_BLOG_POSTS }: Props) {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search blogs by topic, boom barrier, bollard, sensor, parking..."
+              placeholder="Search blogs by topic, product, keyword..."
               aria-label="Search blogs"
               style={{
                 flex: 1,
@@ -160,7 +167,7 @@ export default function BlogsView({ initialPosts = ALL_BLOG_POSTS }: Props) {
                 outline: 'none',
                 background: 'transparent',
                 fontFamily: "'Lexend', sans-serif",
-                fontSize: '0.95rem',
+                fontSize: '0.92rem',
                 color: '#1E293B',
                 padding: '0.55rem 0',
               }}
@@ -191,90 +198,103 @@ export default function BlogsView({ initialPosts = ALL_BLOG_POSTS }: Props) {
               </button>
             )}
 
-            {/* Search Badge Counter */}
+            {/* Live Count Pill */}
             <span
               style={{
                 background: 'rgba(1, 53, 139, 0.08)',
                 color: 'var(--color-logo-blue, #01358b)',
-                fontSize: '0.78rem',
+                fontSize: '0.76rem',
                 fontWeight: 700,
-                padding: '0.35rem 0.75rem',
+                padding: '0.3rem 0.7rem',
                 borderRadius: '9999px',
                 whiteSpace: 'nowrap',
                 marginLeft: '0.25rem',
               }}
             >
-              {filteredPosts.length} {filteredPosts.length === 1 ? 'Article' : 'Articles'}
+              {filteredPosts.length} {filteredPosts.length === 1 ? 'Post' : 'Posts'}
             </span>
           </div>
-        </div>
 
-        {/* =========================================================================
-            CATEGORY FILTER (Center Aligned on Top of Blog Listing)
-           ========================================================================= */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '0.65rem',
-            marginBottom: '3rem',
-            textAlign: 'center',
-          }}
-          role="tablist"
-          aria-label="Blog Categories"
-        >
-          {BLOG_CATEGORIES.map((category) => {
-            const isActive = selectedCategory === category;
-            const count = categoryCounts[category] || 0;
+          {/* 2. Category Dropdown Filter Only (Center Aligned) */}
+          <div
+            style={{
+              flex: '0 1 300px',
+              position: 'relative',
+              display: 'inline-flex',
+              alignItems: 'center',
+            }}
+          >
+            <label
+              htmlFor="blogCategorySelect"
+              style={{
+                position: 'absolute',
+                left: '16px',
+                pointerEvents: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                color: 'var(--color-logo-blue, #01358b)',
+                fontWeight: 700,
+                fontSize: '0.85rem',
+                zIndex: 2,
+              }}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+              </svg>
+              <span>Category:</span>
+            </label>
 
-            return (
-              <button
-                key={category}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setSelectedCategory(category)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.45rem',
-                  padding: '0.55rem 1.15rem',
-                  borderRadius: '9999px',
-                  border: isActive ? '1.5px solid var(--color-logo-blue, #01358b)' : '1.5px solid #CBD5E1',
-                  background: isActive
-                    ? 'linear-gradient(135deg, var(--color-logo-blue, #01358b) 0%, #1a2f6c 100%)'
-                    : '#FFFFFF',
-                  color: isActive ? '#FFFFFF' : '#334155',
-                  fontFamily: "'Lexend', sans-serif",
-                  fontSize: '0.86rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  boxShadow: isActive ? '0 4px 14px rgba(1, 53, 139, 0.25)' : 'none',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                <span>{category}</span>
-                <span
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: '0.1rem 0.5rem',
-                    borderRadius: '9999px',
-                    fontSize: '0.72rem',
-                    fontWeight: 800,
-                    background: isActive ? 'rgba(255, 255, 255, 0.25)' : '#F1F5F9',
-                    color: isActive ? '#FFFFFF' : '#64748B',
-                  }}
-                >
-                  {count}
-                </span>
-              </button>
-            );
-          })}
+            <select
+              id="blogCategorySelect"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value as BlogCategory)}
+              aria-label="Filter blogs by category"
+              style={{
+                width: '100%',
+                padding: '0.75rem 2.5rem 0.75rem 7.4rem',
+                fontFamily: "'Lexend', sans-serif",
+                fontSize: '0.88rem',
+                fontWeight: 700,
+                color: '#1E293B',
+                background: '#FFFFFF',
+                border: '2px solid #E2E8F0',
+                borderRadius: '9999px',
+                boxShadow: '0 4px 14px rgba(1, 53, 139, 0.06)',
+                cursor: 'pointer',
+                outline: 'none',
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                MozAppearance: 'none',
+                transition: 'border-color 0.2s, box-shadow 0.2s',
+              }}
+            >
+              {BLOG_CATEGORIES.map((category) => {
+                const count = categoryCounts[category] || 0;
+                return (
+                  <option key={category} value={category}>
+                    {category === 'All' ? 'All Categories' : category} ({count})
+                  </option>
+                );
+              })}
+            </select>
+
+            {/* Custom Dropdown Chevron */}
+            <div
+              style={{
+                position: 'absolute',
+                right: '16px',
+                pointerEvents: 'none',
+                color: 'var(--color-logo-blue, #01358b)',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </div>
+          </div>
         </div>
 
         {/* Active Filter State Notice */}
