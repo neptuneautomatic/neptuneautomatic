@@ -197,7 +197,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/2-1.jpg"
         ],
         "fastFacts": [
@@ -321,7 +320,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/1-1.jpg"
         ],
         "fastFacts": [
@@ -441,7 +439,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/3-1.jpg"
         ],
         "fastFacts": [
@@ -560,7 +557,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-620-barrier.jpg"
         ],
         "fastFacts": [
@@ -672,7 +668,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/boom-barrier.png"
         ],
         "fastFacts": [
@@ -776,7 +771,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-b680h.jpg"
         ],
         "fastFacts": [
@@ -939,7 +933,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/bollard-234.png"
         ],
         "fastFacts": [
@@ -1067,7 +1060,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/bollard-52.png"
         ],
         "fastFacts": [
@@ -1195,7 +1187,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/automatic-traffic-bollard-k2-1.png"
         ],
         "fastFacts": [
@@ -1295,8 +1286,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
-          "/assets/images/products/untitled-design-60.png"
+          "/assets/images/products/untitled-design-61.png"
         ],
         "fastFacts": [
           {
@@ -1718,7 +1708,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/390-ac.jpg"
         ],
         "fastFacts": [
@@ -1810,7 +1799,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/412-1.jpg"
         ],
         "fastFacts": [
@@ -1914,7 +1902,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac_413.jpg"
         ],
         "fastFacts": [
@@ -2018,7 +2005,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/415-highres.jpg"
         ],
         "fastFacts": [
@@ -2122,7 +2108,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-s418.jpg"
         ],
         "fastFacts": [
@@ -2230,7 +2215,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-770-highres.jpg"
         ],
         "fastFacts": [
@@ -2322,7 +2306,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-400.jpg"
         ],
         "fastFacts": [
@@ -2418,7 +2401,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-402.jpg"
         ],
         "fastFacts": [
@@ -2518,7 +2500,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac_450h.jpg"
         ],
         "fastFacts": [
@@ -2616,7 +2597,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-422.jpg"
         ],
         "fastFacts": [
@@ -2706,7 +2686,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-750.jpg"
         ],
         "fastFacts": [
@@ -2870,7 +2849,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-c720-721.jpg"
         ],
         "fastFacts": [
@@ -2978,7 +2956,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-740_741.jpg"
         ],
         "fastFacts": [
@@ -3082,7 +3059,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-746-er.jpg"
         ],
         "fastFacts": [
@@ -3195,7 +3171,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-844-er-gearmotor.jpg"
         ],
         "fastFacts": [
@@ -3303,7 +3278,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-844-r-3ph.jpg"
         ],
         "fastFacts": [
@@ -3408,7 +3382,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-884-ms-3ph.jpg"
         ],
         "fastFacts": [
@@ -3517,7 +3490,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-c850-gearmotor.jpg"
         ],
         "fastFacts": [
@@ -3669,7 +3641,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-tm-45.jpg"
         ],
         "fastFacts": [
@@ -3766,7 +3737,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-r180-r280.jpg"
         ],
         "fastFacts": [
@@ -3859,7 +3829,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/faac-tm58.jpg"
         ],
         "fastFacts": [
@@ -3948,7 +3917,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/tm35.jpg"
         ],
         "fastFacts": [
@@ -4139,7 +4107,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/aaaa-1.jpg"
         ],
         "fastFacts": [
@@ -4267,7 +4234,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/bbbb.jpg"
         ],
         "fastFacts": [
@@ -4436,7 +4402,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/smart-card-reader-rfid-and-nfc.jpg"
         ],
         "fastFacts": [
@@ -4671,7 +4636,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/untitled-design-47.png"
         ],
         "fastFacts": [
@@ -4847,7 +4811,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/nep-9090.png"
         ],
         "fastFacts": [
@@ -4946,7 +4909,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/full-height-turnstile-nep-536-1.png"
         ],
         "fastFacts": [
@@ -5042,7 +5004,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/full-height-turnstile-nep-536-2-1.png"
         ],
         "fastFacts": [
@@ -5141,7 +5102,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/untitled-design-14.png"
         ],
         "fastFacts": [
@@ -5241,7 +5201,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/full-height-turnstile-nep-545-2.png"
         ],
         "fastFacts": [
@@ -5441,7 +5400,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/speed-gate-st-303.png"
         ],
         "fastFacts": [
@@ -5644,7 +5602,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/untitled-design-46.png"
         ],
         "fastFacts": [
@@ -5844,7 +5801,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/sb-202-compact.png"
         ],
         "fastFacts": [
@@ -6044,7 +6000,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/sb-202-compact.png"
         ],
         "fastFacts": [
@@ -6142,7 +6097,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/p-gate.png"
         ],
         "fastFacts": [
@@ -6226,7 +6180,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/gate-tts.jpg"
         ],
         "fastFacts": [
@@ -6374,7 +6327,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/neptune-p-gate.png"
         ],
         "fastFacts": [
@@ -6561,7 +6513,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/tyer-killer.png"
         ],
         "fastFacts": [
@@ -6657,7 +6608,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/road-blocker.png"
         ],
         "fastFacts": [
@@ -6798,7 +6748,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/untitled-design-59.png"
         ],
         "fastFacts": [
@@ -6937,7 +6886,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/untitled-design-44.png"
         ],
         "fastFacts": [
@@ -7017,7 +6965,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/fastag-based-parking-management-system.png"
         ],
         "fastFacts": [
@@ -7102,7 +7049,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/your-paragraph-text-1.png"
         ],
         "fastFacts": [
@@ -7186,7 +7132,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/jms.jpg"
         ],
         "fastFacts": [
@@ -7325,7 +7270,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/anpr-based-parking-guidance-system.png"
         ],
         "fastFacts": [
@@ -7405,7 +7349,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/camera-based-parking-guidance.png"
         ],
         "fastFacts": [
@@ -7544,7 +7487,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-loop-detector.png"
         ],
         "fastFacts": [
           {
@@ -7623,7 +7566,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-parking-management.png"
         ],
         "fastFacts": [
           {
@@ -7702,7 +7645,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-parking-counting-display.png"
         ],
         "fastFacts": [
           {
@@ -7840,7 +7783,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/2-1.jpg",
           "/assets/images/products/1-1.jpg",
           "/assets/images/products/3-1.jpg",
@@ -7925,7 +7867,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/bollard-234.png.webp",
           "/assets/images/products/bollard-52.png.webp",
           "/assets/images/products/automatic-traffic-bollard-k2-1.png.webp",
@@ -8073,7 +8014,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/crash-barrier.png.webp"
         ],
         "fastFacts": [
@@ -8185,7 +8125,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/strong-arm-barrier.png.webp"
         ],
         "fastFacts": [
@@ -8265,7 +8204,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/390.jpg",
           "/assets/images/products/412.jpg",
           "/assets/images/products/413.jpg",
@@ -8355,7 +8293,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/c720.jpg",
           "/assets/images/products/740-741-gearmotor.jpg",
           "/assets/images/products/746er.jpg",
@@ -8441,7 +8378,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/tm45-1.jpg",
           "/assets/images/products/r180.jpg",
           "/assets/images/products/tm58.jpg",
@@ -8524,7 +8460,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/aaaa-1.jpg",
           "/assets/images/products/bbbb.jpg"
         ],
@@ -8605,7 +8540,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/smart-card-reader-rfid-and-nfc.jpg.webp"
         ],
         "fastFacts": [
@@ -8685,7 +8619,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/photocell.jpg.webp",
           "/assets/images/products/loop-detector-1-1.png.webp"
         ],
@@ -8766,7 +8699,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/untitled-design-7.png.webp",
           "/assets/images/products/untitled-design-8-1.png.webp"
         ],
@@ -8847,7 +8779,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/untitled-design-9.png",
           "/assets/images/products/radio-transmitter.png",
           "/assets/images/products/faac-787856-receiver.png",
@@ -8930,7 +8861,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/electric-locks.png.webp"
         ],
         "fastFacts": [
@@ -9010,7 +8940,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/untitled-design-10.png.webp",
           "/assets/images/products/neptune-faac-flashing-lights.png.webp",
           "/assets/images/products/flashing-light-1.png.webp"
@@ -9092,7 +9021,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-simple-pulse-gen.png"
         ],
         "fastFacts": [
           {
@@ -9236,7 +9165,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/crash-barrier.png"
         ],
         "fastFacts": [
@@ -9364,7 +9292,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/tyer-killer.png.webp"
         ],
         "fastFacts": [
@@ -9444,7 +9371,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-sliding-gate-operator.jpg"
         ],
         "fastFacts": [
           {
@@ -9523,7 +9450,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png",
           "/assets/images/products/aaaa-1.jpg",
           "/assets/images/products/bbbb.jpg"
         ],
@@ -9663,7 +9589,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-photocell-safety.jpg"
         ],
         "fastFacts": [
           {
@@ -9742,7 +9668,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-loop-detector.png"
         ],
         "fastFacts": [
           {
@@ -9880,7 +9806,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-simple-pulse-gen.png"
         ],
         "fastFacts": [
           {
@@ -9959,7 +9885,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-simple-pulse-gen.png"
         ],
         "fastFacts": [
           {
@@ -10097,7 +10023,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-faac-receiver.png"
         ],
         "fastFacts": [
           {
@@ -10176,7 +10102,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-radio-transmitter.png"
         ],
         "fastFacts": [
           {
@@ -10255,7 +10181,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-faac-receiver.png"
         ],
         "fastFacts": [
           {
@@ -10334,7 +10260,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-radio-transmitter.png"
         ],
         "fastFacts": [
           {
@@ -10472,7 +10398,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-electric-locks.png"
         ],
         "fastFacts": [
           {
@@ -10610,7 +10536,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-traffic-signal.png"
         ],
         "fastFacts": [
           {
@@ -10689,7 +10615,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-flashing-light.png"
         ],
         "fastFacts": [
           {
@@ -10768,7 +10694,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           }
         ],
         "images": [
-          "/assets/images/products/image.png"
+          "/assets/images/product-flashing-light-faac.png"
         ],
         "fastFacts": [
           {

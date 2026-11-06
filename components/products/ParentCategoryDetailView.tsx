@@ -4,14 +4,12 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ParentCategory, getCategoryBySlug, getAllParentCategories } from '@/data/productsData';
-import { useModal } from '@/context/ModalContext';
 
 interface Props {
   parentCategory: ParentCategory;
 }
 
 export default function ParentCategoryDetailView({ parentCategory }: Props) {
-  const { openQuote } = useModal();
 
   // Retrieve full category objects for all listed slugs
   const childCategories = parentCategory.categorySlugs
@@ -86,6 +84,7 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
             </div>
 
             <h1
+              className="force-white-heading"
               style={{
                 fontFamily: "'Lexend', sans-serif",
                 fontSize: 'clamp(2.25rem, 4.5vw, 3.25rem)',
@@ -93,6 +92,7 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
                 lineHeight: 1.15,
                 marginBottom: '1.25rem',
                 color: '#FFFFFF',
+                WebkitTextFillColor: '#FFFFFF',
                 letterSpacing: '-0.02em',
               }}
             >
@@ -122,51 +122,6 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
             >
               {parentCategory.description}
             </p>
-
-            {/* Quick Action CTA Buttons */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => openQuote(parentCategory.name)}
-                style={{ padding: '0.85rem 1.75rem', fontSize: '0.9375rem', fontWeight: 700 }}
-              >
-                <span>Request Division Proposal</span>
-                <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </button>
-              <a
-                href="#product-categories"
-                className="btn btn-outline"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.08)',
-                  borderColor: 'rgba(255, 255, 255, 0.25)',
-                  color: '#FFFFFF',
-                  padding: '0.85rem 1.75rem',
-                  fontSize: '0.9375rem',
-                }}
-              >
-                <span>Browse Categories ({childCategories.length})</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </a>
-              <a
-                href="tel:+918010807000"
-                className="btn btn-outline"
-                style={{
-                  background: 'transparent',
-                  borderColor: 'rgba(255, 255, 255, 0.2)',
-                  color: '#CBD5E1',
-                  padding: '0.85rem 1.25rem',
-                  fontSize: '0.9375rem',
-                }}
-              >
-                <span>Call Specialist: +91 8010 807 000</span>
-              </a>
-            </div>
           </div>
 
           {/* Quick Metrics Bar inside Hero */}
@@ -292,7 +247,8 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
                 className="hardware-model-card"
               >
                 {/* Card Image Area */}
-                <div
+                <Link
+                  href={`/products/${cat.categorySlug}`}
                   style={{
                     position: 'relative',
                     height: '220px',
@@ -312,23 +268,7 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
                     style={{ objectFit: 'contain', maxHeight: '100%', width: 'auto' }}
                     loading="lazy"
                   />
-                  <span
-                    style={{
-                      position: 'absolute',
-                      top: '1rem',
-                      right: '1rem',
-                      background: 'var(--color-logo-blue)',
-                      color: '#FFFFFF',
-                      fontSize: '0.75rem',
-                      fontWeight: 700,
-                      padding: '0.3rem 0.65rem',
-                      borderRadius: '6px',
-                      boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-                    }}
-                  >
-                    {cat.products.length} {cat.products.length === 1 ? 'Model' : 'Models'}
-                  </span>
-                </div>
+                </Link>
 
                 {/* Card Content Area */}
                 <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between' }}>
@@ -338,12 +278,16 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
                         fontFamily: "'Lexend', sans-serif",
                         fontSize: '1.25rem',
                         fontWeight: 800,
-                        color: 'var(--color-logo-blue)',
                         lineHeight: 1.3,
                         marginBottom: '0.75rem',
                       }}
                     >
-                      {cat.categoryName}
+                      <Link
+                        href={`/products/${cat.categorySlug}`}
+                        style={{ color: 'var(--color-logo-blue)', textDecoration: 'none' }}
+                      >
+                        {cat.categoryName}
+                      </Link>
                     </h3>
                     <p
                       style={{
@@ -366,7 +310,7 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
                         style={{
                           listStyle: 'none',
                           padding: 0,
-                          margin: '0 0 1.25rem 0',
+                          margin: 0,
                           display: 'flex',
                           flexDirection: 'column',
                           gap: '0.5rem',
@@ -398,49 +342,6 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
                         ))}
                       </ul>
                     )}
-                  </div>
-
-                  {/* Card Action Link */}
-                  <div
-                    style={{
-                      paddingTop: '1rem',
-                      borderTop: '1px solid #F1F5F9',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      gap: '0.5rem',
-                    }}
-                  >
-                    <Link
-                      href={`/products/${cat.categorySlug}`}
-                      className="btn btn-primary"
-                      style={{
-                        flex: 1,
-                        justifyContent: 'center',
-                        padding: '0.65rem 1rem',
-                        fontSize: '0.875rem',
-                        fontWeight: 700,
-                      }}
-                    >
-                      <span>Explore Category</span>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <polyline points="9 18 15 12 9 6" />
-                      </svg>
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={() => openQuote(cat.categoryName)}
-                      className="btn btn-outline"
-                      style={{
-                        padding: '0.65rem 0.85rem',
-                        fontSize: '0.8125rem',
-                        borderColor: '#CBD5E1',
-                        color: 'var(--color-logo-blue)',
-                      }}
-                      title="Request Price Quote"
-                    >
-                      <span>Quote</span>
-                    </button>
                   </div>
                 </div>
               </div>
@@ -761,6 +662,7 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
               Pan-India Engineering &amp; Turnkey Execution
             </span>
             <h2
+              className="force-white-heading"
               style={{
                 fontFamily: "'Lexend', sans-serif",
                 fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
@@ -768,6 +670,7 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
                 lineHeight: 1.25,
                 marginBottom: '0.75rem',
                 color: '#FFFFFF',
+                WebkitTextFillColor: '#FFFFFF',
               }}
             >
               Consult Neptune Engineers for Your {parentCategory.name} Deployment
@@ -775,33 +678,6 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
             <p style={{ fontSize: '0.9375rem', color: '#CBD5E1', lineHeight: 1.6, margin: 0 }}>
               Speak with certified systems specialists to review facility layouts, lane geometry, duty requirements, and custom software integration.
             </p>
-          </div>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => openQuote(parentCategory.name)}
-              style={{ padding: '0.85rem 1.75rem', fontSize: '0.9375rem', fontWeight: 700 }}
-            >
-              <span>Request System Proposal</span>
-              <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </button>
-            <a
-              href="tel:+918010807000"
-              className="btn btn-outline"
-              style={{
-                borderColor: 'rgba(255, 255, 255, 0.3)',
-                color: '#FFFFFF',
-                padding: '0.85rem 1.5rem',
-                fontSize: '0.9375rem',
-              }}
-            >
-              <span>+91 8010 807 000</span>
-            </a>
           </div>
         </section>
       </div>

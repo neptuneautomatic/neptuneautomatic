@@ -298,6 +298,18 @@ h3, .card-3d-title, .matrix-card-title, .sector-title, .defining-future-title {
   margin-bottom: 10px !important;
 }
 
+/* Dark banner white heading override */
+.force-white-heading,
+h1.force-white-heading,
+h2.force-white-heading,
+h3.force-white-heading,
+.category-dark-banner h1,
+.category-dark-banner h2,
+.consultation-cta-banner h2 {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+
 .hero-slider-section .slide-title {
   color: #01358b !important;
   -webkit-text-fill-color: #01358b !important;

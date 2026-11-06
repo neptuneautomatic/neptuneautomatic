@@ -125,10 +125,6 @@ export default function ProductDetailView({ category, product }: Props) {
             <div className="prod-procurement-section">
               {/* Stock Status & Assurances */}
               <div className="prod-stock-badge-row">
-                <span className="stock-status-pill in-stock">
-                  <span className="stock-status-dot"></span>
-                  In Stock &bull; Direct Factory Dispatch Across India
-                </span>
                 <span className="stock-warranty-pill">
                   2-Year OEM Warranty
                 </span>
