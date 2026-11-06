@@ -90,7 +90,7 @@ export default function CategoryDetailView({ category }: Props) {
             <p style={{
               fontSize: '1.0625rem',
               lineHeight: 1.6,
-              color: '#CBD5E1',
+              color: '#FFFFFF',
               marginBottom: '2rem'
             }}>
               {category.description || category.tagline}
@@ -144,75 +144,6 @@ export default function CategoryDetailView({ category }: Props) {
                 <span>+91 8010 807 000</span>
               </a>
             </div>
-          </div>
-        </section>
-
-        {/* 3. Specs Overview & Core Highlights Grid */}
-        <section style={{ marginBottom: '3.5rem' }}>
-          <div className="product-overview-grid">
-            {/* Left: Engineering Parameters Table */}
-            <div className="product-specs-box">
-              <div className="specs-box-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h2 className="specs-box-title" style={{ fontSize: '1.25rem', margin: 0 }}>
-                  Engineering Specifications &amp; Parameters
-                </h2>
-                <span className="badge" style={{ background: '#EFF6FF', color: 'var(--color-logo-blue)', fontWeight: 700 }}>
-                  ISO 9001:2015
-                </span>
-              </div>
-
-              <table className="specs-table">
-                <tbody>
-                  {category.overviewSpecs.map((spec, idx) => (
-                    <tr key={idx}>
-                      <td className="spec-name">{spec.key}</td>
-                      <td className="spec-val">{spec.value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Right: Core Highlights & Direct SLA */}
-            <aside className="product-sidebar">
-              <div className="product-sidebar-card">
-                <h3 className="product-sidebar-title" style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>
-                  Core Engineering Highlights
-                </h3>
-                <ul className="product-highlights-list">
-                  {category.highlights.map((hl, idx) => (
-                    <li key={idx} className="product-highlight-item">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ color: '#10B981', flexShrink: 0 }}>
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                      <span>{hl}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="product-sidebar-actions" style={{ marginTop: '1.5rem' }}>
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={() => openQuote(category.categoryName)}
-                    style={{ width: '100%', justifyContent: 'center' }}
-                  >
-                    <span>Get Fast Enterprise Quote</span>
-                    <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                      <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                  </button>
-                  <a
-                    href="tel:+918010807000"
-                    className="btn btn-outline"
-                    style={{ width: '100%', justifyContent: 'center' }}
-                  >
-                    <span>Speak with Project Engineer</span>
-                  </a>
-                </div>
-              </div>
-            </aside>
           </div>
         </section>
 

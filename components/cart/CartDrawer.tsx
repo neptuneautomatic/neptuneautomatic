@@ -14,6 +14,7 @@ export default function CartDrawer() {
     activeDrawerTab,
     setActiveDrawerTab,
     updateQuantity,
+    setExactQuantity,
     removeFromCart,
     clearCart,
     moveToCart,
@@ -257,7 +258,20 @@ export default function CartDrawer() {
                                       >
                                         &minus;
                                       </button>
-                                      <span>{item.quantity}</span>
+                                      <input
+                                        type="number"
+                                        className="qty-stepper-input"
+                                        min={1}
+                                        max={999}
+                                        value={item.quantity}
+                                        onChange={(e) => {
+                                          const val = parseInt(e.target.value, 10);
+                                          if (!isNaN(val) && val >= 1) {
+                                            setExactQuantity(item.slug, Math.min(999, val));
+                                          }
+                                        }}
+                                        aria-label={`Quantity for ${item.name}`}
+                                      />
                                       <button
                                         type="button"
                                         onClick={() => updateQuantity(item.slug, 1)}

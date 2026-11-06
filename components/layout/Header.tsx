@@ -7,7 +7,7 @@ import { useCart } from '@/context/CartContext';
 
 export default function Header() {
   const { openQuote, openSearch } = useModal();
-  const { totalCartCount, totalWishlistCount, setIsCartOpen, setActiveDrawerTab } = useCart();
+  const { totalCartCount, setIsCartOpen, setActiveDrawerTab } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -302,7 +302,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/#videos" className="simple-dropdown-link" onClick={closeMenu}>
+                    <Link href="/videos" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Video Showcase</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </Link>
@@ -325,7 +325,7 @@ export default function Header() {
             {/* 6. About Us */}
             <div className={`nav-item has-dropdown ${activeSubmenu === 'about' ? 'open-mobile-sub' : ''}`}>
               <Link
-                href="/#why-us"
+                href="/why-neptune"
                 className="nav-link"
                 onClick={(e) => toggleSubmenu('about', e)}
               >
@@ -335,25 +335,25 @@ export default function Header() {
               <div className="simple-dropdown-menu">
                 <ul className="simple-dropdown-list">
                   <li>
-                    <Link href="/#why-us" className="simple-dropdown-link" onClick={closeMenu}>
+                    <Link href="/why-neptune" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Why Neptune</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </Link>
                   </li>
                   <li>
-                    <a href="https://www.neptuneautomatic.com/careers/" target="_blank" rel="noopener noreferrer" className="simple-dropdown-link" onClick={closeMenu}>
+                    <Link href="/careers" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Careers</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/#why-us" className="simple-dropdown-link" onClick={closeMenu}>
+                    <Link href="/leadership" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Leadership</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/#contact" className="simple-dropdown-link" onClick={closeMenu}>
+                    <Link href="/contact" className="simple-dropdown-link" onClick={closeMenu}>
                       <span>Contact Us</span>
                       <svg className="nav-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </Link>
@@ -373,41 +373,19 @@ export default function Header() {
 
           {/* Right Header Action */}
           <div className="header-actions">
-            {/* Search Button */}
+            {/* Search Icon Button */}
             <button
               type="button"
-              className="header-search-btn"
+              className="header-action-icon-btn header-search-icon-btn"
               id="headerSearchBtn"
               aria-label="Search Neptune site and catalog"
               title="Search products, solutions &amp; specs (Press / or Ctrl+K)"
               onClick={openSearch}
             >
-              <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              <span className="search-btn-label">Search</span>
-              <kbd className="search-btn-kbd">⌘K</kbd>
-            </button>
-
-            {/* Wishlist Button */}
-            <button
-              type="button"
-              className="header-action-icon-btn header-wishlist-btn"
-              id="headerWishlistBtn"
-              aria-label={`View Wishlist (${totalWishlistCount} items)`}
-              title="Saved Products Wishlist"
-              onClick={() => {
-                setActiveDrawerTab('wishlist');
-                setIsCartOpen(true);
-              }}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill={totalWishlistCount > 0 ? '#D32628' : 'none'} stroke={totalWishlistCount > 0 ? '#D32628' : 'currentColor'} strokeWidth="2">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-              </svg>
-              {totalWishlistCount > 0 && (
-                <span className="header-action-badge wishlist-badge">{totalWishlistCount}</span>
-              )}
             </button>
 
             {/* Quotation Cart Button */}
@@ -430,14 +408,6 @@ export default function Header() {
               {totalCartCount > 0 && (
                 <span className="header-action-badge cart-badge">{totalCartCount}</span>
               )}
-            </button>
-
-            <button type="button" className="btn btn-primary" onClick={() => openQuote('General Enquiry')}>
-              <span>Get a Quote</span>
-              <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
             </button>
 
             <button

@@ -10,6 +10,7 @@ export default function CartPageView() {
     cart,
     wishlist,
     updateQuantity,
+    setExactQuantity,
     removeFromCart,
     clearCart,
     moveToCart,
@@ -375,7 +376,20 @@ export default function CartPageView() {
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.75rem', flexWrap: 'wrap', gap: '8px' }}>
                             <div className="qty-stepper">
                               <button type="button" onClick={() => updateQuantity(item.slug, -1)} aria-label="Decrease">&minus;</button>
-                              <span>{item.quantity}</span>
+                              <input
+                                type="number"
+                                className="qty-stepper-input"
+                                min={1}
+                                max={999}
+                                value={item.quantity}
+                                onChange={(e) => {
+                                  const val = parseInt(e.target.value, 10);
+                                  if (!isNaN(val) && val >= 1) {
+                                    setExactQuantity(item.slug, Math.min(999, val));
+                                  }
+                                }}
+                                aria-label={`Quantity for ${item.name}`}
+                              />
                               <button type="button" onClick={() => updateQuantity(item.slug, 1)} aria-label="Increase">&#43;</button>
                             </div>
 

@@ -37,6 +37,7 @@ interface CartContextType {
   wishlist: WishlistItem[];
   addToCart: (item: Omit<CartItem, 'quantity'>, quantity?: number) => void;
   updateQuantity: (slug: string, delta: number) => void;
+  setExactQuantity: (slug: string, quantity: number) => void;
   removeFromCart: (slug: string) => void;
   clearCart: () => void;
   addToWishlist: (item: Omit<WishlistItem, 'addedAt'>) => void;
@@ -145,6 +146,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  const setExactQuantity = (slug: string, quantity: number) => {
+    setCart((prev) =>
+      prev.map((p) => {
+        if (p.slug === slug) {
+          const sanitized = Math.max(1, Math.min(9999, Math.floor(quantity)));
+          return { ...p, quantity: sanitized };
+        }
+        return p;
+      })
+    );
+  };
+
   const removeFromCart = (slug: string) => {
     const item = cart.find((p) => p.slug === slug);
     setCart((prev) => prev.filter((p) => p.slug !== slug));
@@ -224,6 +237,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         wishlist,
         addToCart,
         updateQuantity,
+        setExactQuantity,
         removeFromCart,
         clearCart,
         addToWishlist,

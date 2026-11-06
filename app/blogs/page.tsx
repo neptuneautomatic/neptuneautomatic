@@ -153,7 +153,7 @@ export default function BlogsPage() {
             <p
               style={{
                 fontSize: 'clamp(1rem, 1.25vw, 1.15rem)',
-                color: '#E2E8F0',
+                color: '#FFFFFF',
                 lineHeight: 1.65,
               }}
             >

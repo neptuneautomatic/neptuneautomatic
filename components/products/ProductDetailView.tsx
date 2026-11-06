@@ -146,7 +146,23 @@ export default function ProductDetailView({ category, product }: Props) {
                     >
                       &minus;
                     </button>
-                    <span id="prodQtyInput">{quantity}</span>
+                    <input
+                      type="number"
+                      id="prodQtyInput"
+                      className="qty-stepper-input"
+                      min={1}
+                      max={999}
+                      value={quantity}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value, 10);
+                        if (!isNaN(val) && val >= 1) {
+                          setQuantity(Math.min(999, val));
+                        } else if (e.target.value === '') {
+                          setQuantity(1);
+                        }
+                      }}
+                      aria-label="Quantity"
+                    />
                     <button
                       type="button"
                       onClick={() => setQuantity((q) => q + 1)}

@@ -103,7 +103,7 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
               style={{
                 fontSize: '1.125rem',
                 lineHeight: 1.6,
-                color: '#E2E8F0',
+                color: '#FFFFFF',
                 marginBottom: '1rem',
                 fontWeight: 500,
               }}
@@ -115,7 +115,7 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
               style={{
                 fontSize: '0.9375rem',
                 lineHeight: 1.65,
-                color: '#94A3B8',
+                color: '#FFFFFF',
                 marginBottom: '2rem',
                 maxWidth: '800px',
               }}

@@ -106,21 +106,14 @@ export default function Footer() {
           <div className="footer-col">
             <h5 className="footer-col-title">Company</h5>
             <ul className="footer-menu">
-              <li><Link href="/#why-us">About Neptune</Link></li>
-              <li><Link href="/#testimonials">Google Reviews &amp; Ratings</Link></li>
-              <li><Link href="/#videos">Video Showcase</Link></li>
-              <li><Link href="/clientele">Client References &amp; Logos</Link></li>
-              <li><a href="https://www.neptuneautomatic.com/careers/" target="_blank" rel="noopener noreferrer">Careers</a></li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => openQuote('Customer Portal Access')}
-                  style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer', textAlign: 'left' }}
-                >
-                  Customer Portal
-                </button>
-              </li>
-              <li><Link href="/#contact">Contact Support</Link></li>
+              <li><Link href="/why-neptune">Why Neptune</Link></li>
+              <li><Link href="/leadership">Leadership Team</Link></li>
+              <li><Link href="/careers">Careers &amp; Openings</Link></li>
+              <li><Link href="/videos">Video Showcase</Link></li>
+              <li><Link href="/events">Summits &amp; Events</Link></li>
+              <li><Link href="/blogs">Engineering Blogs</Link></li>
+              <li><Link href="/clientele">Client References</Link></li>
+              <li><Link href="/contact">Contact Support</Link></li>
             </ul>
           </div>
 
@@ -154,27 +147,9 @@ export default function Footer() {
             &copy; 2026 Neptune Automatic Pvt. Ltd. All rights reserved. ISO 9001:2015 Certified.
           </div>
           <div className="footer-legal-links">
-            <button
-              type="button"
-              onClick={() => openQuote('Privacy Policy Enquiry')}
-              style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer' }}
-            >
-              Privacy Policy
-            </button>
-            <button
-              type="button"
-              onClick={() => openQuote('Terms of Engineering Service Enquiry')}
-              style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer' }}
-            >
-              Terms of Engineering Service
-            </button>
-            <button
-              type="button"
-              onClick={() => openQuote('Security Architecture Statement')}
-              style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer' }}
-            >
-              Security Statement
-            </button>
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link href="/terms-and-conditions">Terms &amp; Conditions</Link>
+            <Link href="/contact">Support &amp; Locations</Link>
             <Link href="/products">Sitemap &amp; Directory</Link>
           </div>
         </div>
