@@ -9082,33 +9082,7 @@ img[src*="assets/images/"],
   color: var(--color-logo-red, #D32628);
 }
 
-/* 2. Sidebar Widgets — Social Share & Newsletter */
-.blog-share-widget {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 14px;
-  padding: 1.35rem 1.4rem;
-  box-shadow: 0 8px 24px rgba(10, 17, 40, 0.04);
-}
-
-.blog-share-title {
-  font-family: 'Lexend', sans-serif;
-  font-size: 0.94rem;
-  font-weight: 800;
-  color: var(--color-logo-blue, #01358b);
-  margin: 0 0 0.85rem 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.blog-share-grid {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
+/* 2. Sidebar Widgets — Newsletter */
 .blog-share-btn {
   width: 40px;
   height: 40px;
