@@ -4308,17 +4308,51 @@ body,
   margin-bottom: 1rem;
 }
 
+.marquee-track-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
 .marquee-track {
   display: flex;
   align-items: center;
   gap: 3.5rem;
   width: max-content;
-  animation: marqueeScroll 220s linear infinite;
+  animation: marqueeScrollRTL 110s linear infinite;
   will-change: transform;
 }
 
-.marquee-track:hover {
+/* Direction 1: Left to Right */
+.marquee-track.marquee-track-ltr,
+.marquee-track.marquee-ltr,
+.marquee-track.marquee-left-to-right,
+.marquee-track.marquee-reverse {
+  animation: marqueeScrollLTR 110s linear infinite;
+}
+
+/* Direction 2: Right to Left */
+.marquee-track.marquee-track-rtl,
+.marquee-track.marquee-rtl,
+.marquee-track.marquee-right-to-left {
+  animation: marqueeScrollRTL 110s linear infinite;
+}
+
+.marquee-track:hover,
+.clients-marquee-section:hover .marquee-track {
   animation-play-state: paused;
+}
+
+@keyframes marqueeScrollRTL {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeScrollLTR {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 @keyframes marqueeScroll {

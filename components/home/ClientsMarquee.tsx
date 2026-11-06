@@ -4,6 +4,9 @@ import Image from 'next/image';
 import { CLIENTS_LIST } from '@/data/clientsData';
 
 export default function ClientsMarquee() {
+  const row1Clients = CLIENTS_LIST.filter((_, i) => i % 2 === 0);
+  const row2Clients = CLIENTS_LIST.filter((_, i) => i % 2 !== 0);
+
   return (
     <section className="clients-marquee-section" id="clients">
       <div className="layout-container">
@@ -29,33 +32,67 @@ export default function ClientsMarquee() {
             </svg>
           </Link>
         </div>
-        <div className="marquee-track">
-          {/* First set of logos */}
-          {CLIENTS_LIST.map((c, i) => (
-            <div key={`logo-1-${i}`} className="client-logo-item" title={c.name}>
-              <Image
-                src={c.src}
-                alt={c.name}
-                width={120}
-                height={50}
-                style={{ objectFit: 'contain', width: 'auto', height: '36px' }}
-                loading="lazy"
-              />
-            </div>
-          ))}
-          {/* Duplicate set for infinite seamless CSS marquee animation */}
-          {CLIENTS_LIST.map((c, i) => (
-            <div key={`logo-2-${i}`} className="client-logo-item" aria-hidden="true" title={c.name}>
-              <Image
-                src={c.src}
-                alt=""
-                width={120}
-                height={50}
-                style={{ objectFit: 'contain', width: 'auto', height: '36px' }}
-                loading="lazy"
-              />
-            </div>
-          ))}
+
+        <div className="marquee-track-container">
+          {/* Line 1: Left to Right */}
+          <div className="marquee-track marquee-track-ltr">
+            {/* First set of logos */}
+            {row1Clients.map((c, i) => (
+              <div key={`row1-set1-${i}`} className="client-logo-item" title={c.name}>
+                <Image
+                  src={c.src}
+                  alt={c.name}
+                  width={120}
+                  height={50}
+                  style={{ objectFit: 'contain', width: 'auto', height: '36px' }}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+            {/* Duplicate set for infinite seamless loop */}
+            {row1Clients.map((c, i) => (
+              <div key={`row1-set2-${i}`} className="client-logo-item" aria-hidden="true" title={c.name}>
+                <Image
+                  src={c.src}
+                  alt=""
+                  width={120}
+                  height={50}
+                  style={{ objectFit: 'contain', width: 'auto', height: '36px' }}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Line 2: Right to Left */}
+          <div className="marquee-track marquee-track-rtl">
+            {/* First set of logos */}
+            {row2Clients.map((c, i) => (
+              <div key={`row2-set1-${i}`} className="client-logo-item" title={c.name}>
+                <Image
+                  src={c.src}
+                  alt={c.name}
+                  width={120}
+                  height={50}
+                  style={{ objectFit: 'contain', width: 'auto', height: '36px' }}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+            {/* Duplicate set for infinite seamless loop */}
+            {row2Clients.map((c, i) => (
+              <div key={`row2-set2-${i}`} className="client-logo-item" aria-hidden="true" title={c.name}>
+                <Image
+                  src={c.src}
+                  alt=""
+                  width={120}
+                  height={50}
+                  style={{ objectFit: 'contain', width: 'auto', height: '36px' }}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

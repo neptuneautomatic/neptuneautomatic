@@ -17,6 +17,9 @@ export default function ClienteleView() {
   const [selectedCategory, setSelectedCategory] = useState<ClientCategory>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
+  const row1Clients = useMemo(() => CLIENTS_LIST.filter((_, i) => i % 2 === 0), []);
+  const row2Clients = useMemo(() => CLIENTS_LIST.filter((_, i) => i % 2 !== 0), []);
+
   // Filter clients based on selected tab and search keyword
   const filteredClients = useMemo(() => {
     return CLIENTS_LIST.filter((client) => {
@@ -203,33 +206,62 @@ export default function ClienteleView() {
           </div>
 
           <div style={{ overflow: 'hidden', position: 'relative' }}>
-            <div className="marquee-track">
-              {/* Set 1 of all 102 logos */}
-              {CLIENTS_LIST.map((c, i) => (
-                <div key={`track-1-${c.id}-${i}`} className="client-logo-item" title={c.name}>
-                  <Image
-                    src={c.src}
-                    alt={c.name}
-                    width={130}
-                    height={50}
-                    style={{ objectFit: 'contain', width: 'auto', height: '38px' }}
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-              {/* Set 2 duplicate of all 102 logos for continuous seamless loop */}
-              {CLIENTS_LIST.map((c, i) => (
-                <div key={`track-2-${c.id}-${i}`} className="client-logo-item" aria-hidden="true" title={c.name}>
-                  <Image
-                    src={c.src}
-                    alt=""
-                    width={130}
-                    height={50}
-                    style={{ objectFit: 'contain', width: 'auto', height: '38px' }}
-                    loading="lazy"
-                  />
-                </div>
-              ))}
+            <div className="marquee-track-container">
+              {/* Row 1: Left to Right */}
+              <div className="marquee-track marquee-track-ltr">
+                {row1Clients.map((c, i) => (
+                  <div key={`track-ltr-1-${c.id}-${i}`} className="client-logo-item" title={c.name}>
+                    <Image
+                      src={c.src}
+                      alt={c.name}
+                      width={130}
+                      height={50}
+                      style={{ objectFit: 'contain', width: 'auto', height: '38px' }}
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+                {row1Clients.map((c, i) => (
+                  <div key={`track-ltr-2-${c.id}-${i}`} className="client-logo-item" aria-hidden="true" title={c.name}>
+                    <Image
+                      src={c.src}
+                      alt=""
+                      width={130}
+                      height={50}
+                      style={{ objectFit: 'contain', width: 'auto', height: '38px' }}
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Row 2: Right to Left */}
+              <div className="marquee-track marquee-track-rtl">
+                {row2Clients.map((c, i) => (
+                  <div key={`track-rtl-1-${c.id}-${i}`} className="client-logo-item" title={c.name}>
+                    <Image
+                      src={c.src}
+                      alt={c.name}
+                      width={130}
+                      height={50}
+                      style={{ objectFit: 'contain', width: 'auto', height: '38px' }}
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+                {row2Clients.map((c, i) => (
+                  <div key={`track-rtl-2-${c.id}-${i}`} className="client-logo-item" aria-hidden="true" title={c.name}>
+                    <Image
+                      src={c.src}
+                      alt=""
+                      width={130}
+                      height={50}
+                      style={{ objectFit: 'contain', width: 'auto', height: '38px' }}
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
