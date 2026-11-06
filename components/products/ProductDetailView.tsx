@@ -22,7 +22,7 @@ export default function ProductDetailView({ category, product }: Props) {
   const relatedProducts = category.products.filter((p) => p.slug !== product.slug);
 
   return (
-    <div className="product-detail-page" style={{ paddingTop: '100px', paddingBottom: '80px' }}>
+    <div className="product-detail-page" style={{ paddingTop: '140px', paddingBottom: '80px' }}>
       <div className="layout-container">
         {/* 1. Breadcrumb Navigation */}
         <nav className="prod-breadcrumb" aria-label="Breadcrumb" style={{ marginBottom: '1.5rem' }}>

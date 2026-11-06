@@ -77,7 +77,7 @@ export default function BlogDetailView({ post }: Props) {
   };
 
   return (
-    <article className="blog-detail-page" style={{ paddingTop: '100px', paddingBottom: '90px' }}>
+    <article className="blog-detail-page" style={{ paddingTop: '140px', paddingBottom: '90px' }}>
       <div className="layout-container">
         {/* Breadcrumb Navigation (Left Aligned) */}
         <nav className="breadcrumb-nav" aria-label="Breadcrumb" style={{ marginBottom: '1.75rem', textAlign: 'left' }}>

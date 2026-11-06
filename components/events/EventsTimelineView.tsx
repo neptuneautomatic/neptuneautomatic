@@ -182,7 +182,7 @@ export default function EventsTimelineView() {
       : EVENTS_TIMELINE.filter((evt) => evt.type === filter);
 
   return (
-    <div className="events-timeline-page" style={{ paddingTop: '100px', paddingBottom: '90px' }}>
+    <div className="events-timeline-page" style={{ paddingTop: '140px', paddingBottom: '90px' }}>
       <div className="layout-container">
         {/* Breadcrumb Navigation */}
         <nav className="breadcrumb-nav" aria-label="Breadcrumb" style={{ marginBottom: '1.5rem' }}>

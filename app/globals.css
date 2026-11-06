@@ -5634,13 +5634,57 @@ body,
 }
 
 .breadcrumb-nav {
+  position: relative;
+  z-index: 5;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.45rem;
   font-family: 'Lexend', sans-serif;
-  font-size: 0.82rem;
-  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+/* Ensure all interior pages with breadcrumbs completely clear the fixed header */
+.blog-detail-page,
+.blogs-page,
+.product-category-page,
+.product-detail-page,
+.parent-category-page,
+.leadership-page,
+.why-neptune-page,
+.careers-page,
+.cart-page,
+.contact-page,
+.clientele-page,
+.events-timeline-page,
+.video-showcase-page,
+.privacy-policy-page,
+.terms-page,
+.products-directory-page {
+  padding-top: calc(var(--header-top-height, 36px) + var(--header-main-height, 70px) + 2rem) !important;
+}
+
+@media (max-width: 992px) {
+  .blog-detail-page,
+  .blogs-page,
+  .product-category-page,
+  .product-detail-page,
+  .parent-category-page,
+  .leadership-page,
+  .why-neptune-page,
+  .careers-page,
+  .cart-page,
+  .contact-page,
+  .clientele-page,
+  .events-timeline-page,
+  .video-showcase-page,
+  .privacy-policy-page,
+  .terms-page,
+  .products-directory-page {
+    padding-top: calc(var(--header-main-height, 70px) + 1.5rem) !important;
+  }
 }
 
 .breadcrumb-nav a {

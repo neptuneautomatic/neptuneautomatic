@@ -21,7 +21,7 @@ export default function CategoryDetailView({ category }: Props) {
   );
 
   return (
-    <div className="product-category-page" style={{ paddingTop: '100px', paddingBottom: '80px' }}>
+    <div className="product-category-page" style={{ paddingTop: '140px', paddingBottom: '80px' }}>
       <div className="layout-container">
         {/* 1. Breadcrumbs */}
         <nav className="breadcrumb-nav" aria-label="Breadcrumb" style={{ marginBottom: '1.5rem' }}>

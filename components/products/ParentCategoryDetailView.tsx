@@ -22,7 +22,7 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
   );
 
   return (
-    <div className="parent-category-page" style={{ paddingTop: '100px', paddingBottom: '80px' }}>
+    <div className="parent-category-page" style={{ paddingTop: '140px', paddingBottom: '80px' }}>
       <div className="layout-container">
         {/* 1. Breadcrumbs */}
         <nav className="breadcrumb-nav" aria-label="Breadcrumb" style={{ marginBottom: '1.5rem' }}>

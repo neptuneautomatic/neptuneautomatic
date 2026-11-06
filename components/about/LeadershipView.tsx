@@ -60,7 +60,7 @@ export default function LeadershipView() {
   const { openQuote } = useModal();
 
   return (
-    <div className="leadership-page" style={{ paddingTop: '100px', paddingBottom: '90px' }}>
+    <div className="leadership-page" style={{ paddingTop: '140px', paddingBottom: '90px' }}>
       <div className="layout-container">
         {/* Breadcrumb Navigation */}
         <nav className="breadcrumb-nav" aria-label="Breadcrumb" style={{ marginBottom: '1.5rem' }}>

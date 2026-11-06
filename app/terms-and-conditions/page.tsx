@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function TermsAndConditionsPage() {
   return (
-    <div className="terms-page" style={{ paddingTop: '100px', paddingBottom: '90px' }}>
+    <div className="terms-page" style={{ paddingTop: '140px', paddingBottom: '90px' }}>
       <div className="layout-container" style={{ maxWidth: '960px', margin: '0 auto' }}>
         {/* Breadcrumb Navigation */}
         <nav className="breadcrumb-nav" aria-label="Breadcrumb" style={{ marginBottom: '1.5rem' }}>

@@ -95,7 +95,7 @@ export default function CareersView() {
   };
 
   return (
-    <div className="careers-page" style={{ paddingTop: '100px', paddingBottom: '90px' }}>
+    <div className="careers-page" style={{ paddingTop: '140px', paddingBottom: '90px' }}>
       <div className="layout-container">
         {/* Breadcrumb Navigation */}
         <nav className="breadcrumb-nav" aria-label="Breadcrumb" style={{ marginBottom: '1.5rem' }}>

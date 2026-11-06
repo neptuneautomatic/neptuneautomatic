@@ -33,7 +33,7 @@ export default function ClienteleView() {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="clientele-page" style={{ paddingTop: '95px', paddingBottom: '90px' }}>
+    <div className="clientele-page" style={{ paddingTop: '140px', paddingBottom: '90px' }}>
       <div className="layout-container">
         {/* Breadcrumb Navigation */}
         <nav className="breadcrumb-nav" aria-label="Breadcrumb" style={{ marginBottom: '1.5rem' }}>

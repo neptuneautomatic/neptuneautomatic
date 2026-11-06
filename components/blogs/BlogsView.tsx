@@ -39,7 +39,7 @@ export default function BlogsView({ initialPosts = ALL_BLOG_POSTS }: Props) {
   }, [initialPosts, selectedCategory, searchQuery]);
 
   return (
-    <div className="blogs-page" style={{ paddingTop: '100px', paddingBottom: '90px' }}>
+    <div className="blogs-page" style={{ paddingTop: '140px', paddingBottom: '90px' }}>
       <div className="layout-container">
         {/* Breadcrumb */}
         <nav className="breadcrumb-nav" aria-label="Breadcrumb" style={{ marginBottom: '1.5rem' }}>
