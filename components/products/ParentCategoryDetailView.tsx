@@ -209,19 +209,6 @@ export default function ParentCategoryDetailView({ parentCategory }: Props) {
                 All Product Categories under {parentCategory.name}
               </h2>
             </div>
-            <span
-              style={{
-                background: '#EFF6FF',
-                color: 'var(--color-logo-blue)',
-                border: '1px solid #BFDBFE',
-                fontWeight: 700,
-                fontSize: '0.875rem',
-                padding: '0.4rem 0.9rem',
-                borderRadius: '9999px',
-              }}
-            >
-              {childCategories.length} Categories Configured
-            </span>
           </div>
 
           <div
