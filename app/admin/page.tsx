@@ -90,6 +90,13 @@ export default function AdminDashboardPage() {
   }
 
   const counts = stats?.counts || {};
+  const productCount = typeof counts.products === 'object' ? (counts.products?.total || 0) : (counts.productsTotal || counts.products || 0);
+  const categoryCount = typeof counts.products === 'object' ? (counts.products?.categories || 0) : (counts.productCategories || 0);
+  const postCount = typeof counts.posts === 'object' ? (counts.posts?.total || 0) : (counts.postsTotal || counts.posts || 0);
+  const draftPostCount = typeof counts.posts === 'object' ? (counts.posts?.draft || 0) : (counts.postsDraft || 0);
+  const pageCount = typeof counts.pages === 'object' ? (counts.pages?.total || 0) : (counts.pagesTotal || counts.pages || 0);
+  const pendingSubmissionsCount = typeof counts.submissions === 'object' ? (counts.submissions?.pending || 0) : (counts.submissionsPending || 0);
+  const totalSubmissionsCount = typeof counts.submissions === 'object' ? (counts.submissions?.total || 0) : (counts.submissionsTotal || (typeof counts.submissions === 'number' ? counts.submissions : 0));
 
   return (
     <div>
@@ -118,7 +125,7 @@ export default function AdminDashboardPage() {
             Manage Products
           </Link>
           <Link href="/admin/submissions" className="admin-btn admin-btn-primary admin-btn-sm">
-            View Inquiries ({counts.submissionsPending || 0})
+            View Inquiries ({pendingSubmissionsCount})
           </Link>
         </div>
       </div>
@@ -128,9 +135,9 @@ export default function AdminDashboardPage() {
         <div className="admin-kpi-card">
           <div>
             <div className="admin-kpi-label">Products in Catalog</div>
-            <div className="admin-kpi-num">{counts.products || 0}</div>
+            <div className="admin-kpi-num">{productCount}</div>
             <div style={{ fontSize: '0.75rem', color: '#059669', fontWeight: 600 }}>
-              Across {counts.productCategories || 0} categories
+              Across {categoryCount} categories
             </div>
           </div>
           <div style={{ width: 44, height: 44, borderRadius: 8, backgroundColor: '#E0F2FE', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0284C7' }}>
@@ -145,9 +152,9 @@ export default function AdminDashboardPage() {
         <div className="admin-kpi-card">
           <div>
             <div className="admin-kpi-label">Blog Articles</div>
-            <div className="admin-kpi-num">{counts.posts || 0}</div>
+            <div className="admin-kpi-num">{postCount}</div>
             <div style={{ fontSize: '0.75rem', color: '#6B7280' }}>
-              {counts.postsDraft || 0} drafts in progress
+              {draftPostCount} drafts in progress
             </div>
           </div>
           <div style={{ width: 44, height: 44, borderRadius: 8, backgroundColor: '#FEF3C7', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#D97706' }}>
@@ -161,7 +168,7 @@ export default function AdminDashboardPage() {
         <div className="admin-kpi-card">
           <div>
             <div className="admin-kpi-label">Active Website Pages</div>
-            <div className="admin-kpi-num">{counts.pages || 0}</div>
+            <div className="admin-kpi-num">{pageCount}</div>
             <div style={{ fontSize: '0.75rem', color: '#059669', fontWeight: 600 }}>
               All dynamic & editable
             </div>
@@ -178,10 +185,10 @@ export default function AdminDashboardPage() {
           <div>
             <div className="admin-kpi-label">Pending Inquiries & RFQ</div>
             <div className="admin-kpi-num" style={{ color: '#D32628' }}>
-              {counts.submissionsPending || 0}
+              {pendingSubmissionsCount}
             </div>
             <div style={{ fontSize: '0.75rem', color: '#6B7280' }}>
-              Total submissions: {counts.submissions || 0}
+              Total submissions: {totalSubmissionsCount}
             </div>
           </div>
           <div style={{ width: 44, height: 44, borderRadius: 8, backgroundColor: '#FEE2E2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#DC2626' }}>

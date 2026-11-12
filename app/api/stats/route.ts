@@ -70,8 +70,16 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       counts: {
         pages: { total: totalPages, published: publishedPages, draft: draftPages },
+        pagesTotal: totalPages,
+        pagesPublished: publishedPages,
+        pagesDraft: draftPages,
         posts: { total: totalPosts, published: publishedPosts, draft: draftPosts },
+        postsTotal: totalPosts,
+        postsPublished: publishedPosts,
+        postsDraft: draftPosts,
         products: { total: totalProducts, categories: totalProductCategories },
+        productsTotal: totalProducts,
+        productCategories: totalProductCategories,
         clients: totalClients,
         media: totalMedia,
         users: totalUsers,
@@ -81,6 +89,8 @@ export async function GET(request: NextRequest) {
           contacted: contactedSubmissions,
           resolved: resolvedSubmissions,
         },
+        submissionsTotal: totalSubmissions,
+        submissionsPending: pendingSubmissions,
       },
       recentSubmissions: (recentSubmissions || []).map((s) => {
         let parsedData: any = {};
