@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { adminFetch, setAdminToken } from '@/lib/adminApi';
 
 export interface AdminUser {
   id: string;
@@ -19,55 +19,78 @@ interface AdminContextType {
   user: AdminUser | null;
   loading: boolean;
   pendingCount: number;
-  refreshStats: () => Promise<void>;
+  login: (email: string, pass: string) => Promise<void>;
   logout: () => Promise<void>;
+  refreshStats: () => Promise<void>;
 }
 
 const AdminContext = createContext<AdminContextType>({
   user: null,
   loading: true,
   pendingCount: 0,
-  refreshStats: async () => {},
+  login: async () => {},
   logout: async () => {},
+  refreshStats: async () => {},
 });
 
 export function AdminProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AdminUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [pendingCount, setPendingCount] = useState(0);
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const isLoginPage = pathname === '/admin/login';
 
   const checkAuth = async () => {
     try {
-      const res = await fetch('/api/auth/me');
+      const res = await adminFetch('/api/auth/me/');
       if (res.ok) {
         const data = await res.json();
         setUser(data.user);
       } else {
         setUser(null);
-        if (!isLoginPage) {
-          router.push('/admin/login');
-        }
+        setAdminToken(null);
       }
     } catch {
       setUser(null);
-      if (!isLoginPage) {
-        router.push('/admin/login');
-      }
+      setAdminToken(null);
     } finally {
       setLoading(false);
     }
   };
 
+  const login = async (email: string, pass: string) => {
+    const res = await adminFetch('/api/auth/login/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password: pass }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || 'Authentication failed');
+    }
+
+    if (data.token) {
+      setAdminToken(data.token);
+    }
+    setUser(data.user);
+  };
+
+  const logout = async () => {
+    try {
+      await adminFetch('/api/auth/logout/', { method: 'POST' });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setAdminToken(null);
+      setUser(null);
+    }
+  };
+
   const refreshStats = async () => {
     try {
-      const res = await fetch('/api/stats');
+      const res = await adminFetch('/api/stats/');
       if (res.ok) {
         const data = await res.json();
-        setPendingCount(data.counts?.submissionsPending || 0);
+        setPendingCount(data.counts?.submissions?.pending || data.counts?.submissionsPending || 0);
       }
     } catch (e) {
       console.error('Failed to refresh stats', e);
@@ -76,29 +99,18 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     checkAuth();
-  }, [pathname]);
+  }, []);
 
   useEffect(() => {
     if (user) {
       refreshStats();
-      const interval = setInterval(refreshStats, 30000); // 30s polling for new submissions
+      const interval = setInterval(refreshStats, 30000); // 30s polling
       return () => clearInterval(interval);
     }
   }, [user]);
 
-  const logout = async () => {
-    try {
-      await fetch('/api/auth/logout', { method: 'POST' });
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setUser(null);
-      router.push('/admin/login');
-    }
-  };
-
   return (
-    <AdminContext.Provider value={{ user, loading, pendingCount, refreshStats, logout }}>
+    <AdminContext.Provider value={{ user, loading, pendingCount, login, logout, refreshStats }}>
       {children}
     </AdminContext.Provider>
   );

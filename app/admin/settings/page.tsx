@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { adminFetch } from '@/lib/adminApi';
 
 export default function AdminSettingsPage() {
   const [activeTab, setActiveTab] = useState<'general' | 'contact' | 'social' | 'system'>('general');
@@ -12,7 +13,7 @@ export default function AdminSettingsPage() {
   const fetchSettings = async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/settings');
+      const res = await adminFetch('/api/settings/');
       if (res.ok) {
         const data = await res.json();
         setSettings(data.settings || {});
@@ -38,7 +39,7 @@ export default function AdminSettingsPage() {
     setFeedback('');
 
     try {
-      const res = await fetch('/api/settings', {
+      const res = await adminFetch('/api/settings/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ settings }),

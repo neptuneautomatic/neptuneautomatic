@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { adminFetch } from '@/lib/adminApi';
 
 interface MenuItem {
   id?: string;
@@ -32,7 +33,7 @@ export default function AdminMenusPage() {
 
   const fetchMenus = async () => {
     try {
-      const res = await fetch('/api/menus');
+      const res = await adminFetch('/api/menus/');
       if (res.ok) {
         const data = await res.json();
         const loadedMenus = data.menus || [];
@@ -109,7 +110,7 @@ export default function AdminMenusPage() {
     setFeedback('');
 
     try {
-      const res = await fetch('/api/menus', {
+      const res = await adminFetch('/api/menus/', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { adminFetch } from '@/lib/adminApi';
 
 interface PageItem {
   id: string;
@@ -39,7 +40,7 @@ export default function AdminPagesPage() {
 
   const fetchPages = async () => {
     try {
-      const res = await fetch('/api/pages');
+      const res = await adminFetch('/api/pages/');
       if (res.ok) {
         const data = await res.json();
         setPages(data.pages || []);
@@ -111,10 +112,10 @@ export default function AdminPagesPage() {
         metaDesc,
       };
 
-      const url = modalMode === 'create' ? '/api/pages' : `/api/pages/${currentId}`;
+      const url = modalMode === 'create' ? '/api/pages/' : `/api/pages/${currentId}/`;
       const method = modalMode === 'create' ? 'POST' : 'PUT';
 
-      const res = await fetch(url, {
+      const res = await adminFetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -141,7 +142,7 @@ export default function AdminPagesPage() {
     if (!confirm(`Are you sure you want to delete "${pageTitle}"? This action cannot be undone.`)) return;
 
     try {
-      const res = await fetch(`/api/pages/${id}`, { method: 'DELETE' });
+      const res = await adminFetch(`/api/pages/${id}/`, { method: 'DELETE' });
       if (res.ok) {
         fetchPages();
       } else {
@@ -155,7 +156,7 @@ export default function AdminPagesPage() {
 
   const handleDuplicate = async (page: PageItem) => {
     try {
-      const res = await fetch('/api/pages', {
+      const res = await adminFetch('/api/pages/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

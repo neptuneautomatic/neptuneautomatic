@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { adminFetch } from '@/lib/adminApi';
 
 interface ProductItem {
   id: string;
@@ -49,7 +50,7 @@ export default function AdminProductsPage() {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch('/api/products?limit=200');
+      const res = await adminFetch('/api/products/?limit=200');
       if (res.ok) {
         const data = await res.json();
         setProducts(data.products || []);
@@ -63,7 +64,7 @@ export default function AdminProductsPage() {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch('/api/product-categories');
+      const res = await adminFetch('/api/product-categories/');
       if (res.ok) {
         const data = await res.json();
         setCategories(data.categories || []);
@@ -189,10 +190,10 @@ export default function AdminProductsPage() {
         features: featuresArr,
       };
 
-      const url = modalMode === 'create' ? '/api/products' : `/api/products/${currentId}`;
+      const url = modalMode === 'create' ? '/api/products/' : `/api/products/${currentId}/`;
       const method = modalMode === 'create' ? 'POST' : 'PUT';
 
-      const res = await fetch(url, {
+      const res = await adminFetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -219,7 +220,7 @@ export default function AdminProductsPage() {
     if (!confirm(`Are you sure you want to delete product "${prodName}"?`)) return;
 
     try {
-      const res = await fetch(`/api/products/${id}`, { method: 'DELETE' });
+      const res = await adminFetch(`/api/products/${id}/`, { method: 'DELETE' });
       if (res.ok) {
         fetchProducts();
       } else {

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useAdmin } from '../components/AdminContext';
+import { adminFetch } from '@/lib/adminApi';
 
 interface SubmissionItem {
   id: string;
@@ -33,8 +34,8 @@ export default function AdminSubmissionsPage() {
   const fetchSubmissions = async () => {
     try {
       setLoading(true);
-      const url = statusFilter === 'all' ? '/api/submissions' : `/api/submissions?status=${statusFilter}`;
-      const res = await fetch(url);
+      const url = statusFilter === 'all' ? '/api/submissions/' : `/api/submissions/?status=${statusFilter}`;
+      const res = await adminFetch(url);
       if (res.ok) {
         const data = await res.json();
         setSubmissions(data.submissions || []);
@@ -62,7 +63,7 @@ export default function AdminSubmissionsPage() {
     setSavingNotes(true);
 
     try {
-      const res = await fetch('/api/submissions', {
+      const res = await adminFetch('/api/submissions/', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -91,7 +92,7 @@ export default function AdminSubmissionsPage() {
     if (!confirm('Are you sure you want to delete this submission?')) return;
 
     try {
-      const res = await fetch(`/api/submissions?id=${id}`, { method: 'DELETE' });
+      const res = await adminFetch(`/api/submissions/?id=${id}`, { method: 'DELETE' });
       if (res.ok) {
         if (selected?.id === id) setSelected(null);
         await fetchSubmissions();

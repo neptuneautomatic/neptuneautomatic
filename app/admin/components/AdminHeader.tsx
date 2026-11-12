@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAdmin } from './AdminContext';
+import { adminFetch } from '@/lib/adminApi';
 
 export default function AdminHeader() {
   const pathname = usePathname();
@@ -16,7 +17,7 @@ export default function AdminHeader() {
 
   // Determine section title
   const getSectionTitle = () => {
-    if (pathname === '/admin') return 'Dashboard Overview';
+    if (pathname === '/admin' || pathname === '/admin/') return 'Dashboard Overview';
     if (pathname.startsWith('/admin/pages')) return 'Page Management';
     if (pathname.startsWith('/admin/posts')) return 'Blog Posts';
     if (pathname.startsWith('/admin/products')) return 'Product Catalog';
@@ -35,7 +36,7 @@ export default function AdminHeader() {
   useEffect(() => {
     const fetchNotifs = async () => {
       try {
-        const res = await fetch('/api/notifications');
+        const res = await adminFetch('/api/notifications/');
         if (res.ok) {
           const data = await res.json();
           setNotifications(data.notifications || []);

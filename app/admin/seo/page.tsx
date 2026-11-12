@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { adminFetch } from '@/lib/adminApi';
 
 interface RedirectItem {
   id: string;
@@ -34,7 +35,7 @@ export default function AdminSeoPage() {
   const fetchSeoData = async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/seo');
+      const res = await adminFetch('/api/seo/');
       if (res.ok) {
         const data = await res.json();
         setRedirects(data.redirects || []);
@@ -61,7 +62,7 @@ export default function AdminSeoPage() {
     setMetaFeedback('');
 
     try {
-      const res = await fetch('/api/seo', {
+      const res = await adminFetch('/api/seo/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -96,7 +97,7 @@ export default function AdminSeoPage() {
     setAddingRedirect(true);
 
     try {
-      const res = await fetch('/api/seo', {
+      const res = await adminFetch('/api/seo/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -126,7 +127,7 @@ export default function AdminSeoPage() {
     if (!confirm('Are you sure you want to delete this redirect?')) return;
 
     try {
-      const res = await fetch(`/api/seo?redirectId=${id}`, { method: 'DELETE' });
+      const res = await adminFetch(`/api/seo/?redirectId=${id}`, { method: 'DELETE' });
       if (res.ok) {
         fetchSeoData();
       }

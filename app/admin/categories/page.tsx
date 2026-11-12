@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { adminFetch } from '@/lib/adminApi';
 
 export default function AdminCategoriesPage() {
   const [activeTab, setActiveTab] = useState<'product' | 'blog'>('product');
@@ -24,8 +25,8 @@ export default function AdminCategoriesPage() {
     try {
       setLoading(true);
       const [resProd, resBlog] = await Promise.all([
-        fetch('/api/product-categories'),
-        fetch('/api/categories?type=blog'),
+        adminFetch('/api/product-categories/'),
+        adminFetch('/api/categories/?type=blog'),
       ]);
       if (resProd.ok) {
         const d1 = await resProd.json();
@@ -84,7 +85,7 @@ export default function AdminCategoriesPage() {
     setFeedbackMsg('');
 
     try {
-      const endpoint = activeTab === 'product' ? '/api/product-categories' : '/api/categories';
+      const endpoint = activeTab === 'product' ? '/api/product-categories/' : '/api/categories/';
       const url = modalMode === 'create' ? endpoint : `${endpoint}?id=${currentId}`;
       const method = modalMode === 'create' ? 'POST' : 'PUT';
 
@@ -95,7 +96,7 @@ export default function AdminCategoriesPage() {
         ...(activeTab === 'blog' ? { type: 'blog' } : {}),
       };
 
-      const res = await fetch(url, {
+      const res = await adminFetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -122,8 +123,8 @@ export default function AdminCategoriesPage() {
     if (!confirm(`Are you sure you want to delete category "${catName}"?`)) return;
 
     try {
-      const endpoint = activeTab === 'product' ? `/api/product-categories?id=${id}` : `/api/categories?id=${id}`;
-      const res = await fetch(endpoint, { method: 'DELETE' });
+      const endpoint = activeTab === 'product' ? `/api/product-categories/?id=${id}` : `/api/categories/?id=${id}`;
+      const res = await adminFetch(endpoint, { method: 'DELETE' });
       if (res.ok) {
         fetchAll();
       } else {

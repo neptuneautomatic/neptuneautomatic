@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { adminFetch } from '@/lib/adminApi';
 
 interface PostItem {
   id: string;
@@ -54,7 +55,7 @@ export default function AdminPostsPage() {
 
   const fetchPosts = async () => {
     try {
-      const res = await fetch('/api/posts');
+      const res = await adminFetch('/api/posts/');
       if (res.ok) {
         const data = await res.json();
         setPosts(data.posts || []);
@@ -68,7 +69,7 @@ export default function AdminPostsPage() {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch('/api/categories?type=blog');
+      const res = await adminFetch('/api/categories/?type=blog');
       if (res.ok) {
         const data = await res.json();
         setCategories(data.categories || []);
@@ -160,10 +161,10 @@ export default function AdminPostsPage() {
         metaDesc,
       };
 
-      const url = modalMode === 'create' ? '/api/posts' : `/api/posts/${currentId}`;
+      const url = modalMode === 'create' ? '/api/posts/' : `/api/posts/${currentId}/`;
       const method = modalMode === 'create' ? 'POST' : 'PUT';
 
-      const res = await fetch(url, {
+      const res = await adminFetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -190,7 +191,7 @@ export default function AdminPostsPage() {
     if (!confirm(`Are you sure you want to delete "${postTitle}"?`)) return;
 
     try {
-      const res = await fetch(`/api/posts/${id}`, { method: 'DELETE' });
+      const res = await adminFetch(`/api/posts/${id}/`, { method: 'DELETE' });
       if (res.ok) {
         fetchPosts();
       } else {

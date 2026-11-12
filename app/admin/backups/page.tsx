@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { adminFetch } from '@/lib/adminApi';
 
 interface BackupItem {
   id: string;
@@ -20,7 +21,7 @@ export default function AdminBackupsPage() {
   const fetchBackups = async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/backups');
+      const res = await adminFetch('/api/backups/');
       if (res.ok) {
         const data = await res.json();
         setBackups(data.backups || []);
@@ -41,7 +42,7 @@ export default function AdminBackupsPage() {
     setFeedback('');
 
     try {
-      const res = await fetch('/api/backups', {
+      const res = await adminFetch('/api/backups/', {
         method: 'POST',
       });
 
@@ -63,7 +64,7 @@ export default function AdminBackupsPage() {
     if (!confirm(`Are you sure you want to delete backup "${filename}"?`)) return;
 
     try {
-      const res = await fetch(`/api/backups?id=${id}`, { method: 'DELETE' });
+      const res = await adminFetch(`/api/backups/?id=${id}`, { method: 'DELETE' });
       if (res.ok) {
         fetchBackups();
       } else {

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { adminFetch } from '@/lib/adminApi';
 
 interface AuditItem {
   id: string;
@@ -26,7 +27,7 @@ export default function AdminAuditLogsPage() {
   const fetchLogs = async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/audit-logs?limit=100');
+      const res = await adminFetch('/api/audit-logs/?limit=100');
       if (res.ok) {
         const data = await res.json();
         setLogs(data.logs || []);

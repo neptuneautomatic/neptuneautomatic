@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
+import { adminFetch } from '@/lib/adminApi';
 
 interface MediaItem {
   id: string;
@@ -26,7 +27,7 @@ export default function AdminMediaPage() {
 
   const fetchMedia = async () => {
     try {
-      const res = await fetch('/api/media');
+      const res = await adminFetch('/api/media/');
       if (res.ok) {
         const data = await res.json();
         setMediaList(data.media || []);
@@ -52,7 +53,7 @@ export default function AdminMediaPage() {
     formData.append('altText', file.name.replace(/\.[^/.]+$/, ''));
 
     try {
-      const res = await fetch('/api/media', {
+      const res = await adminFetch('/api/media/', {
         method: 'POST',
         body: formData,
       });
@@ -79,7 +80,7 @@ export default function AdminMediaPage() {
     if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
 
     try {
-      const res = await fetch(`/api/media?id=${id}`, { method: 'DELETE' });
+      const res = await adminFetch(`/api/media/?id=${id}`, { method: 'DELETE' });
       if (res.ok) {
         setSelectedItem(null);
         fetchMedia();

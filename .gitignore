@@ -44,3 +44,6 @@ dev.db
 
 # Backups
 /backups/*.json
+
+# Scratch scripts
+scratch/

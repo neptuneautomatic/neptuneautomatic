@@ -3,13 +3,7 @@ import { Lexend } from 'next/font/google';
 import './globals.css';
 import { ModalProvider } from '@/context/ModalContext';
 import { CartProvider } from '@/context/CartContext';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import CartDrawer from '@/components/cart/CartDrawer';
-import QuoteModal from '@/components/modals/QuoteModal';
-import SearchModal from '@/components/modals/SearchModal';
-import VideoModal from '@/components/modals/VideoModal';
-import FloatingActions from '@/components/layout/FloatingActions';
+import SiteShell from '@/components/layout/SiteShell';
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -56,14 +50,7 @@ export default function RootLayout({
       <body>
         <ModalProvider>
           <CartProvider>
-            <Header />
-            <main id="main-content">{children}</main>
-            <Footer />
-            <CartDrawer />
-            <QuoteModal />
-            <SearchModal />
-            <VideoModal />
-            <FloatingActions />
+            <SiteShell>{children}</SiteShell>
           </CartProvider>
         </ModalProvider>
       </body>

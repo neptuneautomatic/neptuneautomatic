@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAdmin } from './components/AdminContext';
+import { adminFetch } from '@/lib/adminApi';
 
 export default function AdminDashboardPage() {
   const { user } = useAdmin();
@@ -15,7 +16,7 @@ export default function AdminDashboardPage() {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch('/api/stats');
+      const res = await adminFetch('/api/stats/');
       if (res.ok) {
         const data = await res.json();
         setStats(data);
@@ -38,7 +39,7 @@ export default function AdminDashboardPage() {
     setDraftMsg('');
 
     try {
-      const res = await fetch('/api/posts', {
+      const res = await adminFetch('/api/posts/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -67,7 +68,7 @@ export default function AdminDashboardPage() {
 
   const handleStatusChange = async (submissionId: string, newStatus: string) => {
     try {
-      const res = await fetch('/api/submissions', {
+      const res = await adminFetch('/api/submissions/', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: submissionId, status: newStatus }),

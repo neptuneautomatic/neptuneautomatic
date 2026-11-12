@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useAdmin } from '../components/AdminContext';
+import { adminFetch } from '@/lib/adminApi';
 
 interface UserItem {
   id: string;
@@ -42,8 +43,8 @@ export default function AdminUsersPage() {
     try {
       setLoading(true);
       const [resUsers, resRoles] = await Promise.all([
-        fetch('/api/users'),
-        fetch('/api/roles'),
+        adminFetch('/api/users/'),
+        adminFetch('/api/roles/'),
       ]);
       if (resUsers.ok) {
         const d1 = await resUsers.json();
@@ -108,10 +109,10 @@ export default function AdminUsersPage() {
         payload.id = currentId;
       }
 
-      const url = '/api/users';
+      const url = '/api/users/';
       const method = modalMode === 'create' ? 'POST' : 'PUT';
 
-      const res = await fetch(url, {
+      const res = await adminFetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -143,7 +144,7 @@ export default function AdminUsersPage() {
     if (!confirm(`Are you sure you want to delete user "${userName}"?`)) return;
 
     try {
-      const res = await fetch(`/api/users?id=${id}`, { method: 'DELETE' });
+      const res = await adminFetch(`/api/users/?id=${id}`, { method: 'DELETE' });
       if (res.ok) {
         fetchUsersAndRoles();
       } else {
