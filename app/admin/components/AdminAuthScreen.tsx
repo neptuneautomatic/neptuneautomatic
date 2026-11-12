@@ -1,13 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useAdmin } from './AdminContext';
 
 export default function AdminAuthScreen() {
   const { login } = useAdmin();
-  const [email, setEmail] = useState('admin@neptuneautomatic.com');
-  const [password, setPassword] = useState('Password@123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -24,17 +23,6 @@ export default function AdminAuthScreen() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleFillCredentials = (userType: 'admin' | 'editor') => {
-    if (userType === 'admin') {
-      setEmail('admin@neptuneautomatic.com');
-      setPassword('Password@123');
-    } else {
-      setEmail('editor@neptuneautomatic.com');
-      setPassword('Editor@123');
-    }
-    setError('');
   };
 
   return (
@@ -57,27 +45,16 @@ export default function AdminAuthScreen() {
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.45)',
         border: '1px solid #E2E8F0',
       }}>
-        {/* Brand Header */}
+        {/* Brand Header with Official Logo */}
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <div style={{
-            width: 58,
-            height: 58,
-            backgroundColor: '#01358b',
-            color: '#FFFFFF',
-            fontWeight: 800,
-            fontSize: '1.85rem',
-            borderRadius: '14px',
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '1rem',
-            boxShadow: '0 10px 18px -3px rgba(1, 53, 139, 0.45)'
-          }}>
-            N
+          <div style={{ marginBottom: '1.25rem' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/images/neptune-logo.png"
+              alt="Neptune Automatic Logo"
+              style={{ maxHeight: '64px', maxWidth: '260px', width: 'auto', display: 'inline-block' }}
+            />
           </div>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0F172A', margin: '0 0 0.35rem 0' }}>
-            NEPTUNE AUTOMATIC
-          </h1>
           <div style={{
             display: 'inline-block',
             backgroundColor: '#EFF6FF',
@@ -258,72 +235,6 @@ export default function AdminAuthScreen() {
             )}
           </button>
         </form>
-
-        {/* Quick Fill Credentials Helper */}
-        <div style={{
-          marginTop: '1.75rem',
-          padding: '1rem',
-          backgroundColor: '#F8FAFC',
-          borderRadius: '10px',
-          border: '1px solid #E2E8F0',
-          fontSize: '0.78rem',
-          color: '#64748B'
-        }}>
-          <div style={{ fontWeight: 700, color: '#334155', marginBottom: '0.4rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span>Demo Administrator Credentials:</span>
-            <span style={{ fontSize: '0.7rem', color: '#059669', fontWeight: 700 }}>✓ SEEDED</span>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.35rem 0', borderBottom: '1px solid #EEF2F6' }}>
-            <div>
-              <strong style={{ color: '#1E293B' }}>Super Admin:</strong> admin@neptuneautomatic.com
-            </div>
-            <button
-              type="button"
-              onClick={() => handleFillCredentials('admin')}
-              style={{
-                background: '#EFF6FF',
-                border: '1px solid #BFDBFE',
-                color: '#01358b',
-                fontSize: '0.72rem',
-                fontWeight: 600,
-                padding: '0.2rem 0.5rem',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
-              Autofill
-            </button>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.35rem 0' }}>
-            <div>
-              <strong style={{ color: '#1E293B' }}>Editor:</strong> editor@neptuneautomatic.com
-            </div>
-            <button
-              type="button"
-              onClick={() => handleFillCredentials('editor')}
-              style={{
-                background: '#F1F5F9',
-                border: '1px solid #CBD5E1',
-                color: '#475569',
-                fontSize: '0.72rem',
-                fontWeight: 600,
-                padding: '0.2rem 0.5rem',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
-              Autofill
-            </button>
-          </div>
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-          <Link href="/" style={{ fontSize: '0.82rem', color: '#01358b', textDecoration: 'none', fontWeight: 600 }}>
-            &larr; Back to Public Website
-          </Link>
-        </div>
       </div>
     </div>
   );
