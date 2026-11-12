@@ -1,0 +1,519 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// 1. AUTHENTICATION & ACCESS CONTROL (RBAC)
+// ============================================================================
+
+model User {
+  id                String         @id @default(uuid())
+  name              String
+  email             String         @unique
+  passwordHash      String
+  roleId            String
+  role              Role           @relation(fields: [roleId], references: [id])
+  avatar            String?
+  status            String         @default("active") // active, inactive, suspended
+  twoFactorEnabled  Boolean        @default(false)
+  lastLoginAt       DateTime?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  pages             Page[]
+  pageRevisions     PageRevision[]
+  posts             Post[]
+  postRevisions     PostRevision[]
+  media             Media[]
+  auditLogs         AuditLog[]
+  sessions          LoginSession[]
+}
+
+model Role {
+  id          String           @id @default(uuid())
+  name        String           @unique
+  slug        String           @unique // super_admin, admin, editor, author, seo_manager, media_manager, contributor
+  description String?
+  isSystem    Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  users       User[]
+  permissions RolePermission[]
+}
+
+model Permission {
+  id          String           @id @default(uuid())
+  name        String
+  slug        String           @unique
+  module      String           // pages, posts, products, media, menus, forms, seo, users, settings, backups
+  description String?
+
+  roles       RolePermission[]
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+}
+
+model LoginSession {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token      String   @unique
+  ipAddress  String?
+  userAgent  String?
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+}
+
+// ============================================================================
+// 2. PAGES & VISUAL CONTENT MANAGEMENT (CMS)
+// ============================================================================
+
+model Page {
+  id             String         @id @default(uuid())
+  title          String
+  slug           String         @unique
+  template       String         @default("default") // default, full-width, landing, contact, product
+  contentHtml    String?
+  contentJson    String?        // Structured visual sections / blocks array
+  customCss      String?
+  customJs       String?
+  featuredImage  String?
+  status         String         @default("published") // draft, published, scheduled, archived
+  visibility     String         @default("public")    // public, private, password
+  parentId       String?
+  parent         Page?          @relation("PageHierarchy", fields: [parentId], references: [id])
+  children       Page[]         @relation("PageHierarchy")
+  authorId       String?
+  author         User?          @relation(fields: [authorId], references: [id])
+  orderIndex     Int            @default(0)
+  scheduledAt    DateTime?
+  publishedAt    DateTime?      @default(now())
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  sections       PageSection[]
+  revisions      PageRevision[]
+  menuItems      MenuItem[]
+}
+
+model PageSection {
+  id          String   @id @default(uuid())
+  pageId      String
+  page        Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  sectionType String   // hero, features, products_grid, cta, faq, testimonials, rich_text, contact_form, custom_html
+  title       String?
+  contentJson String   // JSON configuration for blocks inside section
+  orderIndex  Int      @default(0)
+  isVisible   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PageRevision {
+  id              String   @id @default(uuid())
+  pageId          String
+  page            Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  title           String
+  contentJson     String?
+  contentHtml     String?
+  authorId        String?
+  author          User?    @relation(fields: [authorId], references: [id])
+  revisionNumber  Int
+  createdAt       DateTime @default(now())
+}
+
+// ============================================================================
+// 3. BLOG POSTS, REVISIONS, CATEGORIES & TAGS
+// ============================================================================
+
+model Post {
+  id             String         @id @default(uuid())
+  title          String
+  slug           String         @unique
+  excerpt        String?
+  contentHtml    String
+  contentJson    String?
+  featuredImage  String?
+  readTime       String         @default("5 min read")
+  authorName     String         @default("Neptune Technical Editorial")
+  status         String         @default("published") // draft, published, scheduled, archived
+  visibility     String         @default("public")
+  authorId       String?
+  author         User?          @relation(fields: [authorId], references: [id])
+  viewsCount     Int            @default(0)
+  scheduledAt    DateTime?
+  publishedAt    DateTime?      @default(now())
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  revisions      PostRevision[]
+  categories     PostCategory[]
+  tags           PostTag[]
+}
+
+model PostRevision {
+  id              String   @id @default(uuid())
+  postId          String
+  post            Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  title           String
+  contentJson     String?
+  contentHtml     String
+  authorId        String?
+  author          User?    @relation(fields: [authorId], references: [id])
+  revisionNumber  Int
+  createdAt       DateTime @default(now())
+}
+
+model Category {
+  id          String         @id @default(uuid())
+  name        String
+  slug        String         @unique
+  type        String         @default("blog") // blog, product, general
+  description String?
+  parentId    String?
+  parent      Category?      @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    Category[]     @relation("CategoryHierarchy")
+  image       String?
+  orderIndex  Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  posts       PostCategory[]
+  menuItems   MenuItem[]
+}
+
+model PostCategory {
+  postId     String
+  categoryId String
+  post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([postId, categoryId])
+}
+
+model Tag {
+  id        String    @id @default(uuid())
+  name      String
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  posts     PostTag[]
+}
+
+model PostTag {
+  postId String
+  tagId  String
+  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag    Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+}
+
+// ============================================================================
+// 4. PRODUCTS & HARDWARE CATALOG MANAGEMENT
+// ============================================================================
+
+model Product {
+  id              String           @id @default(uuid())
+  name            String
+  slug            String           @unique
+  modelCode       String?
+  division        String           @default("Access Automation")
+  divisionSlug    String           @default("access-automation")
+  categorySlug    String
+  categoryId      String?
+  category        ProductCategory? @relation(fields: [categoryId], references: [id])
+  tagline         String?
+  shortDesc       String?
+  description     String
+  featuresJson    String?          // JSON array of strings
+  specsJson       String?          // JSON array of { key: string, value: string }
+  fastFactsJson   String?          // JSON array of { label: string, value: string }
+  imagesJson      String?          // JSON array of image URLs
+  brochureUrl     String?
+  datasheetUrl    String?
+  status          String           @default("published") // published, draft, archived
+  featured        Boolean          @default(false)
+  orderIndex      Int              @default(0)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  menuItems       MenuItem[]
+}
+
+model ProductCategory {
+  id                String    @id @default(uuid())
+  name              String
+  slug              String    @unique
+  division          String    @default("Access Automation")
+  divisionSlug      String    @default("access-automation")
+  title             String?
+  h1                String?
+  tagline           String?
+  description       String?
+  heroImage         String?
+  highlightsJson    String?   // JSON array of strings
+  overviewSpecsJson String?   // JSON array of { key: string, value: string }
+  orderIndex        Int       @default(0)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  products          Product[]
+}
+
+// ============================================================================
+// 5. CLIENTELE & LANDMARK INSTALLATIONS
+// ============================================================================
+
+model Client {
+  id          String   @id @default(uuid())
+  clientId    String   @unique
+  name        String
+  logoSrc     String
+  category    String   // government-defense, banking-financial, it-data-centers, etc.
+  sectorLabel String
+  featured    Boolean  @default(false)
+  highlight   String?
+  orderIndex  Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ============================================================================
+// 6. MEDIA LIBRARY & ASSETS MANAGEMENT
+// ============================================================================
+
+model Media {
+  id           String       @id @default(uuid())
+  filename     String
+  originalName String
+  mimeType     String
+  extension    String
+  size         Int          // Size in bytes
+  width        Int?
+  height       Int?
+  path         String       // Local relative or public path
+  url          String       // Public accessible URL (/assets/uploads/...)
+  altText      String?
+  title        String?
+  caption      String?
+  description  String?
+  folder       String       @default("general")
+  uploadedById String?
+  uploadedBy   User?        @relation(fields: [uploadedById], references: [id])
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  usages       MediaUsage[]
+}
+
+model MediaUsage {
+  id         String   @id @default(uuid())
+  mediaId    String
+  media      Media    @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+  entityType String   // page, post, product, setting
+  entityId   String
+  fieldName  String   // featuredImage, heroImage, imagesJson, etc.
+  createdAt  DateTime @default(now())
+}
+
+// ============================================================================
+// 7. WEBSITE NAVIGATION & MENUS
+// ============================================================================
+
+model Menu {
+  id          String     @id @default(uuid())
+  name        String
+  slug        String     @unique // primary_header, footer_quick_links, footer_products, footer_legal, mobile_menu
+  location    String     @default("primary_header")
+  isSystem    Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  items       MenuItem[]
+}
+
+model MenuItem {
+  id         String     @id @default(uuid())
+  menuId     String
+  menu       Menu       @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  parentId   String?
+  parent     MenuItem?  @relation("MenuItemHierarchy", fields: [parentId], references: [id])
+  children   MenuItem[] @relation("MenuItemHierarchy")
+  label      String
+  url        String
+  target     String     @default("_self") // _self, _blank
+  icon       String?
+  orderIndex Int        @default(0)
+  pageId     String?
+  page       Page?      @relation(fields: [pageId], references: [id])
+  productId  String?
+  product    Product?   @relation(fields: [productId], references: [id])
+  categoryId String?
+  category   Category?  @relation(fields: [categoryId], references: [id])
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+// ============================================================================
+// 8. FORMS, ENQUIRIES & SUBMISSIONS
+// ============================================================================
+
+model Form {
+  id                      String           @id @default(uuid())
+  title                   String
+  slug                    String           @unique
+  description             String?
+  submitButtonText        String           @default("Submit Enquiry")
+  successMessage          String           @default("Thank you for your enquiry. Our engineering team will contact you shortly.")
+  emailNotificationsJson  String?          // ["info@neptuneautomatic.com", "sales@..."]
+  isSpamProtected         Boolean          @default(true)
+  status                  String           @default("active")
+  createdAt               DateTime         @default(now())
+  updatedAt               DateTime         @updatedAt
+
+  fields                  FormField[]
+  submissions             FormSubmission[]
+}
+
+model FormField {
+  id           String   @id @default(uuid())
+  formId       String
+  form         Form     @relation(fields: [formId], references: [id], onDelete: Cascade)
+  label        String
+  name         String
+  fieldType    String   @default("text") // text, email, tel, textarea, select, checkbox, radio, file
+  placeholder  String?
+  defaultValue String?
+  isRequired   Boolean  @default(false)
+  optionsJson  String?  // JSON array for select/radio
+  orderIndex   Int      @default(0)
+  createdAt    DateTime @default(now())
+}
+
+model FormSubmission {
+  id            String   @id @default(uuid())
+  formId        String?
+  form          Form?    @relation(fields: [formId], references: [id])
+  formSlug      String   @default("contact-general")
+  dataJson      String   // Full key-value dictionary of submitted fields
+  name          String?
+  email         String?
+  phone         String?
+  company       String?
+  subject       String?
+  message       String?
+  ipAddress     String?
+  userAgent     String?
+  sourcePage    String?
+  status        String   @default("pending") // pending, contacted, qualified, resolved, spam, archived
+  internalNotes String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// ============================================================================
+// 9. WEBSITE SETTINGS, APPEARANCE & INTEGRATIONS
+// ============================================================================
+
+model WebsiteSetting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String   // Plain text or JSON payload
+  group     String   @default("general") // general, header, footer, branding, email, integrations, security
+  isPublic  Boolean  @default(false)     // Whether exposed to frontend API without auth
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================================================
+// 10. ADVANCED SEO & REDIRECT MANAGEMENT
+// ============================================================================
+
+model SeoMetadata {
+  id             String   @id @default(uuid())
+  entityType     String   // page, post, product, category, global
+  entityId       String?
+  entitySlug     String?
+  title          String?
+  description    String?
+  focusKeyword   String?
+  canonicalUrl   String?
+  robotsIndex    Boolean  @default(true)
+  robotsFollow   Boolean  @default(true)
+  ogTitle        String?
+  ogDescription  String?
+  ogImage        String?
+  ogType         String?  @default("website")
+  twitterCard    String?  @default("summary_large_image")
+  schemaType     String?
+  schemaJson     String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([entityType, entitySlug])
+}
+
+model Redirect {
+  id         String   @id @default(uuid())
+  sourceUrl  String   @unique
+  targetUrl  String
+  statusCode Int      @default(301) // 301 Permanent, 302 Temporary
+  isActive   Boolean  @default(true)
+  hitCount   Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// ============================================================================
+// 11. AUDIT LOGS, NOTIFICATIONS & BACKUPS
+// ============================================================================
+
+model Notification {
+  id        String   @id @default(uuid())
+  title     String
+  message   String
+  type      String   @default("info") // info, warning, success, danger
+  link      String?
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id])
+  userName   String?
+  action     String   // CREATE, UPDATE, DELETE, PUBLISH, LOGIN, LOGOUT, SETTINGS_CHANGE, BACKUP
+  entityType String   // page, post, product, category, media, user, setting, form
+  entityId   String?
+  detailsJson String? // Difference / before-after summary
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+}
+
+model Backup {
+  id        String   @id @default(uuid())
+  filename  String
+  filePath  String
+  fileSize  Int
+  type      String   @default("database") // database, media, full
+  status    String   @default("completed") // completed, failed, in_progress
+  createdBy String?
+  createdAt DateTime @default(now())
+}

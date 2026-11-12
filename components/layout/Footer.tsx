@@ -151,6 +151,7 @@ export default function Footer() {
             <Link href="/terms-and-conditions">Terms &amp; Conditions</Link>
             <Link href="/contact">Support &amp; Locations</Link>
             <Link href="/products">Sitemap &amp; Directory</Link>
+            <Link href="/admin">Staff Portal</Link>
           </div>
         </div>
       </div>

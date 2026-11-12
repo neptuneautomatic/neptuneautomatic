@@ -35,3 +35,12 @@ next-env.d.ts
 
 # Cloudflared
 cloudflared.exe
+
+# Database & SQLite
+*.db
+*.db-journal
+dev.db
+/prisma/dev.db*
+
+# Backups
+/backups/*.json

@@ -7,6 +7,13 @@ export default function QuoteModal() {
   const { isQuoteOpen, quoteProduct, closeQuote } = useModal();
   const [product, setProduct] = useState(quoteProduct || 'Automatic Boom Barriers');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [name, setName] = useState('');
+  const [company, setCompany] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [facility, setFacility] = useState('Corporate / IT Park');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (quoteProduct) {
@@ -26,13 +33,36 @@ export default function QuoteModal() {
 
   if (!isQuoteOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      closeQuote();
-    }, 2500);
+    setSubmitting(true);
+    try {
+      await fetch('/api/forms/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formCode: 'rfq',
+          data: {
+            name,
+            company,
+            email,
+            phone,
+            product,
+            facility,
+            message,
+          },
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to submit quote request', err);
+    } finally {
+      setSubmitting(false);
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        closeQuote();
+      }, 2500);
+    }
   };
 
   return (
@@ -82,22 +112,54 @@ export default function QuoteModal() {
           <form className="modal-form" id="quoteForm" onSubmit={handleSubmit}>
             <div className="form-group">
               <label className="form-label" htmlFor="quoteName">Full Name *</label>
-              <input type="text" id="quoteName" className="form-input" placeholder="e.g. Vikram Malhotra" required />
+              <input
+                type="text"
+                id="quoteName"
+                className="form-input"
+                placeholder="e.g. Vikram Malhotra"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
 
             <div className="form-group">
               <label className="form-label" htmlFor="quoteCompany">Organization / Facility *</label>
-              <input type="text" id="quoteCompany" className="form-input" placeholder="e.g. DLF CyberCity, L&amp;T Realty" required />
+              <input
+                type="text"
+                id="quoteCompany"
+                className="form-input"
+                placeholder="e.g. DLF CyberCity, L&amp;T Realty"
+                required
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+              />
             </div>
 
             <div className="form-group">
               <label className="form-label" htmlFor="quoteEmail">Work Email *</label>
-              <input type="email" id="quoteEmail" className="form-input" placeholder="name@company.com" required />
+              <input
+                type="email"
+                id="quoteEmail"
+                className="form-input"
+                placeholder="name@company.com"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
 
             <div className="form-group">
               <label className="form-label" htmlFor="quotePhone">Phone / Mobile *</label>
-              <input type="tel" id="quotePhone" className="form-input" placeholder="+91 98765 43210" required />
+              <input
+                type="tel"
+                id="quotePhone"
+                className="form-input"
+                placeholder="+91 98765 43210"
+                required
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
             </div>
 
             <div className="form-group">
@@ -123,7 +185,12 @@ export default function QuoteModal() {
 
             <div className="form-group">
               <label className="form-label" htmlFor="quoteFacility">Facility Type *</label>
-              <select id="quoteFacility" className="form-select">
+              <select
+                id="quoteFacility"
+                className="form-select"
+                value={facility}
+                onChange={(e) => setFacility(e.target.value)}
+              >
                 <option value="Corporate / IT Park">Corporate / IT Tech Park</option>
                 <option value="Airport / Transit Hub">Airport / Metro / Transit Hub</option>
                 <option value="Manufacturing / Logistics">Manufacturing / Logistics Warehouse</option>
@@ -139,12 +206,14 @@ export default function QuoteModal() {
                 id="quoteMessage"
                 className="form-textarea"
                 placeholder="Describe number of entry/exit lanes, daily traffic volume, custom integrations, or site location..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
               ></textarea>
             </div>
 
             <div className="form-group-full" style={{ marginTop: '0.5rem' }}>
-              <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
-                <span>Submit Proposal Request</span>
+              <button type="submit" disabled={submitting} className="btn btn-primary" style={{ width: '100%' }}>
+                <span>{submitting ? 'Submitting...' : 'Submit Proposal Request'}</span>
                 <svg className="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>

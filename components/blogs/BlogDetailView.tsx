@@ -36,10 +36,27 @@ export default function BlogDetailView({ post }: Props) {
     email: `mailto:?subject=${encodedTitle}&body=Read%20this%20technical%20article%20on%20Neptune%20Automatic:%20${encodedUrl}`,
   };
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail || !newsletterEmail.includes('@')) return;
-    setNewsletterSubscribed(true);
+    try {
+      await fetch('/api/forms/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formCode: 'newsletter',
+          data: {
+            email: newsletterEmail,
+            articleSlug: post.slug,
+            articleTitle: post.title,
+          },
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to submit newsletter subscription', err);
+    } finally {
+      setNewsletterSubscribed(true);
+    }
   };
 
   const blogContentRef = useRef<HTMLDivElement>(null);

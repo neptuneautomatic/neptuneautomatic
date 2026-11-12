@@ -48,11 +48,24 @@ export default function CartPageView() {
     e.preventDefault();
     const ref = `RFQ-NAPL-${Math.floor(100000 + Math.random() * 900000)}`;
     setRfqRef(ref);
-    setSubmittedData({
+    const orderData = {
       ...formData,
+      ref,
       items: [...cart],
-    });
+    };
+    setSubmittedData(orderData);
     setRfqSubmitted(true);
+
+    // Save directly to database
+    fetch('/api/forms/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        formCode: 'rfq_cart',
+        data: orderData,
+      }),
+    }).catch((err) => console.error('Failed to save cart RFQ to database', err));
+
     clearCart();
   };
 

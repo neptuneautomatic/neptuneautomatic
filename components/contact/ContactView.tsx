@@ -75,6 +75,7 @@ const BRANCHES: OfficeBranch[] = [
 
 export default function ContactView() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -85,9 +86,24 @@ export default function ContactView() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      await fetch('/api/forms/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formCode: 'contact',
+          data: formData,
+        }),
+      });
+    } catch (err) {
+      console.error('Failed to submit inquiry to backend', err);
+    } finally {
+      setSubmitting(false);
+      setSubmitted(true);
+    }
   };
 
   return (
@@ -331,10 +347,11 @@ export default function ContactView() {
 
                 <button
                   type="submit"
+                  disabled={submitting}
                   className="btn btn-primary"
                   style={{ width: '100%', padding: '0.9rem', fontSize: '1rem', fontWeight: 700 }}
                 >
-                  <span>Dispatch Technical Inquiry &rarr;</span>
+                  <span>{submitting ? 'Dispatching...' : 'Dispatch Technical Inquiry →'}</span>
                 </button>
               </form>
             )}
