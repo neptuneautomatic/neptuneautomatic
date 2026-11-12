@@ -227,10 +227,19 @@ export default function AdminDashboardPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {stats.recentSubmissions.map((sub: any) => {
-                    const dataObj = typeof sub.data === 'string' ? JSON.parse(sub.data || '{}') : sub.data;
-                    const name = dataObj.name || dataObj.fullName || 'Anonymous';
-                    const email = dataObj.email || sub.form?.title || 'No email';
+                  {(stats.recentSubmissions || []).map((sub: any) => {
+                    let dataObj: any = {};
+                    if (sub?.dataJson) {
+                      try {
+                        dataObj = typeof sub.dataJson === 'string' ? JSON.parse(sub.dataJson) : sub.dataJson;
+                      } catch {}
+                    } else if (sub?.data) {
+                      try {
+                        dataObj = typeof sub.data === 'string' ? JSON.parse(sub.data) : sub.data;
+                      } catch {}
+                    }
+                    const name = sub?.name || dataObj?.name || dataObj?.fullName || 'Anonymous';
+                    const email = sub?.email || dataObj?.email || sub?.form?.title || 'No email';
                     return (
                       <tr key={sub.id}>
                         <td>

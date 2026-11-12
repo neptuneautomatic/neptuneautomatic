@@ -82,7 +82,20 @@ export async function GET(request: NextRequest) {
           resolved: resolvedSubmissions,
         },
       },
-      recentSubmissions,
+      recentSubmissions: (recentSubmissions || []).map((s) => {
+        let parsedData: any = {};
+        if (s.dataJson) {
+          try {
+            parsedData = JSON.parse(s.dataJson);
+          } catch {}
+        }
+        return {
+          ...s,
+          name: s.name || parsedData.name || parsedData.fullName || 'Anonymous',
+          email: s.email || parsedData.email || 'No email',
+          data: parsedData,
+        };
+      }),
       recentPosts,
       recentAuditLogs,
       system: {

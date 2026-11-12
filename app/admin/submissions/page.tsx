@@ -6,9 +6,17 @@ import { adminFetch } from '@/lib/adminApi';
 
 interface SubmissionItem {
   id: string;
-  data: any;
+  data?: any;
+  dataJson?: string | null;
+  name?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  company?: string | null;
+  subject?: string | null;
+  message?: string | null;
   status: string;
   notes?: string | null;
+  internalNotes?: string | null;
   ipAddress?: string | null;
   createdAt: string;
   form?: {
@@ -107,8 +115,12 @@ export default function AdminSubmissionsPage() {
   };
 
   const filtered = submissions.filter((sub) => {
-    const dataStr = typeof sub.data === 'string' ? sub.data : JSON.stringify(sub.data);
-    return dataStr.toLowerCase().includes(search.toLowerCase());
+    const dataStr = typeof sub?.data === 'string' ? sub.data : JSON.stringify(sub || {});
+    const nameStr = sub?.name || '';
+    const emailStr = sub?.email || '';
+    const subjectStr = sub?.subject || '';
+    const searchTarget = `${dataStr} ${nameStr} ${emailStr} ${subjectStr}`.toLowerCase();
+    return searchTarget.includes(search.toLowerCase());
   });
 
   return (
@@ -189,12 +201,21 @@ export default function AdminSubmissionsPage() {
                 </td>
               </tr>
             ) : (
-              filtered.map((sub) => {
-                const dataObj = typeof sub.data === 'string' ? JSON.parse(sub.data || '{}') : sub.data;
-                const name = dataObj.name || dataObj.fullName || 'Anonymous';
-                const email = dataObj.email || 'No email';
-                const phone = dataObj.phone || dataObj.mobile || '';
-                const message = dataObj.message || dataObj.projectType || dataObj.comments || '—';
+              filtered.map((sub: any) => {
+                let dataObj: any = {};
+                if (sub?.data) {
+                  try {
+                    dataObj = typeof sub.data === 'string' ? JSON.parse(sub.data) : sub.data;
+                  } catch {}
+                } else if (sub?.dataJson) {
+                  try {
+                    dataObj = typeof sub.dataJson === 'string' ? JSON.parse(sub.dataJson) : sub.dataJson;
+                  } catch {}
+                }
+                const name = sub?.name || dataObj?.name || dataObj?.fullName || 'Anonymous';
+                const email = sub?.email || dataObj?.email || 'No email';
+                const phone = sub?.phone || dataObj?.phone || dataObj?.mobile || '';
+                const message = sub?.message || dataObj?.message || dataObj?.projectType || dataObj?.comments || '—';
 
                 return (
                   <tr key={sub.id}>
@@ -274,19 +295,42 @@ export default function AdminSubmissionsPage() {
                   Submitted Form Fields:
                 </div>
                 {(() => {
-                  const dataObj = typeof selected.data === 'string' ? JSON.parse(selected.data || '{}') : selected.data;
+                  let dataObj: any = {};
+                  if (selected?.data) {
+                    try {
+                      dataObj = typeof selected.data === 'string' ? JSON.parse(selected.data) : selected.data;
+                    } catch {}
+                  } else if ((selected as any)?.dataJson) {
+                    try {
+                      dataObj = typeof (selected as any).dataJson === 'string' ? JSON.parse((selected as any).dataJson) : (selected as any).dataJson;
+                    } catch {}
+                  }
+                  if (!dataObj || typeof dataObj !== 'object') {
+                    dataObj = {};
+                  }
+                  const mergedFields: Record<string, any> = {
+                    ...dataObj,
+                    name: (selected as any)?.name || dataObj?.name,
+                    email: (selected as any)?.email || dataObj?.email,
+                    phone: (selected as any)?.phone || dataObj?.phone,
+                    company: (selected as any)?.company || dataObj?.company,
+                    subject: (selected as any)?.subject || dataObj?.subject,
+                    message: (selected as any)?.message || dataObj?.message,
+                  };
                   return (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.85rem' }}>
-                      {Object.entries(dataObj).map(([k, v]) => (
-                        <div key={k} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', borderBottom: '1px solid #F3F4F6', paddingBottom: '0.25rem' }}>
-                          <span style={{ fontWeight: 600, color: '#4B5563', textTransform: 'capitalize' }}>
-                            {k.replace(/([A-Z])/g, ' $1')}:
-                          </span>
-                          <span style={{ color: '#111827', wordBreak: 'break-word' }}>
-                            {typeof v === 'object' ? JSON.stringify(v) : String(v)}
-                          </span>
-                        </div>
-                      ))}
+                      {Object.entries(mergedFields)
+                        .filter(([_, v]) => v != null && v !== '')
+                        .map(([k, v]) => (
+                          <div key={k} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', borderBottom: '1px solid #F3F4F6', paddingBottom: '0.25rem' }}>
+                            <span style={{ fontWeight: 600, color: '#4B5563', textTransform: 'capitalize' }}>
+                              {k.replace(/([A-Z])/g, ' $1')}:
+                            </span>
+                            <span style={{ color: '#111827', wordBreak: 'break-word' }}>
+                              {typeof v === 'object' ? JSON.stringify(v) : String(v)}
+                            </span>
+                          </div>
+                        ))}
                     </div>
                   );
                 })()}
